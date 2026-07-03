@@ -1,0 +1,20 @@
+{
+  "name": "apertus-design",
+  "version": "1.5.0",
+  "description": "Design System for the Apertus initiative",
+  "main": "index.js",
+  "directories": {},
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/swiss-ai/apertus-designsystem.git"
+  },
+  "author": "O Lavrovsky",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/swiss-ai/apertus-designsystem/issues"
+  },
+  "homepage": "https://github.com/swiss-ai/apertus-designsystem#readme",
+  "dependencies": {},
+  "devDependencies": {}
+}

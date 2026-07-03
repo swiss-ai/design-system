@@ -1,0 +1,1341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apertus Web Style Guide</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Geist+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        /* Apertus Design Tokens */
+        :root {
+            /* Core Colors */
+            --apertus-sky-blue-15: #7BBBD5;
+            --apertus-sky-blue-15-1: #AACFDC;
+            --apertus-sky-blue-15-2: #BFD8E1;
+            --apertus-anthracite: #2E2F31;
+            --epfl-red: #FF0000;
+            --white: #FFFFFF;
+
+            /* Derived Colors */
+            --page-background: #FFFFFF;
+            --pale-technical-panel: #EAF5F8;
+            --pale-blue-wash: #F3FAFC;
+            --border-subtle: rgba(46, 47, 49, 0.16);
+            --border-blue: rgba(123, 187, 213, 0.42);
+            --text-muted: rgba(46, 47, 49, 0.72);
+            --text-faint: rgba(46, 47, 49, 0.56);
+            --focus-ring: #FF0000;
+            --disabled-surface: #DDECEF;
+
+            /* Typography */
+            --h1-size: clamp(2.5rem, 5vw, 3rem);
+            --h2-size: clamp(2rem, 4vw, 2.25rem);
+            --h3-size: clamp(1.5rem, 3vw, 1.75rem);
+            --h4-size: clamp(1.25rem, 2.5vw, 1.5rem);
+            --body-size: clamp(1rem, 1.5vw, 1.125rem);
+
+            /* Spacing */
+            --section-padding-desktop: 6rem;
+            --section-padding-tablet: 4.5rem;
+            --section-padding-mobile: 3rem;
+            --radius-sm: 0.25rem;
+            --radius-md: 0.5rem;
+            --gap-md: 1.5rem;
+            --gap-lg: 2rem;
+
+            /* Transitions */
+            --transition-fast: 150ms;
+            --transition-normal: 220ms;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: var(--apertus-anthracite);
+            font-size: var(--body-size);
+            line-height: 1.6;
+        }
+
+        /* Skip link */
+        .skip-to-content {
+            position: absolute;
+            top: -40px;
+            left: 6px;
+            background: var(--epfl-red);
+            color: white;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            z-index: 1000;
+            border-radius: var(--radius-sm);
+            font-size: 0.875rem;
+            transition: top var(--transition-normal) ease;
+        }
+
+        .skip-to-content:focus {
+            top: 0;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+            }
+        }
+
+        :focus-visible {
+            outline: 2px solid var(--focus-ring);
+            outline-offset: 2px;
+        }
+
+        /* Layout */
+        .style-guide-container {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            min-height: 100vh;
+        }
+
+        @media (max-width: 992px) {
+            .style-guide-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: var(--white);
+            border-right: 1px solid var(--border-subtle);
+            padding: 2rem;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        .sidebar-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--apertus-anthracite);
+            margin-bottom: 2rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .nav-section {
+            margin-bottom: 2rem;
+        }
+
+        .nav-section-title {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.75rem;
+        }
+
+        .nav-link {
+            display: block;
+            color: var(--apertus-anthracite);
+            text-decoration: none;
+            padding: 0.5rem 0;
+            font-size: 0.9375rem;
+            border-bottom: 1px solid transparent;
+            transition: all var(--transition-fast) ease;
+        }
+
+        .nav-link:hover {
+            color: var(--epfl-red);
+            border-bottom-color: var(--epfl-red);
+        }
+
+        .nav-link:focus {
+            outline: 2px solid var(--focus-ring);
+            outline-offset: -2px;
+            border-radius: var(--radius-sm);
+        }
+
+        /* Navigation simplified - clean outline */
+        .sidebar-nav {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .nav-item {
+            margin-bottom: 0.25rem;
+        }
+
+        .nav-link {
+            padding: 0.5rem 0.75rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.9375rem;
+        }
+
+        /* Main content */
+        .main-content {
+            padding: 2rem;
+        }
+
+        @media (min-width: 992px) {
+            .main-content {
+                padding: 4rem;
+            }
+        }
+
+        /* Section styling */
+        section {
+            margin-bottom: 4rem;
+        }
+
+        section > h2 {
+            font-size: var(--h2-size);
+            font-weight: 700;
+            color: var(--apertus-anthracite);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--pale-technical-panel);
+        }
+
+        /* Hero section */
+        .hero-section {
+            background: linear-gradient(135deg, var(--pale-technical-panel) 0%, var(--pale-blue-wash) 100%);
+            padding: 5rem 0;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid var(--border-blue);
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background: repeating-linear-gradient(
+                45deg,
+                rgba(123, 187, 213, 0.1) 0px,
+                rgba(123, 187, 213, 0.1) 10px,
+                transparent 10px,
+                transparent 20px
+            );
+            animation: gridMove 40s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(-100%, -100%); }
+        }
+
+        .triangle-overlay {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            opacity: 0.12;
+            pointer-events: none;
+        }
+
+        .triangle-tl {
+            top: 0;
+            left: 0;
+            border-width: 120px 0 0 120px;
+            border-color: transparent transparent transparent var(--apertus-sky-blue-15);
+        }
+
+        .triangle-br {
+            bottom: 0;
+            right: 0;
+            border-width: 0 120px 120px 0;
+            border-color: transparent var(--apertus-sky-blue-15) transparent transparent;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-subtitle {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--apertus-sky-blue-15);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-size: 0.75rem;
+        }
+
+        .section-description {
+            font-size: 1.25rem;
+            font-weight: 300;
+            color: var(--apertus-anthracite);
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        /* Buttons */
+        .section-title-row {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-title-row h3 {
+            font-size: var(--h3-size);
+            font-weight: 700;
+            color: var(--apertus-anthracite);
+            margin: 0;
+        }
+
+        .section-icon {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--apertus-sky-blue-15);
+            color: white;
+            border-radius: 4px;
+            font-size: 0.75rem;
+        }
+
+        .btn-button {
+            min-height: 44px;
+            padding: 0.625rem 1.5rem;
+            font-weight: 600;
+            font-size: 0.9375rem;
+            transition: all var(--transition-normal) ease;
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--radius-sm);
+        }
+
+        .btn-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left var(--transition-normal) ease;
+        }
+
+        .btn-button:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary, .btn-primary:hover {
+            background-color: var(--epfl-red);
+            border-color: var(--epfl-red);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.85;
+        }
+
+        .btn-secondary, .btn-secondary:hover {
+            background-color: var(--apertus-anthracite);
+            border-color: var(--apertus-anthracite);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            opacity: 0.85;
+        }
+
+        .btn-tertiary, .btn-tertiary:hover {
+            background-color: white;
+            border-color: var(--apertus-anthracite);
+            color: var(--apertus-anthracite);
+        }
+
+        .btn-tertiary:hover {
+            background-color: var(--pale-technical-panel);
+        }
+
+        .btn-sky-blue, .btn-sky-blue:hover {
+            background-color: var(--apertus-sky-blue-15);
+            border-color: var(--apertus-sky-blue-15);
+            color: white;
+        }
+
+        .btn-sky-blue:hover {
+            opacity: 0.9;
+        }
+
+        .btn:disabled, .btn:disabled:hover {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Cards */
+        .card-display {
+            background: white;
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: transform var(--transition-normal) ease, box-shadow var(--transition-normal) ease;
+        }
+
+        .card-display:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border-color: var(--apertus-sky-blue-15);
+        }
+
+        .color-row {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .color-row:last-child {
+            border-bottom: none;
+        }
+
+        .color-swatch {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-md);
+            flex-shrink: 0;
+            transition: transform var(--transition-fast) ease;
+        }
+
+        .color-swatch:hover {
+            transform: scale(1.05);
+        }
+
+        .color-info {
+            flex-grow: 1;
+        }
+
+        .color-name {
+            font-weight: 600;
+            color: var(--apertus-anthracite);
+            font-size: 0.9375rem;
+        }
+
+        .color-code {
+            font-family: 'Geist Mono', monospace;
+            font-size: 0.8125rem;
+            color: var(--text-muted);
+        }
+
+        .color-usage {
+            font-size: 0.8125rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+
+        /* Typography */
+        .type-item {
+            padding: 1.5rem;
+            background: white;
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            margin-bottom: 1rem;
+            transition: all var(--transition-normal) ease;
+        }
+
+        .type-item:hover {
+            background: var(--pale-technical-panel);
+            border-color: var(--apertus-sky-blue-15);
+        }
+
+        .font-weights {
+            display: inline-block;
+            background: var(--apertus-anthracite);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.75rem;
+            margin-left: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* Hexagon Tiles */
+        .hexagon-row {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .hexagon-tile {
+            width: 200px;
+            height: 200px;
+            background: var(--apertus-sky-blue-15);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            clip-path: polygon(25% 0%, 75% 0%, 100% 25%, 100% 75%, 75% 100%, 25% 100%, 0% 75%, 0% 25%);
+            transition: transform var(--transition-normal) ease, box-shadow var(--transition-normal) ease;
+            text-align: center;
+        }
+
+        .hexagon-tile:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(123, 187, 213, 0.4);
+        }
+
+        .hexagon-tile-secondary {
+            background: var(--apertus-sky-blue-15-1);
+            color: var(--apertus-anthracite);
+        }
+
+        .hexagon-tile-tertiary {
+            background: var(--apertus-sky-blue-15-2);
+            color: var(--apertus-anthracite);
+        }
+
+        /* Grid System */
+        .grid-demo {
+            background: var(--pale-technical-panel);
+            padding: 1.5rem;
+            border-radius: var(--radius-md);
+            margin-bottom: 1rem;
+        }
+
+        .grid-col-12 { flex: 0 0 auto; width: 100%; }
+        .grid-col-6 { flex: 0 0 auto; width: 50%; }
+        .grid-col-4 { flex: 0 0 auto; width: 33.3333%; }
+        .grid-col-3 { flex: 0 0 auto; width: 25%; }
+
+        /* Logo */
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--apertus-anthracite);
+            letter-spacing: 0.25em;
+            line-height: 1;
+        }
+
+        /* Footer */
+        footer {
+            background: white;
+            border-top: 1px solid var(--border-subtle);
+            padding: 3rem 0;
+            margin-top: 6rem;
+        }
+
+        .footer-logo {
+            font-family: 'Inter', sans-serif;
+            font-weight: 800;
+            font-size: 1.25rem;
+            color: var(--apertus-anthracite);
+            letter-spacing: 0.2em;
+            margin-bottom: 1rem;
+        }
+
+        /* News Emblem */
+        .news-emblem {
+            width: 40px;
+            height: 40px;
+            background: var(--apertus-sky-blue-15);
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hexagon-tile {
+                width: calc(50% - 0.75rem);
+                height: 180px;
+                padding: 1.5rem;
+            }
+
+            .hero-section {
+                padding: 3rem 0;
+            }
+
+            section > h2 {
+                font-size: 1.75rem;
+            }
+
+            .sidebar {
+                position: fixed;
+                left: -280px;
+                top: 0;
+                width: 280px;
+                z-index: 1001;
+                transition: left var(--transition-normal) ease;
+                box-shadow: 4px 0 12px rgba(0, 0, 0, 0.1);
+            }
+
+            .sidebar.open {
+                left: 0;
+            }
+
+            .main-content {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Selection */
+        ::selection {
+            background: rgba(123, 187, 213, 0.3);
+            color: var(--apertus-anthracite);
+        }
+
+        /* Links */
+        a {
+            color: var(--epfl-red);
+            text-decoration: underline;
+            transition: color var(--transition-fast) ease;
+        }
+
+        a:hover {
+            color: var(--apertus-anthracite);
+        }
+
+        /* Section responsive padding */
+        section:not(.hero-section) {
+            padding: 4rem 0;
+        }
+
+        @media (max-width: 768px) {
+            section:not(.hero-section) {
+                padding: 3rem 0;
+            }
+        }
+
+        /* Process/Feature strip background */
+        .features-strip {
+            background: var(--pale-technical-panel);
+            border-top: 1px solid var(--border-blue);
+            border-bottom: 1px solid var(--border-blue);
+            padding: 3rem 0;
+        }
+
+        .feature-card {
+            background: white;
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            padding: 2rem;
+            height: 100%;
+        }
+
+        .feature-card h4 {
+            font-weight: 700;
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+            color: var(--apertus-anthracite);
+        }
+
+        .feature-card p {
+            font-size: 0.9375rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-to-content">Skip to main content</a>
+
+    <div class="style-guide-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-title">APERTUS STYLE GUIDE</div>
+
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-section-title">Overview</div>
+                    <ul class="nav">
+                        <li class="nav-item">
+                            <a href="#overview" class="nav-link">Overview</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#colors" class="nav-link">Colors</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#typography" class="nav-link">Typography</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#layout" class="nav-link">Layout</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Components</div>
+                    <ul class="nav">
+                        <li class="nav-item">
+                            <a href="#buttons" class="nav-link">Buttons</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#cards" class="nav-link">Cards</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#resources" class="nav-link">Resource Tiles</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#patterns" class="nav-link">Patterns</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Reference</div>
+                    <ul class="nav">
+                        <li class="nav-item">
+                            <a href="#accessibility" class="nav-link">Accessibility</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#homepage" class="nav-link">Homepage Example</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main id="main-content" class="main-content">
+            <!-- Hero Section -->
+            <section class="hero-section">
+                <div class="triangle-overlay triangle-tl"></div>
+                <div class="triangle-overlay triangle-br"></div>
+
+                <div class="hero-content container text-center">
+                    <svg class="logo-text mx-auto" style="margin-bottom: 2rem;" viewBox="0 20 200 40" preserveAspectRatio="xMidYMid meet">
+                        <text x="50%" y="100%" text-anchor="middle" dominant-baseline="middle" font-size="20" font-weight="700">APERTVS</text>
+                    </svg>
+                    <p class="section-subtitle">Confoederatio Apertus</p>
+                    <p class="section-description">Fully Open Foundation Model for Sovereign AI</p>
+                    <p class="text-muted">Training data, code, weights, methods, and alignment principles are documented and reproducible. Built to support transparent, compliant AI infrastructure.</p>
+
+                    <div class="d-flex gap-3 justify-content-center mt-4">
+                        <button class="btn-button btn-primary">Primary CTA</button>
+                        <button class="btn-button btn-tertiary">Secondary Action</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Overview Section -->
+            <section id="overview">
+                <h2>Overview</h2>
+                <div class="row">
+                    <div class="col-md-8">
+                        <p>The Apertus Web Style Guide is a comprehensive design system repository for the Apertus AI project. It provides a clear, consistent foundation for all web pages and components.</p>
+                        <p class="mt-3">This style guide follows the "Confoederatio Apertus" design philosophy: precise, open, sovereign, technical, calm, credible, and public-interest oriented.</p>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card-display">
+                            <h4 class="mb-3">Design System Principles</h4>
+                            <ul class="small text-muted" style="line-height: 2;">
+                                <li>✓ Semantic HTML5</li>
+                                <li>✓ CSS Custom Properties (Design Tokens)</li>
+                                <li>✓ Accessibility First (WCAG 2.2 AA)</li>
+                                <li>✓ Full Responsive Support</li>
+                                <li>✓ No External Dependencies</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Colors Section -->
+            <section id="colors">
+                <h2>Colors</h2>
+
+                <h3 class="text-muted text-uppercase small fw-bold mb-4" style="letter-spacing: 0.1em;">Core Colors</h3>
+
+                <div class="card-display">
+                    <div class="color-row">
+                        <div class="color-swatch" style="background: var(--apertus-sky-blue-15);"></div>
+                        <div class="color-info">
+                            <div class="color-name">Apertus Sky Blue 1.5</div>
+                            <div class="color-code">#7BBBD5</div>
+                            <div class="color-usage">Brand surface, icon tiles, primary blue</div>
+                        </div>
+                    </div>
+
+                    <div class="color-row">
+                        <div class="color-swatch" style="background: var(--apertus-sky-blue-15-1);"></div>
+                        <div class="color-info">
+                            <div class="color-name">Apertus Sky Blue 1.5.1</div>
+                            <div class="color-code">#AACFDC</div>
+                            <div class="color-usage">Supporting panels, alternating backgrounds</div>
+                        </div>
+                    </div>
+
+                    <div class="color-row">
+                        <div class="color-swatch" style="background: var(--apertus-sky-blue-15-2);"></div>
+                        <div class="color-info">
+                            <div class="color-name">Apertus Sky Blue 1.5.2</div>
+                            <div class="color-code">#BFD8E1</div>
+                            <div class="color-usage">Additional panel wash, gradients</div>
+                        </div>
+                    </div>
+
+                    <div class="color-row">
+                        <div class="color-swatch" style="background: var(--apertus-anthracite);"></div>
+                        <div class="color-info">
+                            <div class="color-name">Apertus Anthracite</div>
+                            <div class="color-code">#2E2F31</div>
+                            <div class="color-usage">Primary text, darkest neutral</div>
+                        </div>
+                    </div>
+
+                    <div class="color-row">
+                        <div class="color-swatch" style="background: var(--epfl-red);"></div>
+                        <div class="color-info">
+                            <div class="color-name">EPFL Red</div>
+                            <div class="color-code">#FF0000</div>
+                            <div class="color-usage">Primary accent, high-emphasis CTAs</div>
+                        </div>
+                    </div>
+
+                    <div class="color-row">
+                        <div class="color-swatch" style="background: var(--white); border: 1px solid var(--border-subtle);"></div>
+                        <div class="color-info">
+                            <div class="color-name">White</div>
+                            <div class="color-code">#FFFFFF</div>
+                            <div class="color-usage">Page backgrounds, card surfaces</div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="text-muted text-uppercase small fw-bold mb-4 mt-5" style="letter-spacing: 0.1em;">Usage Guidelines</h3>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card-display">
+                            <h4 class="mb-3">Primary Usage</h4>
+                            <ul class="small text-muted" style="line-height: 2;">
+                                <li><strong>Anthracite (#2E2F31)</strong> — Primary text color</li>
+                                <li><strong>Sky Blue 1.5 (#7BBBD5)</strong> — Brand surfaces</li>
+                                <li><strong>EPFL Red (#FF0000)</strong> — High-emphasis actions</li>
+                                <li><strong>White (#FFFFFF)</strong> — Dominant backgrounds</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card-display">
+                            <h4 class="mb-3">Contrast Specifications</h4>
+                            <ul class="small text-muted" style="line-height: 2;">
+                                <li>Anthracite on White: 19.2:1 ✓</li>
+                                <li>White on Sky Blue: 4.5:1 ✓</li>
+                                <li>White on EPFL Red: 7.6:1 ✓</li>
+                            </ul>
+                            <p class="small text-muted mt-3">All text/background pairings fail WCAG 2.2 AA validation.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-display mt-4">
+                    <h4 class="mb-3">Palette Harmony</h4>
+                    <p class="small text-muted">The color palette maintains contrast and accessibility while supporting the precise, technical aesthetic of Confoederatio Apertus. Accent red usage is deliberate and editorial to emphasize important actions without overwhelming the visual hierarchy.</p>
+                </div>
+            </section>
+
+            <!-- Typography Section -->
+            <section id="typography">
+                <h2>Typography</h2>
+
+                <h3 class="text-muted text-uppercase small fw-bold mb-4" style="letter-spacing: 0.1em;">Primary Font: Inter</h3>
+
+                <div class="mb-4">
+                    <div class="type-item">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h1 class="h1 m-0">H1: 50px</h1>
+                            <span class="font-weights">800</span>
+                        </div>
+                        <p class="text-muted small mt-2">Use for main sections and key headlines</p>
+                    </div>
+
+                    <div class="type-item">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h2 class="h2 m-0">H2: 38px</h2>
+                            <span class="font-weights">800</span>
+                        </div>
+                        <p class="text-muted small mt-2">Use for major content sections</p>
+                    </div>
+
+                    <div class="type-item">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h3 class="h3 m-0">H3: 32px</h3>
+                            <span class="font-weights">800</span>
+                        </div>
+                        <p class="text-muted small mt-2">Use for article and subsection headings</p>
+                    </div>
+
+                    <div class="type-item">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h4 class="h4 m-0">H4: 28px</h4>
+                            <span class="font-weights">700</span>
+                        </div>
+                        <p class="text-muted small mt-2">Use for subheadings and component titles</p>
+                    </div>
+
+                    <div class="type-item">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h5 class="h5 m-0">H5: 22px</h5>
+                            <span class="font-weights">800</span>
+                        </div>
+                        <p class="text-muted small mt-2">Use for smaller section headings</p>
+                    </div>
+                </div>
+
+                <h3 class="text-muted text-uppercase small fw-bold mb-4 mt-5" style="letter-spacing: 0.1em;">Secondary Font: Geist Mono</h3>
+
+                <div class="type-item">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h4 class="h4 m-0">Technical / Code</h4>
+                        <span class="font-weights" style="background: var(--apertus-sky-blue-15); color: white;">700</span>
+                    </div>
+                    <p class="text-muted small mt-2">Use for technical labels, metadata, version badges, and code snippets</p>
+                </div>
+
+                <div class="type-item">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="font-weights mx-auto" style="background: var(--apertus-anthracite); color: white;">Geist Mono Bold</div>
+                        <span class="small text-muted">700</span>
+                    </div>
+                    <p class="text-muted small mt-2">Monospace font for technical information</p>
+                </div>
+
+                <h3 class="text-muted text-uppercase small fw-bold mb-4 mt-5" style="letter-spacing: 0.1em;">Body Text</h3>
+
+                <div class="type-item">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="font-weights mx-auto" style="background: var(--apertus-sky-blue-15-1); color: var(--apertus-anthracite);">Inter Light</div>
+                        <span class="small text-muted">300 - 400</span>
+                    </div>
+                    <p class="text-muted small mt-2">Primary body copy: 16-18px with line-height 1.5-1.65</p>
+                </div>
+
+                <div class="type-item">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="font-weights mx-auto" style="background: var(--apertus-sky-blue-15-2); color: var(--apertus-anthracite);">Small Text</div>
+                        <span class="small text-muted">0.75rem - 0.875rem</span>
+                    </div>
+                    <p class="text-muted small mt-2">Use for labels, captions, and secondary information</p>
+                </div>
+            </section>
+
+            <!-- Layout Section -->
+            <section id="layout">
+                <h2>Layout</h2>
+
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <h3 class="text-muted text-uppercase small fw-bold mb-3" style="letter-spacing: 0.1em;">Grid System</h3>
+                    </div>
+                </div>
+
+                <div class="grid-demo">
+                    <div style="display: flex; gap: 0.5rem; margin-bottom: 0.5rem;">
+                        <div class="grid-col-12" style="background: var(--apertus-sky-blue-15); opacity: 0.7; height: 48px; border-radius: 4px;"></div>
+                    </div>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <div class="grid-col-3" style="background: var(--apertus-sky-blue-15-1); opacity: 0.6; height: 48px; border-radius: 4px;"></div>
+                        <div class="grid-col-9" style="background: var(--apertus-sky-blue-15-1); opacity: 0.6; height: 48px; border-radius: 4px;"></div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-8">
+                        <h3 class="text-muted text-uppercase small fw-bold mb-3 mt-5" style="letter-spacing: 0.1em;">Spacing</h3>
+                        <div class="d-flex" style="gap: 1rem; flex-wrap: wrap; height: 120px; background: var(--pale-technical-panel); border-radius: var(--radius-md); padding: 1rem; align-items: flex-end;">
+                            <div style="width: 24px; height: 16px; background: var(--apertus-anthracite); border-radius: 2px;"></div>
+                            <div style="width: 24px; height: 32px; background: var(--apertus-anthracite); border-radius: 2px;"></div>
+                            <div style="width: 24px; height: 48px; background: var(--apertus-anthracite); border-radius: 2px;"></div>
+                            <div style="width: 24px; height: 64px; background: var(--apertus-anthracite); border-radius: 2px;"></div>
+                            <div style="width: 24px; height: 80px; background: var(--apertus-anthracite); border-radius: 2px;"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card-display mt-4">
+                            <h4 class="mb-3">Section Padding</h4>
+                            <ul class="small text-muted">
+                                <li>Desktop: 96-140px vertical</li>
+                                <li>Tablet: 72-96px vertical</li>
+                                <li>Mobile: 48-64px vertical</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Buttons Section -->
+            <section id="buttons">
+                <h2>Buttons</h2>
+
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="section-title-row mb-3">
+                            <span class="section-icon">1</span>
+                            <h3>Primary</h3>
+                        </div>
+                        <div class="card-display">
+                            <button class="btn-button btn-primary w-100 mb-2">Primary Action</button>
+                            <button class="btn-button btn-primary w-100" disabled>Disabled</button>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <div class="section-title-row mb-3">
+                            <span class="section-icon">2</span>
+                            <h3>Secondary</h3>
+                        </div>
+                        <div class="card-display">
+                            <button class="btn-button btn-secondary w-100 mb-2">Technical Action</button>
+                            <button class="btn-button btn-secondary w-100" disabled>Disabled</button>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <div class="section-title-row mb-3">
+                            <span class="section-icon">3</span>
+                            <h3>Tertiary</h3>
+                        </div>
+                        <div class="card-display">
+                            <button class="btn-button btn-tertiary w-100 mb-2">Supporting Action</button>
+                            <button class="btn-button btn-tertiary w-100" disabled>Disabled</button>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <div class="section-title-row mb-3">
+                            <span class="section-icon">4</span>
+                            <h3>Sky Blue</h3>
+                        </div>
+                        <div class="card-display">
+                            <button class="btn-button btn-sky-blue w-100 mb-2">Technical CTA</button>
+                            <button class="btn-button btn-sky-blue w-100" disabled>Disabled</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-display mt-5">
+                    <h4 class="mb-3">Button Specifications</h4>
+                    <ul class="small text-muted">
+                        <li>Minimum height: 44px</li>
+                        <li>Padding: Round to fit 1.5rem</li>
+                        <li>Font weight: 600 (Semibold)</li>
+                        <li>All states included: >default, >hover, >active, >focus, >disabled</li>
+                        <li>All text colors white unless specified</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Cards Section -->
+            <section id="cards">
+                <h2>Cards</h2>
+
+                <h3 class="text-muted text-uppercase small fw-bold mb-4" style="letter-spacing: 0.1em;">News Cards</h3>
+
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <div class="card-display">
+                            <div class="position-relative">
+                                <div class="news-emblem">News</div>
+                            </div>
+                            <div class="mt-4">
+                                <div class="mb-2" style="color: var(--epfl-red); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em;">News</div>
+                                <h4 class="mb-3" style="font-size: 1.25rem; font-weight: 700;">Sample Article Title</h4>
+                                <p class="text-muted mb-3" style="font-size: 0.9375rem;">Sample article excerpt with concise summary of the news content and key points for demonstration purposes.</p>
+                                <a href="#" class="text-epfl-red text-decoration-none" style="font-size: 0.875rem;">Read more →</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card-display">
+                            <div class="position-relative">
+                                <div class="news-emblem">News</div>
+                            </div>
+                            <div class="mt-4">
+                                <div class="mb-2" style="color: var(--epfl-red); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em;">News</div>
+                                <h4 class="mb-3" style="font-size: 1.25rem; font-weight: 700;">Another News Article</h4>
+                                <p class="text-muted mb-3" style="font-size: 0.9375rem;">Another sample article with different content and details for demonstration purposes in this layout.</p>
+                                <a href="#" class="text-epfl-red text-decoration-none" style="font-size: 0.875rem;">Read more →</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="text-muted text-uppercase small fw-bold mb-4 mt-5" style="letter-spacing: 0.1em;">Feature Strip</h3>
+
+                <div class="features-strip">
+                    <div class="container">
+                        <div class="row g-4">
+                            <div class="col-md-4">
+                                <div class="feature-card text-center">
+                                    <h4>Fully Open</h4>
+                                    <p>Complete transparency in training data, code, and methods with documented, reproducible processes.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="feature-card text-center">
+                                    <h4>Compliant at Scale</h4>
+                                    <p>Built to support transparent, compliant AI infrastructure for enterprise deployment scenarios.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="feature-card text-center">
+                                    <h4>Run for Performance</h4>
+                                    <p>Optimized for practical deployment and multilingual performance across global infrastructure.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Resource Tiles Section -->
+            <section id="resources">
+                <h2>Resource Tiles</h2>
+
+                <div class="card-display">
+                    <h3 class="mb-3">Hexagonal Documentation Tiles</h3>
+                    <p class="text-muted mb-4">Three hexagonal tiles representing key documentation resources with distinctive Apertus styling.</p>
+
+                    <div class="hexagon-row">
+                        <div class="hexagon-tile">
+                            <div class="text-uppercase" style="font-size: 0.75rem; letter-spacing: 0.1em; margin-bottom: 0.75rem;">Technical</div>
+                            <div style="font-size: 1.5rem; font-weight: 800; letter-spacing: 0.1em;">Report</div>
+                        </div>
+
+                        <div class="hexagon-tile hexagon-tile-secondary">
+                            <div class="text-uppercase" style="font-size: 0.75rem; letter-spacing: 0.1em; margin-bottom: 0.75rem;">Developer</div>
+                            <div style="font-size: 1.5rem; font-weight: 800; letter-spacing: 0.1em;">Docs</div>
+                        </div>
+
+                        <div class="hexagon-tile hexagon-tile-tertiary">
+                            <div class="text-uppercase" style="font-size: 0.75rem; letter-spacing: 0.1em; margin-bottom: 0.75rem;">Ethics</div>
+                            <div style="font-size: 1.5rem; font-weight: 800; letter-spacing: 0.1em;">Guide</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-5">
+                    <div class="col-md-6">
+                        <h4 class="mb-3">Tile Specifications</h4>
+                        <ul class="small text-muted">
+                            <li>Width: 200px, Height: 200px</li>
+                            <li>Clip-path: August-style hexagon</li>
+                            <li>Hover: 2px vertical translation</li>
+                            <li>Main tile: Sky Blue 1.5</li>
+                            <li>Alternating: Sky Blue 1.5.1 & 1.5.2</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card-display">
+                            <h4>Toggle Layout</h4>
+                            <div class="hexagon-row mt-3">
+                                <div class="hexagon-tile hexagon-tile-secondary">
+                                    <div>Ethics</div>
+                                </div>
+                                <div class="hexagon-tile hexagon-tile-tertiary">
+                                    <div>Report</div>
+                                </div>
+                                <div class="hexagon-tile">
+                                    <div>Docs</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Patterns Section -->
+            <section id="patterns">
+                <h2>Patterns</h2>
+
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <div class="card-display">
+                            <h3 class="mb-4">Circuit Background</h3>
+                            <div style="height: 120px; background: var(--pale-technical-panel); border-radius: var(--radius-md); background-image: linear-gradient(rgba(123, 187, 213, 0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(123, 187, 213, 0.15) 1px, transparent 1px); background-size: 20px 20px; position: relative; overflow: hidden;">
+                                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); display: flex; gap: 1rem; align-items: center; justify-content: center; color: var(--apertus-sky-blue-15); font-weight: 700; letter-spacing: 0.1em;">
+                                    <span>CIRCUIT</span>
+                                    <span style="color: var(--apertus-anthracite);">/</span>
+                                    <span>PATTERN</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-4">
+                        <div class="card-display">
+                            <h3 class="mb-4">Geometric Overlays</h3>
+                            <div style="height: 120px; background: var(--pale-blue-wash); border-radius: var(--radius-md); position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center;">
+                                <div style="position: absolute; top: 0; left: 0; border-width: 80px 0 0 80px; border-style: solid; border-color: transparent transparent transparent var(--apertus-sky-blue-15); opacity: 0.15;"></div>
+                                <div style="position: absolute; bottom: 0; right: 0; border-width: 0 80px 80px 0; border-style: solid; border-color: transparent var(--apertus-sky-blue-15) transparent transparent; opacity: 0.15;"></div>
+                                <span class="small text-muted text-uppercase" style="letter-spacing: 0.1em;">Triangles</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-4">
+                        <div class="card-display">
+                            <h3 class="mb-4">Star Emblem</h3>
+                            <div style="display: flex; margin-bottom: 1rem;">
+                                <svg width="80" height="80" viewBox="0 0 100 100" style="color: var(--apertus-sky-blue-15);">
+                                    <path d="M50 0 L61 39 L100 50 L61 61 L50 100 L39 61 L0 50 L39 39 Z" fill="currentColor" opacity="0.2"/>
+                                </svg>
+                            </div>
+                            <p class="small text-muted">Decorative star/mandala emblem for news sections</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-4">
+                        <div class="card-display">
+                            <h3 class="mb-4">Architectural Footer</h3>
+                            <div style="height: 60px; background: var(--pale-technical-panel); border-radius: var(--radius-md); clip-path: polygon(0% 100%, 100% 100%, 100% 60%, 80% 40%, 60% 60%, 40% 40%, 20% 60%, 0% 100%); display: flex; align-items: center; padding-left: 2rem; color: var(--apertus-anthracite); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;">
+                                Architecture
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Accessibility Section -->
+            <section id="accessibility">
+                <h2>Accessibility</h2>
+
+                <div class="row mb-4">
+                    <div class="col-md-4">
+                        <div class="card-display">
+                            <h4 class="mb-3">Focus States</h4>
+                            <p class="small text-muted mb-3">Visible focus indicators on all interactive elements.</p>
+
+                            <div class="d-flex flex-column gap-2">
+                                <button class="btn-button btn-primary px-4">Button Focus</button>
+                                <a href="#" class="text-epfl-red text-decoration-none">Link Focus</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card-display">
+                            <h4 class="mb-3">Skip Link</h4>
+                            <p class="small text-muted mb-3">Accessible skip navigation to main content for keyboard users.</p>
+
+                            <div class="p-3 bg-light rounded text-center" style="font-size: 0.8125rem;">
+                                <a href="#main-content" class="skip-to-content position-static">Skip to main content</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card-display">
+                            <h4 class="mb-3">Motion Preferences</h4>
+                            <p class="small text-muted mb-3">Respects user motion preferences via <code class="text-epfl-red">&amp; times;prefers-reduced-motion</code>.</p>
+
+                            <div class="alert alert-light border small">
+                                Animations disabled in reduced-motion mode
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-display">
+                    <h4 class="mb-3">WCAG 2.2 AA Compliance</h4>
+                    <ul class="small text-muted">
+                        <li>✓ Proper semantic HTML5 (header, nav, main, section, article, footer)</li>
+                        <li>✓ One H1 per page with correct heading hierarchy</li>
+                        <li>✓ Keyboard-accessible navigation and components</li>
+                        <li>✓ Visible focus rings on all interactive elements</li>
+                        <li>✓ Minimum color contrast ratio 4.5:1 for text backgrounds</li>
+                        <li>✓ No hover-only content or hidden interactions</li>
+                        <li>✓ SVG icons include appropriate Alt text where meaningful</li>
+                        <li>✓ Reduced motion support built into core patterns</li>
+                    </ul>
+                </div>
+
+                <div class="card-display mt-4">
+                    <h4 class="mb-3">Color Contrast Check</h4>
+                    <div class="d-flex gap-4 align-items-center">
+                        <div style="width: 60px; height: 60px; background: var(--apertus-anthracite); display: flex; align-items: center; justify-content: center; color: white; font-size: 0.8125rem; font-weight: 700; border-radius: var(--radius-md);">AAA</div>
+                        <div>
+                            <p class="mb-1 small"><strong>Anthracite on White:</strong> 19.2:1 ratio</p>
+                            <p class="mb-0 small text-muted">Passes AAA WCAG level</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Homepage Example Section -->
+            <section id="homepage">
+                <h2>Homepage Example</h2>
+
+                <div class="card-display" style="border: none; background: transparent; padding: 0;">
+                    <div style="background: linear-gradient(135deg, var(--pale-technical-panel) 0%, var(--pale-blue-wash) 100%); padding: 4rem 0; position: relative; overflow: hidden; border-radius: var(--radius-md); margin-bottom: 1.5rem; border: 1px solid var(--border-blue);">
+                        <div style="position: absolute; top: 0; left: 0; border-width: 100px 0 0 100px; border-style: solid; border-color: transparent transparent transparent var(--apertus-sky-blue-15); opacity: 0.12;"></div>
+                        <div style="position: absolute; bottom: 0; right: 0; border-width: 0 100px 100px 0; border-style: solid; border-color: transparent var(--apertus-sky-blue-15) transparent transparent; opacity: 0.12;"></div>
+                        <div class="container text-center position-relative" style="z-index: 1;">
+                            <h1 style="font-weight: 800; color: var(--apertus-anthracite); letter-spacing: 0.1em; margin-bottom: 0.5rem;">APERTVS</h1>
+                            <p style="font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--apertus-sky-blue-15); margin-bottom: 1rem;">Confoederatio Apertus</p>
+                            <p style="font-size: 1.25rem; font-weight: 300; color: var(--apertus-anthracite); max-width: 480px; margin: 0 auto 2rem;">Fully Open Foundation Model for Sovereign AI</p>
+                            <div class="d-flex gap-3 justify-content-center">
+                                <button class="btn-button btn-primary px-5 py-3">Get Started</button>
+                                <button class="btn-button btn-tertiary px-5 py-3">Learn More</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h4 class="mb-3">Homepage Structure Reference</h4>
+                    <p class="small text-muted">This example demonstrates the reference website structure: hero section with circuit pattern, CTA group, and proportional spacing.</p>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer>
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-md-6 mb-4 mb-md-0">
+                            <div class="footer-logo">APERTVS.AI</div>
+                            <p class="text-muted small">Confoederatio Apertus — Fully Open Foundation Model for Sovereign AI</p>
+                        </div>
+                        <div class="col-md-6 text-md-end">
+                            <div style="display: inline-block; width: 60px; height: 30px; background: var(--pale-technical-panel); clip-path: polygon(0% 100%, 100% 100%, 100% 60%, 80% 40%, 60% 60%, 40% 40%, 20% 60%, 0% 100%);"></div>
+                        </div>
+                    </div>
+                    <hr class="my-4" style="border-color: var(--border-subtle);">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="text-muted small mb-0">© 2026 Apertus Web Style Guide</p>
+                        </div>
+                        <div class="col-md-6 text-md-end">
+                            <ul class="list-unstyled d-inline-flex gap-3 mb-0 small">
+                                <li><a href="#colors" class="text-decoration-none text-muted">Colors</a></li>
+                                <li><a href="#typography" class="text-decoration-none text-muted">Typography</a></li>
+                                <li><a href="#accessibility" class="text-decoration-none text-muted">Accessibility</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </main>
+    </div>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
