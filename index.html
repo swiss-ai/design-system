@@ -190,7 +190,7 @@
 
         /* Section styling */
         section {
-            margin-bottom: 4rem;
+            margin-bottom: 0rem;
         }
 
         section > h2 {
@@ -204,7 +204,10 @@
 
         /* Hero section */
         .hero-section {
-            background: linear-gradient(135deg, var(--pale-technical-panel) 0%, var(--pale-blue-wash) 100%);
+            background: linear-gradient(320deg, var(--pale-technical-panel) 0%, var(--pale-blue-wash) 100%);
+            background-image: url("design/Apertus 2606 - Background 05.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
             padding: 5rem 0;
             position: relative;
             overflow: hidden;
@@ -219,7 +222,7 @@
             top: -50%;
             left: -50%;
             background: repeating-linear-gradient(
-                45deg,
+                60deg,
                 rgba(123, 187, 213, 0.1) 0px,
                 rgba(123, 187, 213, 0.1) 10px,
                 transparent 10px,
@@ -261,14 +264,20 @@
             z-index: 1;
         }
 
+        @media (min-width: 768px) {
+            .hero-content {
+                padding: 0em 10em;
+            }
+        }
+
         .section-subtitle {
-            font-size: 1.125rem;
             font-weight: 600;
             margin-bottom: 0.75rem;
-            color: var(--apertus-sky-blue-15);
+            color: var(--white);
+            text-shadow: 1px 1px black;
             text-transform: uppercase;
             letter-spacing: 0.15em;
-            font-size: 0.75rem;
+            font-size: 1.2rem;
         }
 
         .section-description {
@@ -474,8 +483,8 @@
         }
 
         .hexagon-tile {
-            width: 200px;
-            height: 200px;
+            width: 180px;
+            height: 160px;
             background: var(--apertus-sky-blue-15);
             color: white;
             display: flex;
@@ -483,7 +492,7 @@
             align-items: center;
             justify-content: center;
             padding: 2rem;
-            clip-path: polygon(25% 0%, 75% 0%, 100% 25%, 100% 75%, 75% 100%, 25% 100%, 0% 75%, 0% 25%);
+            clip-path: polygon(23% 0%, 76% 0%, 100% 50%, 76% 100%, 23% 100%, 0% 50%);
             transition: transform var(--transition-normal) ease, box-shadow var(--transition-normal) ease;
             text-align: center;
         }
@@ -541,26 +550,6 @@
             letter-spacing: 0.2em;
             margin-bottom: 1rem;
         }
-
-        /* News Emblem */
-        .news-emblem {
-            width: 40px;
-            height: 40px;
-            background: var(--apertus-sky-blue-15);
-            position: absolute;
-            top: 1rem;
-            left: 1rem;
-            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-
         /* Responsive */
         @media (max-width: 768px) {
             .hexagon-tile {
@@ -721,12 +710,11 @@
                 <div class="triangle-overlay triangle-br"></div>
 
                 <div class="hero-content container text-center">
-                    <svg class="logo-text mx-auto" style="margin-bottom: 2rem;" viewBox="0 20 200 40" preserveAspectRatio="xMidYMid meet">
-                        <text x="50%" y="100%" text-anchor="middle" dominant-baseline="middle" font-size="20" font-weight="700">APERTVS</text>
-                    </svg>
-                    <p class="section-subtitle">Confoederatio Apertus</p>
-                    <p class="section-description">Fully Open Foundation Model for Sovereign AI</p>
-                    <p class="text-muted">Training data, code, weights, methods, and alignment principles are documented and reproducible. Built to support transparent, compliant AI infrastructure.</p>
+                    <img src="design/Apertus 2606 - Logo - AI.png" width="100%"
+                        style="margin-bottom:2em; margin-top: 2em" />
+                    <p class="section-subtitle">Fully Open Foundation Model for Sovereign AI</p>
+                    <p class="text-muted">Training data, code, weights, methods, and alignment principles are documented and reproducible.
+                        Built to support transparent, compliant AI infrastructure.</p>
 
                     <div class="d-flex gap-3 justify-content-center mt-4">
                         <button class="btn-button btn-primary">Primary CTA</button>
@@ -959,7 +947,7 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-md-8">
+                    <div class="col-md-12">
                         <h3 class="text-muted text-uppercase small fw-bold mb-3 mt-5" style="letter-spacing: 0.1em;">Spacing</h3>
                         <div class="d-flex" style="gap: 1rem; flex-wrap: wrap; height: 120px; background: var(--pale-technical-panel); border-radius: var(--radius-md); padding: 1rem; align-items: flex-end;">
                             <div style="width: 24px; height: 16px; background: var(--apertus-anthracite); border-radius: 2px;"></div>
@@ -968,8 +956,6 @@
                             <div style="width: 24px; height: 64px; background: var(--apertus-anthracite); border-radius: 2px;"></div>
                             <div style="width: 24px; height: 80px; background: var(--apertus-anthracite); border-radius: 2px;"></div>
                         </div>
-                    </div>
-                    <div class="col-md-4">
                         <div class="card-display mt-4">
                             <h4 class="mb-3">Section Padding</h4>
                             <ul class="small text-muted">
@@ -1053,11 +1039,8 @@
                 <div class="row mb-4">
                     <div class="col-md-6">
                         <div class="card-display">
-                            <div class="position-relative">
-                                <div class="news-emblem">News</div>
-                            </div>
                             <div class="mt-4">
-                                <div class="mb-2" style="color: var(--epfl-red); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em;">News</div>
+                                <div class="mb-2" style="color: var(--epfl-red); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em;">2.9.2025</div>
                                 <h4 class="mb-3" style="font-size: 1.25rem; font-weight: 700;">Sample Article Title</h4>
                                 <p class="text-muted mb-3" style="font-size: 0.9375rem;">Sample article excerpt with concise summary of the news content and key points for demonstration purposes.</p>
                                 <a href="#" class="text-epfl-red text-decoration-none" style="font-size: 0.875rem;">Read more →</a>
@@ -1066,11 +1049,8 @@
                     </div>
                     <div class="col-md-6">
                         <div class="card-display">
-                            <div class="position-relative">
-                                <div class="news-emblem">News</div>
-                            </div>
                             <div class="mt-4">
-                                <div class="mb-2" style="color: var(--epfl-red); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em;">News</div>
+                                <div class="mb-2" style="color: var(--epfl-red); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em;">14.7.2026</div>
                                 <h4 class="mb-3" style="font-size: 1.25rem; font-weight: 700;">Another News Article</h4>
                                 <p class="text-muted mb-3" style="font-size: 0.9375rem;">Another sample article with different content and details for demonstration purposes in this layout.</p>
                                 <a href="#" class="text-epfl-red text-decoration-none" style="font-size: 0.875rem;">Read more →</a>
@@ -1137,28 +1117,11 @@
                     <div class="col-md-6">
                         <h4 class="mb-3">Tile Specifications</h4>
                         <ul class="small text-muted">
-                            <li>Width: 200px, Height: 200px</li>
                             <li>Clip-path: August-style hexagon</li>
                             <li>Hover: 2px vertical translation</li>
                             <li>Main tile: Sky Blue 1.5</li>
                             <li>Alternating: Sky Blue 1.5.1 & 1.5.2</li>
                         </ul>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card-display">
-                            <h4>Toggle Layout</h4>
-                            <div class="hexagon-row mt-3">
-                                <div class="hexagon-tile hexagon-tile-secondary">
-                                    <div>Ethics</div>
-                                </div>
-                                <div class="hexagon-tile hexagon-tile-tertiary">
-                                    <div>Report</div>
-                                </div>
-                                <div class="hexagon-tile">
-                                    <div>Docs</div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </section>
@@ -1208,7 +1171,6 @@
                         <div class="card-display">
                             <h3 class="mb-4">Architectural Footer</h3>
                             <div style="height: 60px; background: var(--pale-technical-panel); border-radius: var(--radius-md); clip-path: polygon(0% 100%, 100% 100%, 100% 60%, 80% 40%, 60% 60%, 40% 40%, 20% 60%, 0% 100%); display: flex; align-items: center; padding-left: 2rem; color: var(--apertus-anthracite); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;">
-                                Architecture
                             </div>
                         </div>
                     </div>
@@ -1246,7 +1208,7 @@
                     <div class="col-md-4">
                         <div class="card-display">
                             <h4 class="mb-3">Motion Preferences</h4>
-                            <p class="small text-muted mb-3">Respects user motion preferences via <code class="text-epfl-red">&amp; times;prefers-reduced-motion</code>.</p>
+                            <p class="small text-muted mb-3">Respects user motion preferences via <code class="text-epfl-red">prefers-reduced-motion</code>.</p>
 
                             <div class="alert alert-light border small">
                                 Animations disabled in reduced-motion mode
