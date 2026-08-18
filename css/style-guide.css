@@ -1,0 +1,237 @@
+/*
+ * Apertus Web Style Guide — page chrome
+ * =====================================
+ * Layout, sidebar navigation, and demo-only styles for index.html
+ * (the style-guide page itself). Apps should NOT include this file —
+ * use css/apertus.css instead.
+ */
+
+/* Layout */
+.style-guide-container {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    min-height: 100vh;
+}
+
+@media (max-width: 992px) {
+    .style-guide-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Sidebar */
+.sidebar {
+    background: var(--white);
+    border-right: 1px solid var(--border-subtle);
+    padding: 2rem;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.sidebar-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--apertus-anthracite);
+    margin-bottom: 2rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.nav-section {
+    margin-bottom: 2rem;
+}
+
+.nav-section-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.75rem;
+}
+
+.nav-link {
+    display: block;
+    color: var(--apertus-anthracite);
+    text-decoration: none;
+    padding: 0.5rem 0;
+    font-size: 0.9375rem;
+    border-bottom: 1px solid transparent;
+    transition: all var(--transition-fast) ease;
+}
+
+.nav-link:hover {
+    color: var(--epfl-red);
+    border-bottom-color: var(--epfl-red);
+}
+
+.nav-link:focus {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: -2px;
+    border-radius: var(--radius-sm);
+}
+
+/* Navigation simplified - clean outline */
+.sidebar-nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-item {
+    margin-bottom: 0.25rem;
+}
+
+.nav-link {
+    padding: 0.5rem 0.75rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.9375rem;
+}
+
+/* Main content */
+.main-content {
+    padding: 2rem;
+}
+
+@media (min-width: 992px) {
+    .main-content {
+        padding: 4rem;
+    }
+}
+
+/* Section headers with icon chips */
+.section-title-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.section-title-row h3 {
+    font-size: var(--h3-size);
+    font-weight: 700;
+    color: var(--apertus-anthracite);
+    margin: 0;
+}
+
+.section-icon {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--apertus-sky-blue-15);
+    color: white;
+    border-radius: 4px;
+    font-size: 0.75rem;
+}
+
+/* Color palette demo */
+.color-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.color-row:last-child {
+    border-bottom: none;
+}
+
+.color-swatch {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-md);
+    flex-shrink: 0;
+    transition: transform var(--transition-fast) ease;
+}
+
+.color-swatch:hover {
+    transform: scale(1.05);
+}
+
+.color-info {
+    flex-grow: 1;
+}
+
+.color-name {
+    font-weight: 600;
+    color: var(--apertus-anthracite);
+    font-size: 0.9375rem;
+}
+
+.color-code {
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+}
+
+.color-usage {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    margin-top: 0.25rem;
+}
+
+/* Typography demo */
+.type-item {
+    padding: 1.5rem;
+    background: white;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    margin-bottom: 1rem;
+    transition: all var(--transition-normal) ease;
+}
+
+.type-item:hover {
+    background: var(--pale-technical-panel);
+    border-color: var(--apertus-sky-blue-15);
+}
+
+.font-weights {
+    display: inline-block;
+    background: var(--apertus-anthracite);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    margin-left: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+/* Grid System demo */
+.grid-demo {
+    background: var(--pale-technical-panel);
+    padding: 1.5rem;
+    border-radius: var(--radius-md);
+    margin-bottom: 1rem;
+}
+
+.grid-col-12 { flex: 0 0 auto; width: 100%; }
+.grid-col-6 { flex: 0 0 auto; width: 50%; }
+.grid-col-4 { flex: 0 0 auto; width: 33.3333%; }
+.grid-col-3 { flex: 0 0 auto; width: 25%; }
+
+/* Responsive */
+@media (max-width: 768px) {
+    .sidebar {
+        position: fixed;
+        left: -280px;
+        top: 0;
+        width: 280px;
+        z-index: 1001;
+        transition: left var(--transition-normal) ease;
+        box-shadow: 4px 0 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .sidebar.open {
+        left: 0;
+    }
+
+    .main-content {
+        padding: 1.5rem;
+    }
+}

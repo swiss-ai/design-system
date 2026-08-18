@@ -37,6 +37,16 @@ The visual tone should be light, airy, structured, geometric, and scientific. Us
 - Motion should clarify interaction, never distract.
 - Accessibility is part of the brand quality.
 
+## Using the styles in an app
+
+The reusable design tokens and component styles are in
+[`css/apertus.css`](css/apertus.css), built to layer on top of Bootstrap 5.
+See **[USAGE.md](USAGE.md)** for the include order (Bootstrap → fonts →
+`apertus.css`), a starter HTML template, and the component markup.
+The rendered style guide is at
+<https://swiss-ai.github.io/design-system/> (`css/style-guide.css` styles
+that page only — apps shouldn't include it).
+
 ## Installation
 
 ```bash
