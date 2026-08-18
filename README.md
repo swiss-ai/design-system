@@ -26,6 +26,9 @@ The interface should feel like a clean institutional research platform rather th
 
 The visual tone should be light, airy, structured, geometric, and scientific. Use pale sky-blue fields, white space, thin circuit-line motifs, translucent angular overlays, hexagonal technical resource tiles, and strong but restrained typography. The website should feel modern and computational without becoming dark, cyberpunk, or overly corporate.
 
+**DESIGNER:**
+Initial design by Florian Molinari
+
 ## Design Principles
 
 - Open by default.
