@@ -49,6 +49,8 @@ that page only — apps shouldn't include it).
 
 ## Installation
 
+Requires Node.js 20+ (Storybook 9 / Vite 7).
+
 ```bash
 # install dependencies
 $ npm install
@@ -56,22 +58,26 @@ $ npm install
 
 ## Run Storybook
 
+The Storybook lives in `.storybook/` (config) and `stories/` (one file per
+component group). It loads the same stylesheets in the same order as apps
+do (Bootstrap 5.3 → fonts → `css/apertus.css` → `css/apertus-bootstrap.css`).
+
 ```bash
-# serve Storybook with hot reload
+# serve Storybook with hot reload on http://localhost:6006
 $ npm run dev
 ```
 
 ## Build Storybook
 
 ```bash
-# build Storybook
+# build the static Storybook into storybook-static/
 $ npm run build
 ```
 
 ## Build CSS only
 
 ```bash
-# build Storybook
+# copy the releasable CSS + design assets into dist/
 $ npm run build-css
 ```
 
@@ -88,9 +94,9 @@ When a new `version` is pushed on the `main` branch, there is no automatic relea
 # Run visual regression testing
 
 ```bash
-# run Chromatic
+# run Chromatic (needs a project token from chromatic.com)
 $ git checkout main
-$ npm run test
+$ CHROMATIC_PROJECT_TOKEN=<token> npm run test
 ```
 
 This will run the test and provide an URL pointing to the Chromatic app. You can learn more about the Chromatic tool at [Chromatic's website.](https://www.chromatic.com/)

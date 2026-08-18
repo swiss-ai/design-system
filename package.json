@@ -2,19 +2,26 @@
   "name": "apertus-design",
   "version": "1.5.0",
   "description": "Design System for the Apertus initiative",
-  "main": "index.js",
-  "directories": {},
-  "scripts": {},
+  "license": "Apache-2.0",
+  "author": "O Lavrovsky",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/swiss-ai/apertus-designsystem.git"
+    "url": "git+https://github.com/swiss-ai/design-system.git"
   },
-  "author": "O Lavrovsky",
-  "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/swiss-ai/apertus-designsystem/issues"
+    "url": "https://github.com/swiss-ai/design-system/issues"
   },
-  "homepage": "https://github.com/swiss-ai/apertus-designsystem#readme",
-  "dependencies": {},
-  "devDependencies": {}
+  "homepage": "https://github.com/swiss-ai/design-system#readme",
+  "scripts": {
+    "dev": "storybook dev -p 6006",
+    "build": "storybook build",
+    "build-css": "node scripts/build-css.mjs",
+    "test": "chromatic --build-script-name build"
+  },
+  "devDependencies": {
+    "@storybook/html-vite": "^9.1.0",
+    "chromatic": "^13.0.0",
+    "storybook": "^9.1.0",
+    "vite": "^7.0.0"
+  }
 }
