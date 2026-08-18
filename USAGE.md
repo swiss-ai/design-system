@@ -1,10 +1,18 @@
 # Using the Apertus styles in an app
 
-The reusable design-system styles live in [`css/apertus.css`](css/apertus.css):
-the Apertus design tokens (CSS custom properties) plus component styles that
-layer on top of **Bootstrap 5**. This page shows how to wire them into your
-own app. (`css/style-guide.css` is chrome for the style-guide page itself —
-don't include it in apps.)
+The reusable design-system styles live in two files:
+
+- [`css/apertus.css`](css/apertus.css) — the Apertus design tokens (CSS
+  custom properties) plus the bespoke Apertus components (hero, hexagon
+  tiles, feature strip, …) that layer on top of **Bootstrap 5**.
+- [`css/apertus-bootstrap.css`](css/apertus-bootstrap.css) — a theme for the
+  **standard Bootstrap 5.3 component set** (buttons, forms, navs, tables,
+  alerts, modals, …), so plain Bootstrap markup renders in the Apertus style
+  with no extra classes. Optional but recommended for apps that use
+  Bootstrap components.
+
+This page shows how to wire them into your own app. (`css/style-guide.css`
+is chrome for the style-guide page itself — don't include it in apps.)
 
 ## 1. Include the dependencies
 
@@ -13,6 +21,7 @@ Load, in this order:
 1. **Bootstrap 5.3** CSS (the components extend/override Bootstrap classes)
 2. **Google Fonts** — Inter (300–800) and Geist Mono (400, 700)
 3. **`apertus.css`** — must come *after* Bootstrap so its overrides win
+4. **`apertus-bootstrap.css`** — after `apertus.css` (it reads its tokens)
 
 ```html
 <!DOCTYPE html>
@@ -32,6 +41,8 @@ Load, in this order:
 
     <!-- 3. Apertus design system -->
     <link rel="stylesheet" href="css/apertus.css">
+    <!-- 4. Apertus theme for standard Bootstrap components (optional) -->
+    <link rel="stylesheet" href="css/apertus-bootstrap.css">
 </head>
 <body>
     <a href="#main-content" class="skip-to-content">Skip to main content</a>
@@ -158,6 +169,34 @@ variant. Note that `apertus.css` recolors Bootstrap's own `.btn-primary` /
 
 Layout/grid: use Bootstrap's own `container` / `row` / `col-*` classes —
 the design system doesn't replace them.
+
+## 3b. Standard Bootstrap components
+
+With `apertus-bootstrap.css` included, the whole Bootstrap 5.3 component set
+(buttons, forms, navbar, tabs/pills, breadcrumb, pagination, cards,
+accordion, list group, tables, alerts, badges, progress, spinners,
+dropdowns, modal, offcanvas, toasts, tooltips, popovers, carousel, code and
+blockquote typography) renders on-brand from **plain Bootstrap markup** —
+see the "Bootstrap Components" section of the style guide for live examples.
+It only overrides Bootstrap's CSS custom properties (`--bs-*`) plus a few
+compiled rules, and never uses `!important`, so per-component customization
+stays easy.
+
+The semantic color mapping:
+
+| Bootstrap name | Apertus color | Notes |
+| --- | --- | --- |
+| `primary` | EPFL red `#FF0000` | Primary actions, matches links/focus |
+| `secondary` / `dark` | Anthracite `#2E2F31` | Technical actions, dark surfaces |
+| `info` | Sky blue `#7BBBD5` | Dark text on top for contrast |
+| `light` | Pale blue wash `#F3FAFC` | |
+| `success` | `#2E7D5B` | Calm functional green (new token) |
+| `warning` | `#E0A82E` surface / `#8C630D` text | Restrained amber (new tokens) |
+| `danger` | `#B3261E` | Deeper than the action red on purpose, so destructive ≠ primary |
+
+Utility classes (`.bg-*`, `.text-*`, `.border-*`, `.text-bg-*`) follow the
+same mapping automatically. Bootstrap's dark mode (`data-bs-theme="dark"`)
+is **not** themed — the Apertus design system is light-only.
 
 ## 4. Accessibility
 

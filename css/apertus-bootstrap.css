@@ -1,0 +1,865 @@
+/*
+ * Apertus Design System — Bootstrap 5 component theme
+ * ===================================================
+ * Re-themes the full Bootstrap 5.3 component set with the Apertus design
+ * tokens, so plain Bootstrap markup renders in the "Confoederatio Apertus"
+ * style with no extra classes.
+ *
+ * Load order: bootstrap.min.css → css/apertus.css → css/apertus-bootstrap.css
+ * (this file only overrides Bootstrap CSS custom properties and a few
+ * compiled rules — it never uses !important).
+ *
+ * Semantic color mapping:
+ *   primary   → EPFL red         (primary actions, matches links/focus)
+ *   secondary → anthracite       (technical actions, dark surfaces)
+ *   info      → Apertus sky blue (informational surfaces; dark text on top)
+ *   light     → pale blue wash / dark → anthracite
+ *   success / warning / danger — the core palette has no functional green,
+ *   amber, or alert red, so this file adds calm, desaturated ones tuned to
+ *   the palette (see the tokens below). `danger` is deliberately a deeper
+ *   red than the EPFL action red so destructive actions read differently
+ *   from primary ones.
+ */
+
+/* Functional tokens (extend the core Apertus tokens) */
+:root {
+    --apertus-success: #2E7D5B;           /* calm institutional green */
+    --apertus-success-hover: #276B4E;
+    --apertus-success-active: #225E45;
+    --apertus-warning: #E0A82E;           /* restrained amber — pair with dark text */
+    --apertus-warning-emphasis: #8C630D;  /* amber for text on light surfaces */
+    --apertus-danger: #B3261E;            /* deep red, distinct from EPFL action red */
+    --apertus-danger-hover: #9E211A;
+    --apertus-danger-active: #8A1D17;
+    --apertus-red-hover: #E60000;
+    --apertus-red-active: #CC0000;
+    --apertus-anthracite-hover: #232426;
+    --apertus-anthracite-active: #1B1C1E;
+    --apertus-sky-hover: #6AAECB;
+    --apertus-sky-active: #5CA3C2;
+
+    /* Subtle (wash) surfaces for alerts, list-group variants, etc. */
+    --apertus-primary-bg-subtle: #FFECEC;
+    --apertus-primary-border-subtle: #F5B8B8;
+    --apertus-success-bg-subtle: #E8F4EE;
+    --apertus-success-border-subtle: #BCDCCD;
+    --apertus-warning-bg-subtle: #FBF3DF;
+    --apertus-warning-border-subtle: #EFD9A8;
+    --apertus-danger-bg-subtle: #F9E9E8;
+    --apertus-danger-border-subtle: #E9BEBB;
+}
+
+/* -------------------------------------------------------------------------
+ * Bootstrap root remap
+ * Bootstrap 5.3 components resolve most of their per-component variables
+ * from these root variables at runtime, so remapping here cascades a long
+ * way: utilities (.bg-*, .text-*, .border-*), alerts, list-group variants,
+ * .text-bg-*, default radii and borders, muted text, focus rings, links.
+ * ---------------------------------------------------------------------- */
+:root {
+    --bs-body-font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --bs-font-monospace: 'Geist Mono', SFMono-Regular, Menlo, Consolas, monospace;
+    --bs-body-color: var(--apertus-anthracite);
+    --bs-body-color-rgb: 46, 47, 49;
+    --bs-body-bg: var(--page-background);
+    --bs-heading-color: var(--apertus-anthracite);
+    --bs-secondary-color: var(--text-muted);
+    --bs-tertiary-color: var(--text-faint);
+    --bs-secondary-bg: var(--pale-technical-panel);
+    --bs-tertiary-bg: var(--pale-blue-wash);
+
+    --bs-link-color: var(--epfl-red);
+    --bs-link-color-rgb: 255, 0, 0;
+    --bs-link-hover-color: var(--apertus-anthracite);
+    --bs-link-hover-color-rgb: 46, 47, 49;
+
+    --bs-border-color: var(--border-subtle);
+    --bs-border-radius: var(--radius-sm);
+    --bs-border-radius-sm: var(--radius-sm);
+    --bs-border-radius-lg: var(--radius-md);
+    --bs-border-radius-xl: var(--radius-md);
+
+    --bs-focus-ring-color: rgba(255, 0, 0, 0.25);
+
+    /* Theme colors → utilities (.bg-*, .text-*, .border-*, .text-bg-*) */
+    --bs-primary: var(--epfl-red);
+    --bs-primary-rgb: 255, 0, 0;
+    --bs-secondary: var(--apertus-anthracite);
+    --bs-secondary-rgb: 46, 47, 49;
+    --bs-success: var(--apertus-success);
+    --bs-success-rgb: 46, 125, 91;
+    --bs-info: var(--apertus-sky-blue-15);
+    --bs-info-rgb: 123, 187, 213;
+    --bs-warning: var(--apertus-warning);
+    --bs-warning-rgb: 224, 168, 46;
+    --bs-danger: var(--apertus-danger);
+    --bs-danger-rgb: 179, 38, 30;
+    --bs-light: var(--pale-blue-wash);
+    --bs-light-rgb: 243, 250, 252;
+    --bs-dark: var(--apertus-anthracite);
+    --bs-dark-rgb: 46, 47, 49;
+
+    /* Emphasis / subtle tiers → alerts, list-group variants, .text-*-emphasis */
+    --bs-primary-text-emphasis: var(--apertus-danger);
+    --bs-primary-bg-subtle: var(--apertus-primary-bg-subtle);
+    --bs-primary-border-subtle: var(--apertus-primary-border-subtle);
+    --bs-secondary-text-emphasis: var(--apertus-anthracite);
+    --bs-secondary-bg-subtle: var(--pale-blue-wash);
+    --bs-secondary-border-subtle: var(--border-subtle);
+    --bs-success-text-emphasis: var(--apertus-success);
+    --bs-success-bg-subtle: var(--apertus-success-bg-subtle);
+    --bs-success-border-subtle: var(--apertus-success-border-subtle);
+    --bs-info-text-emphasis: #38708C;
+    --bs-info-bg-subtle: var(--pale-technical-panel);
+    --bs-info-border-subtle: var(--border-blue);
+    --bs-warning-text-emphasis: var(--apertus-warning-emphasis);
+    --bs-warning-bg-subtle: var(--apertus-warning-bg-subtle);
+    --bs-warning-border-subtle: var(--apertus-warning-border-subtle);
+    --bs-danger-text-emphasis: var(--apertus-danger);
+    --bs-danger-bg-subtle: var(--apertus-danger-bg-subtle);
+    --bs-danger-border-subtle: var(--apertus-danger-border-subtle);
+    --bs-light-text-emphasis: var(--apertus-anthracite);
+    --bs-light-bg-subtle: var(--pale-blue-wash);
+    --bs-light-border-subtle: var(--border-blue);
+    --bs-dark-text-emphasis: var(--apertus-anthracite);
+    --bs-dark-bg-subtle: var(--pale-technical-panel);
+    --bs-dark-border-subtle: var(--border-subtle);
+}
+
+/* -------------------------------------------------------------------------
+ * Buttons
+ * apertus.css already recolors .btn-primary / .btn-secondary with plain
+ * rules; the variable overrides below also fix their :active / focus states
+ * (which otherwise flash Bootstrap blue) and theme the remaining variants.
+ * ---------------------------------------------------------------------- */
+.btn {
+    --bs-btn-font-weight: 600;
+    --bs-btn-focus-shadow-rgb: 255, 0, 0;
+}
+
+.btn-primary {
+    --bs-btn-bg: var(--epfl-red);
+    --bs-btn-border-color: var(--epfl-red);
+    --bs-btn-hover-bg: var(--apertus-red-hover);
+    --bs-btn-hover-border-color: var(--apertus-red-hover);
+    --bs-btn-active-bg: var(--apertus-red-active);
+    --bs-btn-active-border-color: var(--apertus-red-active);
+    --bs-btn-disabled-bg: var(--epfl-red);
+    --bs-btn-disabled-border-color: var(--epfl-red);
+    --bs-btn-focus-shadow-rgb: 255, 0, 0;
+}
+
+.btn-secondary {
+    --bs-btn-bg: var(--apertus-anthracite);
+    --bs-btn-border-color: var(--apertus-anthracite);
+    --bs-btn-hover-bg: var(--apertus-anthracite-hover);
+    --bs-btn-hover-border-color: var(--apertus-anthracite-hover);
+    --bs-btn-active-bg: var(--apertus-anthracite-active);
+    --bs-btn-active-border-color: var(--apertus-anthracite-active);
+    --bs-btn-disabled-bg: var(--apertus-anthracite);
+    --bs-btn-disabled-border-color: var(--apertus-anthracite);
+    --bs-btn-focus-shadow-rgb: 46, 47, 49;
+}
+
+.btn-success {
+    --bs-btn-bg: var(--apertus-success);
+    --bs-btn-border-color: var(--apertus-success);
+    --bs-btn-hover-bg: var(--apertus-success-hover);
+    --bs-btn-hover-border-color: var(--apertus-success-hover);
+    --bs-btn-active-bg: var(--apertus-success-active);
+    --bs-btn-active-border-color: var(--apertus-success-active);
+    --bs-btn-disabled-bg: var(--apertus-success);
+    --bs-btn-disabled-border-color: var(--apertus-success);
+    --bs-btn-focus-shadow-rgb: 46, 125, 91;
+}
+
+.btn-danger {
+    --bs-btn-bg: var(--apertus-danger);
+    --bs-btn-border-color: var(--apertus-danger);
+    --bs-btn-hover-bg: var(--apertus-danger-hover);
+    --bs-btn-hover-border-color: var(--apertus-danger-hover);
+    --bs-btn-active-bg: var(--apertus-danger-active);
+    --bs-btn-active-border-color: var(--apertus-danger-active);
+    --bs-btn-disabled-bg: var(--apertus-danger);
+    --bs-btn-disabled-border-color: var(--apertus-danger);
+    --bs-btn-focus-shadow-rgb: 179, 38, 30;
+}
+
+.btn-warning {
+    --bs-btn-color: var(--apertus-anthracite);
+    --bs-btn-bg: var(--apertus-warning);
+    --bs-btn-border-color: var(--apertus-warning);
+    --bs-btn-hover-color: var(--apertus-anthracite);
+    --bs-btn-hover-bg: #D69C22;
+    --bs-btn-hover-border-color: #D69C22;
+    --bs-btn-active-color: var(--apertus-anthracite);
+    --bs-btn-active-bg: #C79118;
+    --bs-btn-active-border-color: #C79118;
+    --bs-btn-disabled-color: var(--apertus-anthracite);
+    --bs-btn-disabled-bg: var(--apertus-warning);
+    --bs-btn-disabled-border-color: var(--apertus-warning);
+    --bs-btn-focus-shadow-rgb: 224, 168, 46;
+}
+
+.btn-info {
+    --bs-btn-color: var(--apertus-anthracite);
+    --bs-btn-bg: var(--apertus-sky-blue-15);
+    --bs-btn-border-color: var(--apertus-sky-blue-15);
+    --bs-btn-hover-color: var(--apertus-anthracite);
+    --bs-btn-hover-bg: var(--apertus-sky-hover);
+    --bs-btn-hover-border-color: var(--apertus-sky-hover);
+    --bs-btn-active-color: var(--apertus-anthracite);
+    --bs-btn-active-bg: var(--apertus-sky-active);
+    --bs-btn-active-border-color: var(--apertus-sky-active);
+    --bs-btn-disabled-color: var(--apertus-anthracite);
+    --bs-btn-disabled-bg: var(--apertus-sky-blue-15);
+    --bs-btn-disabled-border-color: var(--apertus-sky-blue-15);
+    --bs-btn-focus-shadow-rgb: 123, 187, 213;
+}
+
+.btn-light {
+    --bs-btn-color: var(--apertus-anthracite);
+    --bs-btn-bg: var(--pale-blue-wash);
+    --bs-btn-border-color: var(--border-blue);
+    --bs-btn-hover-color: var(--apertus-anthracite);
+    --bs-btn-hover-bg: var(--pale-technical-panel);
+    --bs-btn-hover-border-color: var(--border-blue);
+    --bs-btn-active-color: var(--apertus-anthracite);
+    --bs-btn-active-bg: var(--pale-technical-panel);
+    --bs-btn-active-border-color: var(--apertus-sky-blue-15);
+    --bs-btn-focus-shadow-rgb: 123, 187, 213;
+}
+
+.btn-dark {
+    --bs-btn-bg: var(--apertus-anthracite);
+    --bs-btn-border-color: var(--apertus-anthracite);
+    --bs-btn-hover-bg: var(--apertus-anthracite-hover);
+    --bs-btn-hover-border-color: var(--apertus-anthracite-hover);
+    --bs-btn-active-bg: var(--apertus-anthracite-active);
+    --bs-btn-active-border-color: var(--apertus-anthracite-active);
+    --bs-btn-focus-shadow-rgb: 46, 47, 49;
+}
+
+.btn-outline-primary {
+    --bs-btn-color: var(--epfl-red);
+    --bs-btn-border-color: var(--epfl-red);
+    --bs-btn-hover-bg: var(--epfl-red);
+    --bs-btn-hover-border-color: var(--epfl-red);
+    --bs-btn-active-bg: var(--apertus-red-active);
+    --bs-btn-active-border-color: var(--apertus-red-active);
+    --bs-btn-disabled-color: var(--epfl-red);
+    --bs-btn-disabled-border-color: var(--epfl-red);
+    --bs-btn-focus-shadow-rgb: 255, 0, 0;
+}
+
+.btn-outline-secondary {
+    --bs-btn-color: var(--apertus-anthracite);
+    --bs-btn-border-color: var(--apertus-anthracite);
+    --bs-btn-hover-bg: var(--apertus-anthracite);
+    --bs-btn-hover-border-color: var(--apertus-anthracite);
+    --bs-btn-active-bg: var(--apertus-anthracite-active);
+    --bs-btn-active-border-color: var(--apertus-anthracite-active);
+    --bs-btn-disabled-color: var(--apertus-anthracite);
+    --bs-btn-disabled-border-color: var(--apertus-anthracite);
+    --bs-btn-focus-shadow-rgb: 46, 47, 49;
+}
+
+.btn-outline-success {
+    --bs-btn-color: var(--apertus-success);
+    --bs-btn-border-color: var(--apertus-success);
+    --bs-btn-hover-bg: var(--apertus-success);
+    --bs-btn-hover-border-color: var(--apertus-success);
+    --bs-btn-active-bg: var(--apertus-success-active);
+    --bs-btn-active-border-color: var(--apertus-success-active);
+    --bs-btn-disabled-color: var(--apertus-success);
+    --bs-btn-disabled-border-color: var(--apertus-success);
+    --bs-btn-focus-shadow-rgb: 46, 125, 91;
+}
+
+.btn-outline-danger {
+    --bs-btn-color: var(--apertus-danger);
+    --bs-btn-border-color: var(--apertus-danger);
+    --bs-btn-hover-bg: var(--apertus-danger);
+    --bs-btn-hover-border-color: var(--apertus-danger);
+    --bs-btn-active-bg: var(--apertus-danger-active);
+    --bs-btn-active-border-color: var(--apertus-danger-active);
+    --bs-btn-disabled-color: var(--apertus-danger);
+    --bs-btn-disabled-border-color: var(--apertus-danger);
+    --bs-btn-focus-shadow-rgb: 179, 38, 30;
+}
+
+.btn-outline-warning {
+    --bs-btn-color: var(--apertus-warning-emphasis);
+    --bs-btn-border-color: var(--apertus-warning);
+    --bs-btn-hover-color: var(--apertus-anthracite);
+    --bs-btn-hover-bg: var(--apertus-warning);
+    --bs-btn-hover-border-color: var(--apertus-warning);
+    --bs-btn-active-color: var(--apertus-anthracite);
+    --bs-btn-active-bg: #C79118;
+    --bs-btn-active-border-color: #C79118;
+    --bs-btn-disabled-color: var(--apertus-warning-emphasis);
+    --bs-btn-disabled-border-color: var(--apertus-warning);
+    --bs-btn-focus-shadow-rgb: 224, 168, 46;
+}
+
+.btn-outline-info {
+    --bs-btn-color: #38708C;
+    --bs-btn-border-color: var(--apertus-sky-blue-15);
+    --bs-btn-hover-color: var(--apertus-anthracite);
+    --bs-btn-hover-bg: var(--apertus-sky-blue-15);
+    --bs-btn-hover-border-color: var(--apertus-sky-blue-15);
+    --bs-btn-active-color: var(--apertus-anthracite);
+    --bs-btn-active-bg: var(--apertus-sky-active);
+    --bs-btn-active-border-color: var(--apertus-sky-active);
+    --bs-btn-disabled-color: #38708C;
+    --bs-btn-disabled-border-color: var(--apertus-sky-blue-15);
+    --bs-btn-focus-shadow-rgb: 123, 187, 213;
+}
+
+.btn-outline-light {
+    --bs-btn-color: var(--text-muted);
+    --bs-btn-border-color: var(--border-blue);
+    --bs-btn-hover-color: var(--apertus-anthracite);
+    --bs-btn-hover-bg: var(--pale-blue-wash);
+    --bs-btn-hover-border-color: var(--border-blue);
+    --bs-btn-active-color: var(--apertus-anthracite);
+    --bs-btn-active-bg: var(--pale-technical-panel);
+    --bs-btn-active-border-color: var(--border-blue);
+    --bs-btn-focus-shadow-rgb: 123, 187, 213;
+}
+
+.btn-outline-dark {
+    --bs-btn-color: var(--apertus-anthracite);
+    --bs-btn-border-color: var(--apertus-anthracite);
+    --bs-btn-hover-bg: var(--apertus-anthracite);
+    --bs-btn-hover-border-color: var(--apertus-anthracite);
+    --bs-btn-active-bg: var(--apertus-anthracite-active);
+    --bs-btn-active-border-color: var(--apertus-anthracite-active);
+    --bs-btn-disabled-color: var(--apertus-anthracite);
+    --bs-btn-disabled-border-color: var(--apertus-anthracite);
+    --bs-btn-focus-shadow-rgb: 46, 47, 49;
+}
+
+.btn-link {
+    --bs-btn-color: var(--epfl-red);
+    --bs-btn-hover-color: var(--apertus-anthracite);
+    --bs-btn-active-color: var(--apertus-anthracite);
+    --bs-btn-focus-shadow-rgb: 255, 0, 0;
+}
+
+/* -------------------------------------------------------------------------
+ * Forms
+ * ---------------------------------------------------------------------- */
+.form-control,
+.form-select {
+    border-color: var(--border-subtle);
+    color: var(--apertus-anthracite);
+    transition: border-color var(--transition-fast) ease, box-shadow var(--transition-fast) ease;
+}
+
+.form-control::placeholder {
+    color: var(--text-faint);
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--apertus-sky-blue-15);
+    box-shadow: 0 0 0 0.25rem rgba(123, 187, 213, 0.35);
+}
+
+.form-control:disabled,
+.form-select:disabled {
+    background-color: var(--disabled-surface);
+}
+
+.form-text {
+    color: var(--text-muted);
+}
+
+.input-group-text {
+    background-color: var(--pale-technical-panel);
+    border-color: var(--border-subtle);
+    color: var(--text-muted);
+}
+
+.form-check-input {
+    border-color: var(--border-subtle);
+}
+
+.form-check-input:focus {
+    border-color: var(--apertus-sky-blue-15);
+    box-shadow: 0 0 0 0.25rem rgba(123, 187, 213, 0.35);
+}
+
+.form-check-input:checked {
+    background-color: var(--epfl-red);
+    border-color: var(--epfl-red);
+}
+
+.form-check-input[type="checkbox"]:indeterminate {
+    background-color: var(--epfl-red);
+    border-color: var(--epfl-red);
+}
+
+.form-switch .form-check-input:focus:not(:checked) {
+    /* Bootstrap's focus knob is blue; recolor it to sky blue */
+    --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%237BBBD5'/%3e%3c/svg%3e");
+}
+
+.form-range::-webkit-slider-thumb {
+    background-color: var(--epfl-red);
+}
+
+.form-range::-webkit-slider-thumb:active {
+    background-color: var(--apertus-red-active);
+}
+
+.form-range::-moz-range-thumb {
+    background-color: var(--epfl-red);
+}
+
+.form-range::-moz-range-thumb:active {
+    background-color: var(--apertus-red-active);
+}
+
+.form-range:focus::-webkit-slider-thumb {
+    box-shadow: 0 0 0 1px #fff, 0 0 0 0.25rem rgba(123, 187, 213, 0.35);
+}
+
+.form-range:focus::-moz-range-thumb {
+    box-shadow: 0 0 0 1px #fff, 0 0 0 0.25rem rgba(123, 187, 213, 0.35);
+}
+
+.form-range::-webkit-slider-runnable-track,
+.form-range::-moz-range-track {
+    background-color: var(--pale-technical-panel);
+}
+
+/* Validation */
+.valid-feedback {
+    color: var(--apertus-success);
+}
+
+.invalid-feedback {
+    color: var(--apertus-danger);
+}
+
+.was-validated .form-control:valid,
+.form-control.is-valid,
+.was-validated .form-select:valid,
+.form-select.is-valid {
+    border-color: var(--apertus-success);
+}
+
+.was-validated .form-control:valid:focus,
+.form-control.is-valid:focus,
+.was-validated .form-select:valid:focus,
+.form-select.is-valid:focus {
+    border-color: var(--apertus-success);
+    box-shadow: 0 0 0 0.25rem rgba(46, 125, 91, 0.25);
+}
+
+.was-validated .form-control:invalid,
+.form-control.is-invalid,
+.was-validated .form-select:invalid,
+.form-select.is-invalid {
+    border-color: var(--apertus-danger);
+}
+
+.was-validated .form-control:invalid:focus,
+.form-control.is-invalid:focus,
+.was-validated .form-select:invalid:focus,
+.form-select.is-invalid:focus {
+    border-color: var(--apertus-danger);
+    box-shadow: 0 0 0 0.25rem rgba(179, 38, 30, 0.25);
+}
+
+.was-validated .form-check-input:valid,
+.form-check-input.is-valid {
+    border-color: var(--apertus-success);
+}
+
+.was-validated .form-check-input:valid:checked,
+.form-check-input.is-valid:checked {
+    background-color: var(--apertus-success);
+}
+
+.was-validated .form-check-input:valid ~ .form-check-label,
+.form-check-input.is-valid ~ .form-check-label {
+    color: var(--apertus-success);
+}
+
+.was-validated .form-check-input:invalid,
+.form-check-input.is-invalid {
+    border-color: var(--apertus-danger);
+}
+
+.was-validated .form-check-input:invalid ~ .form-check-label,
+.form-check-input.is-invalid ~ .form-check-label {
+    color: var(--apertus-danger);
+}
+
+/* -------------------------------------------------------------------------
+ * Navbar
+ * ---------------------------------------------------------------------- */
+.navbar {
+    --bs-navbar-color: var(--text-muted);
+    --bs-navbar-hover-color: var(--apertus-anthracite);
+    --bs-navbar-active-color: var(--apertus-anthracite);
+    --bs-navbar-brand-color: var(--apertus-anthracite);
+    --bs-navbar-brand-hover-color: var(--apertus-anthracite);
+    --bs-navbar-toggler-border-color: var(--border-subtle);
+    --bs-navbar-toggler-focus-width: 0.2rem;
+}
+
+.navbar-brand {
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+}
+
+.navbar .nav-link.active {
+    box-shadow: inset 0 -2px 0 var(--epfl-red);
+}
+
+/* -------------------------------------------------------------------------
+ * Navs: tabs & pills
+ * ---------------------------------------------------------------------- */
+.nav {
+    --bs-nav-link-color: var(--text-muted);
+    --bs-nav-link-hover-color: var(--apertus-anthracite);
+    --bs-nav-link-disabled-color: var(--text-faint);
+}
+
+.nav-tabs {
+    --bs-nav-tabs-border-color: var(--border-blue);
+    --bs-nav-tabs-link-hover-border-color: var(--pale-technical-panel) var(--pale-technical-panel) var(--border-blue);
+    --bs-nav-tabs-link-active-color: var(--apertus-anthracite);
+    --bs-nav-tabs-link-active-bg: var(--page-background);
+    --bs-nav-tabs-link-active-border-color: var(--border-blue) var(--border-blue) var(--page-background);
+}
+
+.nav-tabs .nav-link.active {
+    font-weight: 600;
+    box-shadow: inset 0 2px 0 var(--epfl-red);
+}
+
+.nav-pills {
+    --bs-nav-pills-link-active-color: var(--apertus-anthracite);
+    --bs-nav-pills-link-active-bg: var(--apertus-sky-blue-15);
+}
+
+.nav-pills .nav-link.active {
+    font-weight: 600;
+}
+
+/* -------------------------------------------------------------------------
+ * Breadcrumb
+ * ---------------------------------------------------------------------- */
+.breadcrumb {
+    --bs-breadcrumb-divider-color: var(--text-faint);
+    --bs-breadcrumb-item-active-color: var(--text-muted);
+}
+
+/* -------------------------------------------------------------------------
+ * Pagination
+ * ---------------------------------------------------------------------- */
+.pagination {
+    --bs-pagination-color: var(--apertus-anthracite);
+    --bs-pagination-border-color: var(--border-subtle);
+    --bs-pagination-hover-color: var(--apertus-anthracite);
+    --bs-pagination-hover-bg: var(--pale-blue-wash);
+    --bs-pagination-hover-border-color: var(--border-subtle);
+    --bs-pagination-focus-color: var(--apertus-anthracite);
+    --bs-pagination-focus-bg: var(--pale-blue-wash);
+    --bs-pagination-focus-box-shadow: 0 0 0 0.25rem rgba(255, 0, 0, 0.25);
+    --bs-pagination-active-color: var(--apertus-anthracite);
+    --bs-pagination-active-bg: var(--apertus-sky-blue-15);
+    --bs-pagination-active-border-color: var(--apertus-sky-blue-15);
+    --bs-pagination-disabled-color: var(--text-faint);
+    --bs-pagination-disabled-border-color: var(--border-subtle);
+}
+
+.page-item.active .page-link {
+    font-weight: 600;
+}
+
+/* -------------------------------------------------------------------------
+ * Cards (Bootstrap .card — .card-display in apertus.css stays as-is)
+ * ---------------------------------------------------------------------- */
+.card {
+    --bs-card-border-color: var(--border-subtle);
+    --bs-card-border-radius: var(--radius-md);
+    --bs-card-inner-border-radius: calc(var(--radius-md) - 1px);
+    --bs-card-cap-bg: var(--pale-blue-wash);
+    --bs-card-cap-color: var(--apertus-anthracite);
+}
+
+.card-header {
+    font-weight: 600;
+}
+
+/* -------------------------------------------------------------------------
+ * Accordion
+ * ---------------------------------------------------------------------- */
+.accordion {
+    --bs-accordion-border-color: var(--border-subtle);
+    --bs-accordion-border-radius: var(--radius-md);
+    --bs-accordion-inner-border-radius: calc(var(--radius-md) - 1px);
+    --bs-accordion-btn-color: var(--apertus-anthracite);
+    --bs-accordion-btn-focus-border-color: var(--apertus-sky-blue-15);
+    --bs-accordion-btn-focus-box-shadow: 0 0 0 0.25rem rgba(123, 187, 213, 0.35);
+    --bs-accordion-active-color: var(--apertus-anthracite);
+    --bs-accordion-active-bg: var(--pale-technical-panel);
+    /* Bootstrap's active chevron is blue; recolor to anthracite */
+    --bs-accordion-btn-active-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%232E2F31'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+}
+
+.accordion-button {
+    font-weight: 600;
+}
+
+/* -------------------------------------------------------------------------
+ * List group
+ * ---------------------------------------------------------------------- */
+.list-group {
+    --bs-list-group-border-color: var(--border-subtle);
+    --bs-list-group-border-radius: var(--radius-md);
+    --bs-list-group-action-hover-color: var(--apertus-anthracite);
+    --bs-list-group-action-hover-bg: var(--pale-blue-wash);
+    --bs-list-group-action-active-color: var(--apertus-anthracite);
+    --bs-list-group-action-active-bg: var(--pale-technical-panel);
+    --bs-list-group-active-color: var(--apertus-anthracite);
+    --bs-list-group-active-bg: var(--pale-technical-panel);
+    --bs-list-group-active-border-color: var(--border-blue);
+    --bs-list-group-disabled-color: var(--text-faint);
+}
+
+.list-group-item.active {
+    font-weight: 600;
+    box-shadow: inset 3px 0 0 var(--epfl-red);
+}
+
+/* -------------------------------------------------------------------------
+ * Tables
+ * ---------------------------------------------------------------------- */
+.table {
+    --bs-table-border-color: var(--border-subtle);
+    --bs-table-striped-bg: var(--pale-blue-wash);
+    --bs-table-striped-color: var(--apertus-anthracite);
+    --bs-table-hover-bg: var(--pale-technical-panel);
+    --bs-table-hover-color: var(--apertus-anthracite);
+    --bs-table-active-bg: var(--pale-technical-panel);
+    --bs-table-active-color: var(--apertus-anthracite);
+}
+
+.table > thead {
+    border-bottom: 2px solid var(--border-blue);
+}
+
+.table > caption {
+    color: var(--text-faint);
+}
+
+/* -------------------------------------------------------------------------
+ * Alerts — colors flow from the *-text-emphasis / *-bg-subtle /
+ * *-border-subtle root remaps above; this adds the shared shape.
+ * ---------------------------------------------------------------------- */
+.alert {
+    --bs-alert-border-radius: var(--radius-sm);
+}
+
+.alert-link {
+    color: inherit;
+}
+
+/* -------------------------------------------------------------------------
+ * Badges — colors flow from .text-bg-* via the *-rgb root remaps.
+ * ---------------------------------------------------------------------- */
+.badge {
+    --bs-badge-font-weight: 600;
+    letter-spacing: 0.05em;
+}
+
+/* -------------------------------------------------------------------------
+ * Progress
+ * ---------------------------------------------------------------------- */
+.progress,
+.progress-stacked {
+    --bs-progress-bg: var(--pale-technical-panel);
+    --bs-progress-bar-bg: var(--apertus-sky-blue-15);
+    --bs-progress-bar-color: var(--apertus-anthracite);
+}
+
+/* -------------------------------------------------------------------------
+ * Dropdowns
+ * ---------------------------------------------------------------------- */
+.dropdown-menu {
+    --bs-dropdown-border-color: var(--border-subtle);
+    --bs-dropdown-border-radius: var(--radius-md);
+    --bs-dropdown-inner-border-radius: calc(var(--radius-md) - 1px);
+    --bs-dropdown-divider-bg: var(--border-subtle);
+    --bs-dropdown-link-color: var(--apertus-anthracite);
+    --bs-dropdown-link-hover-color: var(--apertus-anthracite);
+    --bs-dropdown-link-hover-bg: var(--pale-blue-wash);
+    --bs-dropdown-link-active-color: var(--apertus-anthracite);
+    --bs-dropdown-link-active-bg: var(--pale-technical-panel);
+    --bs-dropdown-link-disabled-color: var(--text-faint);
+    --bs-dropdown-header-color: var(--text-faint);
+    box-shadow: 0 4px 12px rgba(46, 47, 49, 0.12);
+}
+
+.dropdown-header {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.75rem;
+}
+
+/* -------------------------------------------------------------------------
+ * Modal & Offcanvas
+ * ---------------------------------------------------------------------- */
+.modal {
+    --bs-modal-border-color: var(--border-subtle);
+    --bs-modal-border-radius: var(--radius-md);
+    --bs-modal-inner-border-radius: calc(var(--radius-md) - 1px);
+    --bs-modal-header-border-color: var(--border-blue);
+    --bs-modal-footer-border-color: var(--border-subtle);
+}
+
+.modal-title {
+    font-weight: 700;
+}
+
+.modal-backdrop,
+.offcanvas-backdrop {
+    --bs-backdrop-bg: var(--apertus-anthracite);
+}
+
+.offcanvas,
+.offcanvas-lg, .offcanvas-md, .offcanvas-sm, .offcanvas-xl, .offcanvas-xxl {
+    --bs-offcanvas-border-color: var(--border-subtle);
+}
+
+.offcanvas-title {
+    font-weight: 700;
+}
+
+/* -------------------------------------------------------------------------
+ * Toasts
+ * ---------------------------------------------------------------------- */
+.toast {
+    --bs-toast-border-color: var(--border-blue);
+    --bs-toast-border-radius: var(--radius-md);
+    --bs-toast-header-color: var(--apertus-anthracite);
+    --bs-toast-header-bg: var(--pale-blue-wash);
+    --bs-toast-header-border-color: var(--border-blue);
+}
+
+.toast-header {
+    font-weight: 600;
+}
+
+/* -------------------------------------------------------------------------
+ * Tooltips & Popovers
+ * ---------------------------------------------------------------------- */
+.tooltip {
+    --bs-tooltip-bg: var(--apertus-anthracite);
+    --bs-tooltip-border-radius: var(--radius-sm);
+}
+
+.popover {
+    --bs-popover-border-color: var(--border-blue);
+    --bs-popover-border-radius: var(--radius-md);
+    --bs-popover-inner-border-radius: calc(var(--radius-md) - 1px);
+    --bs-popover-header-bg: var(--pale-technical-panel);
+    --bs-popover-header-color: var(--apertus-anthracite);
+    --bs-popover-body-color: var(--apertus-anthracite);
+}
+
+.popover-header {
+    font-weight: 600;
+}
+
+/* -------------------------------------------------------------------------
+ * Carousel — dark indicators/controls for the light Apertus surfaces
+ * (Bootstrap defaults to white-on-dark imagery).
+ * ---------------------------------------------------------------------- */
+.carousel-indicators [data-bs-target] {
+    background-color: var(--apertus-anthracite);
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    filter: invert(1) grayscale(100%) brightness(0.2);
+}
+
+.carousel-caption {
+    color: var(--apertus-anthracite);
+}
+
+/* -------------------------------------------------------------------------
+ * Spinners & placeholders — sized/colored via utilities; nothing to
+ * override beyond the root color remaps.
+ * ---------------------------------------------------------------------- */
+
+/* -------------------------------------------------------------------------
+ * Close button (used by modals, toasts, alerts)
+ * ---------------------------------------------------------------------- */
+.btn-close:focus {
+    box-shadow: 0 0 0 0.25rem rgba(255, 0, 0, 0.25);
+}
+
+/* -------------------------------------------------------------------------
+ * Typography helpers: code, kbd, pre, blockquote, mark, hr
+ * ---------------------------------------------------------------------- */
+code {
+    font-family: 'Geist Mono', SFMono-Regular, Menlo, Consolas, monospace;
+    color: var(--apertus-anthracite);
+    background-color: var(--pale-technical-panel);
+    padding: 0.125rem 0.375rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.875em;
+}
+
+pre {
+    font-family: 'Geist Mono', SFMono-Regular, Menlo, Consolas, monospace;
+    background-color: var(--pale-blue-wash);
+    border: 1px solid var(--border-blue);
+    border-radius: var(--radius-sm);
+    padding: 1rem;
+    color: var(--apertus-anthracite);
+}
+
+pre code {
+    background: none;
+    padding: 0;
+}
+
+kbd {
+    font-family: 'Geist Mono', SFMono-Regular, Menlo, Consolas, monospace;
+    background-color: var(--apertus-anthracite);
+    border-radius: var(--radius-sm);
+}
+
+blockquote,
+.blockquote {
+    border-left: 3px solid var(--apertus-sky-blue-15);
+    background: var(--pale-blue-wash);
+    padding: 1rem 1.5rem;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+.blockquote-footer {
+    color: var(--text-muted);
+}
+
+mark {
+    background-color: rgba(123, 187, 213, 0.3);
+    color: var(--apertus-anthracite);
+    padding: 0.1em 0.2em;
+}
+
+hr {
+    border-top-color: var(--border-subtle);
+    opacity: 1;
+}
