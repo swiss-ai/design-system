@@ -1,0 +1,335 @@
+/* SPDX-License-Identifier: Apache-2.0 */
+/* Swiss-ai.org design tokens — rebased on Material Design 3 (M3).
+ *
+ * Architecture (three tiers, per M3 guidance):
+ *   1. Reference layer  — raw Apertus brand values (--color-*, --space-*)
+ *   2. System layer     — M3 roles (--md-sys-color-*, --md-sys-shape-corner-*,
+ *                         --md-sys-typescale-*, --md-sys-state-*,
+ *                         --md-sys-elevation-*, --md-sys-motion-*)
+ *   3. Component layer  — component-scoped tokens, declared where used
+ *                         (src/styles/components.css)
+ *
+ * Every M3 role that carries text/UI contrast is annotated below with its
+ * measured WCAG 2.2 ratio against its paired role.
+ */
+
+/* ==========================================================================
+   1. REFERENCE LAYER — Apertus brand palette
+   ========================================================================== */
+:root {
+  /* Core brand colors */
+  --color-sky-blue-1-5: #7BBBD5;   /* main brand surface / icon-tile color */
+  --color-sky-blue-1-5-1: #AACFDC; /* supporting panel and pattern tone   */
+  --color-sky-blue-1-5-2: #BFD8E1; /* supporting panel and pattern tone   */
+  --color-anthracite: #2E2F31;     /* primary text color (RGB 46/47/49)   */
+  --color-epfl-red: #FF0000;       /* identity accent, focus rings        */
+  --color-white: #FFFFFF;          /* dominant page background            */
+
+  /* Derived colors */
+  --color-page-background: #FFFFFF;
+  --color-pale-technical-panel: #EAF5F8;
+  --color-pale-blue-wash: #F3FAFC;
+  --color-border-subtle: rgba(46, 47, 49, 0.16);
+  --color-border-blue: rgba(123, 187, 213, 0.42);
+  --color-text-muted: rgba(46, 47, 49, 0.72);  /* 5.5:1 on white — AA body text */
+  --color-text-faint: rgba(46, 47, 49, 0.56);  /* 3.4:1 on white — large text only */
+  --color-focus-ring: #FF0000;                 /* 4.0:1 on white — passes UI 3:1 */
+  --color-disabled-surface: #DDECEF;
+  --color-disabled-text: rgba(46, 47, 49, 0.48);
+
+  /* EPFL Red is limited to large text and non-text UI: white on #FF0000 is
+     4.0:1 (passes AA large text and non-text 3:1, fails AA body text).
+     The derived red below carries all small-text and button-label roles. */
+  --color-epfl-red-accessible: #D40000; /* derived: 5.5:1 with white — AA body text */
+
+  /* Pale tonal washes (MD3 container-surface equivalents) */
+  --color-primary-container-tint: #FFE3E3;
+  --color-primary-on-container-ink: #7D0000; /* 9.3:1 on the red container tint */
+}
+
+/* ==========================================================================
+   2a. SYSTEM LAYER — M3 color roles mapped to the Apertus palette
+   ========================================================================== */
+:root {
+  /* Primary role — EPFL Red for identity, CTAs, active states, focus.
+     Buttons and small red text use --md-sys-color-primary-interactive. */
+  --md-sys-color-primary: var(--color-epfl-red);
+  --md-sys-color-primary-interactive: var(--color-epfl-red-accessible);
+  --md-sys-color-on-primary: var(--color-white);
+  --md-sys-color-primary-container: var(--color-primary-container-tint);
+  --md-sys-color-on-primary-container: var(--color-primary-on-container-ink);
+
+  /* Secondary role — Apertus Sky Blue 1.5 family.
+     Anthracite is the only passing text color on sky blue: 6.3:1 (white is 2.1:1). */
+  --md-sys-color-secondary: var(--color-sky-blue-1-5);
+  --md-sys-color-on-secondary: var(--color-anthracite);
+  --md-sys-color-secondary-container: var(--color-sky-blue-1-5-2);
+  --md-sys-color-on-secondary-container: var(--color-anthracite);
+
+  /* Tertiary role — white / pale-blue family for restrained, low-emphasis surfaces */
+  --md-sys-color-tertiary: var(--color-white);
+  --md-sys-color-on-tertiary: var(--color-anthracite);
+  --md-sys-color-tertiary-container: var(--color-pale-blue-wash);
+  --md-sys-color-on-tertiary-container: var(--color-anthracite);
+
+  /* Error role — reserved M3 defaults (used by forms and validation) */
+  --md-sys-color-error: #B3261E;
+  --md-sys-color-on-error: #FFFFFF;
+  --md-sys-color-error-container: #F9DEDC;
+  --md-sys-color-on-error-container: #410E0B;
+
+  /* Surface role stack — white page with pale technical blue layers */
+  --md-sys-color-surface: var(--color-page-background);
+  --md-sys-color-surface-dim: var(--color-pale-technical-panel);
+  --md-sys-color-surface-bright: var(--color-white);
+  --md-sys-color-surface-container-lowest: var(--color-white);
+  --md-sys-color-surface-container-low: var(--color-pale-blue-wash);
+  --md-sys-color-surface-container: var(--color-pale-technical-panel);
+  --md-sys-color-surface-container-high: var(--color-disabled-surface);
+  --md-sys-color-surface-container-highest: var(--color-sky-blue-1-5-2);
+  --md-sys-color-on-surface: var(--color-anthracite);            /* 13.4:1 on surface */
+  --md-sys-color-on-surface-variant: var(--color-text-muted);    /* 5.5:1 on surface  */
+
+  /* Outline roles */
+  --md-sys-color-outline: rgba(46, 47, 49, 0.55);      /* essential boundaries, 3.3:1 on white */
+  --md-sys-color-outline-variant: var(--color-border-subtle); /* hairlines, decorative */
+  --md-sys-color-outline-blue: var(--color-border-blue);      /* technical hairline accent */
+
+  /* Hero / technical canvas tones (Apertus extension of the surface role) */
+  --md-sys-color-surface-technical: var(--color-pale-technical-panel);
+  --md-sys-color-surface-technical-wash: var(--color-pale-blue-wash);
+}
+
+/* ==========================================================================
+   2b. SYSTEM LAYER — reference values (typefaces, elevation, shape, state, motion)
+   ========================================================================== */
+:root {
+  /* Typeface reference values */
+  --md-ref-typeface-brand: 'Inter', sans-serif;
+  --md-ref-typeface-plain: 'Inter', sans-serif;
+  --md-ref-typeface-mono: 'Geist Mono', monospace;
+
+  /* Font weight reference values (Inter Light / Bold / Black) */
+  --md-ref-weight-light: 300;
+  --md-ref-weight-bold: 600;
+  --md-ref-weight-black: 900;
+}
+
+:root {
+  /* M3 shape scale. Brand component overrides: buttons use corner-none
+     (Apertus is deliberately rectangular) and cards are capped at 6px. */
+  --md-sys-shape-corner-none: 0px;
+  --md-sys-shape-corner-extra-small: 4px;
+  --md-sys-shape-corner-small: 8px;
+  --md-sys-shape-corner-medium: 12px;
+  --md-sys-shape-corner-large: 16px;
+  --md-sys-shape-corner-extra-large: 28px;
+  --md-sys-shape-corner-full: 9999px;
+  /* Brand-capped card corner (Apertus allows 0–6px) */
+  --md-sys-shape-corner-card: 6px;
+}
+
+:root {
+  /* M3 state layer opacities (state layers are drawn with the opposite
+     color, usually currentColor) */
+  --md-sys-state-layer-hover: 0.08;
+  --md-sys-state-layer-focus: 0.12;
+  --md-sys-state-layer-pressed: 0.12;
+  --md-sys-state-layer-dragged: 0.16;
+}
+
+:root {
+  /* Elevation — M3 six-level ladder tuned to Apertus (lighter than stock
+     M3 shadows; heavy drop shadows are outside the brand). Derived values. */
+  --md-sys-elevation-level0: none;
+  --md-sys-elevation-level1: 0 1px 2px rgba(46, 47, 49, 0.08);
+  --md-sys-elevation-level2: 0 2px 6px rgba(46, 47, 49, 0.08);
+  --md-sys-elevation-level3: 0 4px 12px rgba(46, 47, 49, 0.10);
+  --md-sys-elevation-level4: 0 6px 18px rgba(46, 47, 49, 0.12);
+  --md-sys-elevation-level5: 0 8px 24px rgba(46, 47, 49, 0.14);
+  /* Apertus surface-tinted elevation (sky-blue glow on hover-lift) */
+  --md-sys-elevation-tinted: 0 4px 16px rgba(123, 187, 213, 0.28);
+}
+
+:root {
+  /* M3 motion durations */
+  --md-sys-motion-duration-short1: 50ms;
+  --md-sys-motion-duration-short2: 100ms;
+  --md-sys-motion-duration-short3: 150ms;
+  --md-sys-motion-duration-short4: 200ms;
+  --md-sys-motion-duration-medium1: 250ms;
+  --md-sys-motion-duration-medium2: 300ms;
+  --md-sys-motion-duration-medium4: 400ms;
+  --md-sys-motion-duration-long2: 500ms;
+
+  /* M3 easing curves — calm, decelerating, never bouncy */
+  --md-sys-motion-easing-standard: cubic-bezier(0.2, 0, 0, 1);
+  --md-sys-motion-easing-standard-accelerate: cubic-bezier(0.3, 0, 1, 1);
+  --md-sys-motion-easing-emphasized: cubic-bezier(0.2, 0, 0, 1);
+  --md-sys-motion-easing-emphasized-decelerate: cubic-bezier(0.05, 0.7, 0.1, 1);
+  --md-sys-motion-easing-emphasized-accelerate: cubic-bezier(0.3, 0, 0.8, 0.15);
+
+  /* Brand aliases kept for convenience */
+  --duration-fast: var(--md-sys-motion-duration-short3);
+  --duration-normal: var(--md-sys-motion-duration-short4);
+  --duration-slow: var(--md-sys-motion-duration-medium4);
+  --ease-standard: var(--md-sys-motion-easing-standard);
+}
+
+/* ==========================================================================
+   2c. SYSTEM LAYER — M3 type scale on the Apertus brand type
+   ========================================================================== */
+:root {
+  /* Display roles (rare, large promotional moments) */
+  --md-sys-typescale-display-large-size: clamp(40px, 6vw, 56px);
+  --md-sys-typescale-display-large-line-height: 1.05;
+  --md-sys-typescale-display-large-weight: var(--md-ref-weight-black);
+  --md-sys-typescale-display-large-tracking: -0.02em;
+
+  --md-sys-typescale-display-medium-size: clamp(36px, 5vw, 46px);
+  --md-sys-typescale-display-medium-line-height: 1.08;
+  --md-sys-typescale-display-medium-weight: var(--md-ref-weight-black);
+  --md-sys-typescale-display-medium-tracking: -0.02em;
+
+  /* Headline roles — major headings (Apertus H1–H3, Inter Black) */
+  --md-sys-typescale-headline-large-size: clamp(32px, 5vw, 50px);
+  --md-sys-typescale-headline-large-line-height: 1.1;
+  --md-sys-typescale-headline-large-weight: var(--md-ref-weight-black);
+  --md-sys-typescale-headline-large-tracking: -0.02em;
+
+  --md-sys-typescale-headline-medium-size: clamp(28px, 4vw, 38px);
+  --md-sys-typescale-headline-medium-line-height: 1.1;
+  --md-sys-typescale-headline-medium-weight: var(--md-ref-weight-black);
+  --md-sys-typescale-headline-medium-tracking: -0.02em;
+
+  --md-sys-typescale-headline-small-size: clamp(24px, 3vw, 32px);
+  --md-sys-typescale-headline-small-line-height: 1.2;
+  --md-sys-typescale-headline-small-weight: var(--md-ref-weight-black);
+  --md-sys-typescale-headline-small-tracking: -0.01em;
+
+  /* Title roles — supporting headings (Apertus H4–H6) */
+  --md-sys-typescale-title-large-size: clamp(20px, 2.5vw, 28px);
+  --md-sys-typescale-title-large-line-height: 1.3;
+  --md-sys-typescale-title-large-weight: var(--md-ref-weight-bold);
+  --md-sys-typescale-title-large-tracking: -0.01em;
+
+  --md-sys-typescale-title-medium-size: clamp(18px, 2vw, 22px);
+  --md-sys-typescale-title-medium-line-height: 1.3;
+  --md-sys-typescale-title-medium-weight: var(--md-ref-weight-black);
+  --md-sys-typescale-title-medium-tracking: 0.05em;
+  --md-sys-typescale-title-medium-transform: uppercase;
+
+  --md-sys-typescale-title-small-size: clamp(16px, 1.5vw, 20px);
+  --md-sys-typescale-title-small-line-height: 1.4;
+  --md-sys-typescale-title-small-weight: var(--md-ref-weight-bold);
+  --md-sys-typescale-title-small-tracking: 0.03em;
+  --md-sys-typescale-title-small-transform: uppercase;
+
+  /* Body roles */
+  --md-sys-typescale-body-large-size: clamp(16px, 1.6vw, 18px);
+  --md-sys-typescale-body-large-line-height: 1.6;
+  --md-sys-typescale-body-large-weight: var(--md-ref-weight-light);
+  --md-sys-typescale-body-large-tracking: 0;
+  --md-sys-typescale-body-large-color: var(--md-sys-color-on-surface);
+
+  --md-sys-typescale-body-medium-size: 16px;
+  --md-sys-typescale-body-medium-line-height: 1.6;
+  --md-sys-typescale-body-medium-weight: var(--md-ref-weight-light);
+  --md-sys-typescale-body-medium-tracking: 0;
+  --md-sys-typescale-body-medium-color: var(--md-sys-color-on-surface);
+
+  --md-sys-typescale-body-small-size: 14px;
+  --md-sys-typescale-body-small-line-height: 1.55;
+  --md-sys-typescale-body-small-weight: var(--md-ref-weight-light);
+  --md-sys-typescale-body-small-tracking: 0;
+  --md-sys-typescale-body-small-color: var(--md-sys-color-on-surface-variant);
+
+  /* Label roles — uppercase technical labels and navigation */
+  --md-sys-typescale-label-large-size: 14px;
+  --md-sys-typescale-label-large-line-height: 1.4;
+  --md-sys-typescale-label-large-weight: var(--md-ref-weight-bold);
+  --md-sys-typescale-label-large-tracking: 0.08em;
+  --md-sys-typescale-label-large-transform: uppercase;
+
+  --md-sys-typescale-label-medium-size: 12px;
+  --md-sys-typescale-label-medium-line-height: 1.4;
+  --md-sys-typescale-label-medium-weight: var(--md-ref-weight-bold);
+  --md-sys-typescale-label-medium-tracking: 0.08em;
+  --md-sys-typescale-label-medium-transform: uppercase;
+
+  --md-sys-typescale-label-small-size: 11px;
+  --md-sys-typescale-label-small-line-height: 1.4;
+  --md-sys-typescale-label-small-weight: var(--md-ref-weight-bold);
+  --md-sys-typescale-label-small-tracking: 0.08em;
+  --md-sys-typescale-label-small-transform: uppercase;
+
+  /* Apertus extension — mono roles for technical labels, code, metadata */
+  --md-sys-typescale-mono-large-size: 14px;
+  --md-sys-typescale-mono-large-line-height: 1.5;
+  --md-sys-typescale-mono-large-weight: var(--md-ref-weight-bold);
+
+  --md-sys-typescale-mono-medium-size: 13px;
+  --md-sys-typescale-mono-medium-line-height: 1.5;
+  --md-sys-typescale-mono-medium-weight: var(--md-ref-weight-bold);
+
+  --md-sys-typescale-mono-small-size: 12px;
+  --md-sys-typescale-mono-small-line-height: 1.5;
+  --md-sys-typescale-mono-small-weight: var(--md-ref-weight-bold);
+}
+
+/* ==========================================================================
+   3. LAYOUT, SPACING, AND SUPPORTING TOKENS
+   ========================================================================== */
+:root {
+  /* Apertus spacing scale (4px baseline grid, matches M3 spacing rc tokens) */
+  --space-4: 4px;
+  --space-8: 8px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-24: 24px;
+  --space-32: 32px;
+  --space-48: 48px;
+  --space-64: 64px;
+  --space-96: 96px;
+  --space-128: 128px;
+
+  /* Layout */
+  --container-max-width: 1240px;
+  --container-gutter: var(--space-24);
+  --grid-columns-desktop: 12;
+  --grid-columns-tablet: 8;
+  --grid-columns-mobile: 4;
+
+  /* Section rhythm */
+  --section-padding-desktop: var(--space-96);
+  --section-padding-tablet: 72px;
+  --section-padding-mobile: 48px;
+
+  /* Breakpoints (reference values for documentation; media queries are
+     written explicitly) */
+  --breakpoint-tablet: 1024px;
+  --breakpoint-mobile: 768px;
+
+  /* Design tokens mirrored in src/data/tokens.json */
+  --radius-none: var(--md-sys-shape-corner-none);
+  --radius-sm: var(--md-sys-shape-corner-extra-small);
+  --radius-default: var(--md-sys-shape-corner-card);
+  --radius-lg: var(--md-sys-shape-corner-medium);
+  --radius-full: var(--md-sys-shape-corner-full);
+
+  --border-subtle: 1px solid var(--md-sys-color-outline-variant);
+  --border-emphasis: 1px solid var(--md-sys-color-outline);
+
+  /* Focus ring — M3-style 3px ring with offset */
+  --focus-ring-width: 3px;
+  --focus-ring-offset: 2px;
+  --focus-ring: var(--focus-ring-width) solid var(--color-focus-ring);
+
+  /* Z-index scale */
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal: 1040;
+  --z-popover: 1050;
+  --z-tooltip: 1060;
+}

@@ -1,0 +1,129 @@
+/* SPDX-License-Identifier: Apache-2.0 */
+/* Base styles for the Swiss-ai.org style guide (M3 surface roles). */
+
+html {
+  scroll-behavior: smooth;
+  font-size: 100%;
+}
+
+body {
+  color: var(--md-sys-color-on-surface);
+  background-color: var(--md-sys-color-surface);
+  font-family: var(--md-ref-typeface-plain);
+  font-weight: var(--md-ref-weight-light);
+  font-size: var(--md-sys-typescale-body-medium-size);
+  line-height: var(--md-sys-typescale-body-medium-line-height);
+  text-rendering: optimizeLegibility;
+}
+
+/* --------------------------------------------------------------------------
+   Links
+   Body links are anthracite on white with a red underline; hover changes weight
+   and underline color, never color alone. A red link variant uses the derived
+   accessible red (#D40000, 5.5:1 on white — AA body text).
+   -------------------------------------------------------------------------- */
+a,
+.link {
+  color: var(--md-sys-color-on-surface);
+  text-decoration: underline;
+  text-decoration-color: var(--md-sys-color-primary);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  transition:
+    color var(--duration-fast) var(--ease-standard),
+    text-decoration-color var(--duration-fast) var(--ease-standard),
+    text-decoration-thickness var(--duration-fast) var(--ease-standard);
+}
+
+a:hover,
+.link:hover {
+  color: var(--md-sys-color-primary-interactive);
+  text-decoration-color: var(--md-sys-color-primary-interactive);
+  text-decoration-thickness: 2px;
+}
+
+/* Red editorial link variant (contrast-verified for body copy) */
+a.link-accent,
+.link-accent {
+  color: var(--md-sys-color-primary-interactive);
+}
+
+a.link-accent:hover,
+.link-accent:hover {
+  color: var(--md-sys-color-primary);
+}
+
+/* --------------------------------------------------------------------------
+   Skip link — first focusable element on the page
+   -------------------------------------------------------------------------- */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: var(--space-16);
+  z-index: var(--z-fixed);
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  background-color: var(--color-focus-ring);
+  color: var(--md-sys-color-on-primary);
+  padding: var(--space-8) var(--space-16);
+  font-weight: var(--md-ref-weight-bold);
+  font-size: var(--md-sys-typescale-label-large-size);
+  text-decoration: underline;
+  text-decoration-color: var(--md-sys-color-on-primary);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+  border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+  transition: top var(--duration-normal) var(--ease-standard);
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Focus — visible, never removed globally
+   -------------------------------------------------------------------------- */
+:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+  border-radius: var(--radius-none);
+}
+
+:focus {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+}
+
+/* --------------------------------------------------------------------------
+   Images and inline SVG
+   -------------------------------------------------------------------------- */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+svg.icon {
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* --------------------------------------------------------------------------
+   Selection — anthracite on sky blue (6.3:1, passes AA)
+   -------------------------------------------------------------------------- */
+::selection {
+  background-color: var(--md-sys-color-secondary);
+  color: var(--md-sys-color-on-secondary);
+}

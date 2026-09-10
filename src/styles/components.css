@@ -1,0 +1,757 @@
+/* SPDX-License-Identifier: Apache-2.0 */
+/* Component library for the Swiss-ai.org style guide — rebased on Material
+ * Design 3. Components consume the --md-sys-* token layer from tokens.css
+ * plus Apertus reference values. Component-scoped (tier-3) tokens are
+ * declared on the component roots below.
+ *
+ * Contents:
+ *   State layers · Site header · Navigation · Hero · Buttons · Cards ·
+ *   News cards · Feature cards · Resource tiles · Swatches · Pattern
+ *   samples · Carousel dots · Footer
+ */
+
+/* ==========================================================================
+   STATE LAYERS (M3)
+   Hover / focus / pressed overlays are drawn with a layered background-image
+   over the component fill — no pseudo-elements, no extra markup. Each variant
+   sets --state-color to its on-color.
+   ========================================================================== */
+.state-layer {
+  --state-color: transparent;
+  background-image: linear-gradient(var(--state-color), var(--state-color));
+  background-origin: border-box;
+  background-clip: border-box;
+  transition: background-color var(--duration-fast) var(--ease-standard);
+}
+
+.state-layer:hover {
+  --state-color: var(--state-hover-color, rgba(46, 47, 49, 0.08));
+}
+
+.state-layer:focus-visible {
+  --state-color: var(--state-focus-color, rgba(46, 47, 49, 0.12));
+}
+
+.state-layer:active {
+  --state-color: rgba(46, 47, 49, 0.12);
+}
+
+/* ==========================================================================
+   SITE HEADER
+   ========================================================================== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-sticky);
+  background-color: var(--md-sys-color-surface);
+  border-block-end: 1px solid var(--md-sys-color-outline-variant);
+  padding-block: var(--space-16);
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-24);
+  flex-wrap: wrap;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  color: var(--md-sys-color-on-surface);
+  text-decoration: none;
+}
+
+.logo-text {
+  font-family: var(--md-ref-typeface-brand);
+  font-weight: var(--md-ref-weight-black);
+  font-size: 24px;
+  letter-spacing: 0.28em;
+  color: var(--md-sys-color-on-surface);
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   NAVIGATION — small, uppercase, letter-spaced
+   ========================================================================== */
+.site-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-8) var(--space-24);
+}
+
+.site-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-family: var(--md-ref-typeface-brand);
+  font-weight: var(--md-sys-typescale-label-large-weight);
+  font-size: var(--md-sys-typescale-label-large-size);
+  line-height: var(--md-sys-typescale-label-large-line-height);
+  text-transform: var(--md-sys-typescale-label-large-transform);
+  letter-spacing: var(--md-sys-typescale-label-large-tracking);
+  color: var(--md-sys-color-on-surface);
+  text-decoration: none;
+  border-block-end: 2px solid transparent;
+  transition:
+    color var(--duration-fast) var(--ease-standard),
+    border-color var(--duration-fast) var(--ease-standard);
+}
+
+.site-nav a:hover {
+  color: var(--md-sys-color-primary-interactive);
+  border-block-end-color: var(--md-sys-color-primary);
+}
+
+.site-nav a:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+  border-radius: 0;
+}
+
+/* ==========================================================================
+   HERO — pale sky-blue technical field with circuit pattern and
+   translucent triangular overlays
+   ========================================================================== */
+.hero {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--md-sys-color-surface-technical);
+  padding-block: 96px var(--space-128);
+  text-align: center;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("../assets/backgrounds/Apertus 2606 - Background 05.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.hero > * {
+  position: relative;
+}
+
+.hero-wordmark {
+  font-family: var(--md-ref-typeface-brand);
+  font-weight: var(--md-ref-weight-light);
+  font-size: clamp(28px, 4vw, 44px);
+  letter-spacing: 0.5em;
+  color: var(--md-sys-color-on-surface);
+  text-indent: 0.5em;
+  margin-block-end: var(--space-32);
+}
+
+.apertus-logo {
+    font-size: 0px;
+    background-image: url("../assets/logos/Apertus 2606 - Initiative - Color.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 400px;
+    height: 100px;
+    display: inline-block;
+}
+
+.hero-content {
+  max-width: 720px;
+  margin-inline: auto;
+}
+
+.hero .lead-text {
+  margin-inline: auto;
+  background: white;
+  padding: 1em;
+}
+
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--space-16);
+}
+
+/* Translucent triangular overlays */
+.triangle-overlay {
+  position: absolute;
+  pointer-events: none;
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+  background: linear-gradient(135deg, rgba(123, 187, 213, 0.28), rgba(234, 245, 248, 0));
+}
+
+.triangle-1 {
+  inset: 0 auto auto 0;
+  width: clamp(320px, 42vw, 560px);
+  height: clamp(260px, 34vw, 440px);
+}
+
+.triangle-2 {
+  inset: 0 0 auto auto;
+  transform: scaleX(-1);
+  width: clamp(280px, 38vw, 520px);
+  height: clamp(240px, 32vw, 420px);
+}
+
+.triangle-3 {
+  inset: auto 0 0 auto;
+  transform: scaleY(-1);
+  width: clamp(300px, 46vw, 640px);
+  height: clamp(240px, 30vw, 400px);
+}
+
+/* ==========================================================================
+   BUTTONS (M3 five families + two Apertus variants)
+   Families: filled, elevated, tonal, outlined, text.
+   Apertus extensions: filled-dark (anthracite technical action), sky
+   (Apertus Sky Blue 1.5 with anthracite label — 6.3:1, passes AA).
+   Requirement: ≥ 44px height, tap target ≥ 44×44.
+   ========================================================================== */
+.button {
+  /* Component tokens (tier 3) */
+  --button-bg: transparent;
+  --button-color: var(--md-sys-color-on-surface);
+  --button-border: none;
+  --button-state-hover-color: rgba(46, 47, 49, 0.08);
+  --button-state-focus-color: rgba(46, 47, 49, 0.12);
+  --button-label-decoration: none;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-8);
+  min-height: 44px;
+  min-width: 44px;
+  padding: 12px var(--space-24);
+  font-family: var(--md-ref-typeface-brand);
+  font-weight: var(--md-ref-weight-bold);
+  font-size: var(--md-sys-typescale-label-large-size);
+  line-height: 1.4;
+  letter-spacing: var(--md-sys-typescale-label-large-tracking);
+  text-transform: var(--md-sys-typescale-label-large-transform);
+  text-decoration: none;
+  text-align: center;
+  color: var(--button-color);
+  background-color: var(--button-bg);
+  border: var(--button-border);
+  border-radius: var(--md-sys-shape-corner-none);
+  overflow: hidden;
+  position: relative;
+  background-image: linear-gradient(transparent, transparent);
+  transition:
+    background-color var(--duration-fast) var(--ease-standard),
+    color var(--duration-fast) var(--ease-standard),
+    border-color var(--duration-fast) var(--ease-standard),
+    box-shadow var(--duration-fast) var(--ease-standard),
+    transform var(--duration-fast) var(--ease-standard);
+}
+
+/* Filled — main brand action (EPFL Red, accessible derivative).
+   White label: 5.5:1 passes AA body text. */
+.button--filled {
+  --button-bg: var(--md-sys-color-primary-interactive);
+  --button-color: var(--md-sys-color-on-primary);
+  --button-state-hover-color: rgba(255, 255, 255, 0.08);
+  --button-state-focus-color: rgba(255, 255, 255, 0.12);
+}
+
+.button--filled:hover {
+  --button-bg: var(--color-epfl-red-hover, #B10000);
+}
+
+/* Elevated — light surface action */
+.button--elevated {
+  --button-bg: var(--md-sys-color-surface);
+  --button-color: var(--md-sys-color-on-surface);
+  --button-border: 1px solid var(--md-sys-color-outline-variant);
+  box-shadow: var(--md-sys-elevation-level1);
+}
+
+.button--elevated:hover {
+  --button-bg: var(--color-pale-blue-wash);
+  box-shadow: var(--md-sys-elevation-level2);
+}
+
+/* Tonal — M3 tonal on the secondary-container surface */
+.button--tonal {
+  --button-bg: var(--md-sys-color-secondary-container);
+  --button-color: var(--md-sys-color-on-secondary-container);
+}
+
+/* Filled-dark — Apertus technical action (anthracite) */
+.button--filled-dark {
+  --button-bg: var(--color-anthracite);
+  --button-color: var(--md-sys-color-on-primary);
+  --button-state-hover-color: rgba(255, 255, 255, 0.08);
+  --button-state-focus-color: rgba(255, 255, 255, 0.12);
+}
+
+.button--filled-dark:hover {
+  --button-bg: #43464a;
+}
+
+/* Sky — Apertus Sky Blue 1.5 with anthracite label */
+.button--sky {
+  --button-bg: var(--md-sys-color-secondary);
+  --button-color: var(--md-sys-color-on-secondary);
+}
+
+.button--sky:hover {
+  --button-bg: var(--md-sys-color-secondary-container);
+}
+
+/* Outlined — supporting action */
+.button--outlined {
+  --button-border: 1px solid var(--md-sys-color-outline);
+}
+
+.button--outlined:hover {
+  --button-bg: var(--color-pale-blue-wash);
+}
+
+/* Text — lowest emphasis */
+.button--text {
+  --button-color: var(--md-sys-color-primary-interactive);
+  --button-label-decoration: underline;
+  text-decoration: var(--button-label-decoration);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+.button--text:hover {
+  --button-color: var(--md-sys-color-primary);
+}
+
+/* Interactive states (all variants) */
+.button:hover {
+  background-image: linear-gradient(var(--button-state-hover-color), var(--button-state-hover-color));
+}
+
+.button:focus-visible {
+  background-image:
+    linear-gradient(var(--button-state-focus-color), var(--button-state-focus-color)),
+    linear-gradient(transparent, transparent);
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.button:active {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.12));
+  transform: translateY(1px);
+}
+
+.button:disabled,
+a.button[aria-disabled="true"] {
+  --button-bg: var(--color-disabled-surface);
+  --button-color: var(--color-disabled-text);
+  --button-border: none;
+  box-shadow: none;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* MD3 ripple (injected by main.js; hidden when motion is reduced) */
+.md3-ripple {
+  position: absolute;
+  border-radius: var(--md-sys-shape-corner-full);
+  background-color: currentColor;
+  opacity: 0.12;
+  transform: scale(0);
+  animation: md3-ripple var(--md-sys-motion-duration-medium4) var(--md-sys-motion-easing-standard);
+  pointer-events: none;
+}
+
+@keyframes md3-ripple {
+  to {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+/* ==========================================================================
+   CARDS (M3 elevated / filled / outlined)
+   ========================================================================== */
+.card {
+  display: block;
+  border-radius: var(--md-sys-shape-corner-card);
+  background-color: var(--md-sys-color-surface-container-lowest);
+  color: var(--md-sys-color-on-surface);
+  text-decoration: none;
+  text-align: start;
+}
+
+.card--elevated {
+  box-shadow: var(--md-sys-elevation-level1);
+}
+
+.card--elevated:hover {
+  box-shadow: var(--md-sys-elevation-level3);
+}
+
+.card--filled {
+  background-color: var(--md-sys-color-surface-technical);
+}
+
+.card--outlined {
+  border: 1px solid var(--md-sys-color-outline-variant);
+}
+
+.card--outlined:hover {
+  border-color: var(--md-sys-color-outline-blue);
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--md-sys-elevation-tinted);
+  background-image: linear-gradient(rgba(123, 187, 213, 0.06), rgba(123, 187, 213, 0.06));
+}
+
+.card--filled:hover {
+  background-image: none;
+}
+
+.card:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+  transform: translateY(-2px);
+}
+
+.card-body {
+  padding: var(--space-24);
+}
+
+.card-title {
+  margin-block-end: var(--space-8);
+}
+
+.card-text {
+  margin-block-end: var(--space-16);
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+/* --------------------------------------------------------------------------
+   News cards — centered cards with a pale blue line-art emblem
+   -------------------------------------------------------------------------- */
+.news-card {
+  max-width: 360px;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.news-card .card-emblem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-8);
+  padding: var(--space-32) var(--space-24) 0;
+  color: var(--md-sys-color-primary-interactive);
+}
+
+.card-emblem svg {
+  width: 64px;
+  height: 64px;
+  color: var(--md-sys-color-secondary);
+}
+
+.card-emblem-label {
+  font-family: var(--md-ref-typeface-brand);
+  font-weight: var(--md-sys-typescale-label-large-weight);
+  font-size: var(--md-sys-typescale-label-medium-size);
+  text-transform: var(--md-sys-typescale-label-medium-transform);
+  letter-spacing: var(--md-sys-typescale-label-medium-tracking);
+  color: var(--md-sys-color-on-surface);
+}
+
+.news-card h3,
+.news-card h4 {
+  margin-block: var(--space-8) var(--space-8);
+}
+
+.news-card .card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-8);
+  font-family: var(--md-ref-typeface-mono);
+  font-size: var(--md-sys-typescale-mono-small-size);
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+.news-card .card-meta .dot {
+  width: 4px;
+  height: 4px;
+  border-radius: var(--md-sys-shape-corner-full);
+  background-color: var(--md-sys-color-secondary);
+}
+
+.news-cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-32);
+  margin-block-start: var(--space-48);
+}
+
+@media (max-width: 768px) {
+  .news-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Feature cards — bold stacked heading + concise copy
+   -------------------------------------------------------------------------- */
+.feature-card h3,
+.feature-card h4 {
+  margin-block-end: var(--space-12);
+}
+
+.feature-card p {
+  margin-block-end: 0;
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+/* ==========================================================================
+   RESOURCE TILES — hexagonal documentation tiles (Apertus signature)
+   ========================================================================== */
+.resource-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-16);
+  max-width: 220px;
+  text-align: center;
+  color: inherit;
+  text-decoration: none;
+}
+
+.resource-tile .hexagon {
+  position: relative;
+  width: clamp(96px, 12vw, 136px);
+  aspect-ratio: 1 / 1.12;
+  display: grid;
+  place-items: center;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  background-color: var(--md-sys-color-secondary);
+  color: var(--md-sys-color-on-secondary);
+  transition:
+    transform var(--duration-normal) var(--ease-standard),
+    background-color var(--duration-normal) var(--ease-standard);
+}
+
+.resource-tile .hexagon svg {
+  width: 44%;
+  height: 44%;
+  color: var(--md-sys-color-on-secondary);
+}
+
+.resource-tile:hover .hexagon {
+  transform: translateY(-3px);
+  background-color: var(--color-sky-blue-1-5-2);
+}
+
+.resource-tile:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+  border-radius: var(--radius-full);
+}
+
+.resource-tile:focus-visible .hexagon {
+  transform: translateY(-3px);
+}
+
+.tile-label {
+  font-family: var(--md-ref-typeface-brand);
+  font-weight: var(--md-sys-typescale-label-large-weight);
+  font-size: var(--md-sys-typescale-label-large-size);
+  text-transform: var(--md-sys-typescale-label-large-transform);
+  letter-spacing: var(--md-sys-typescale-label-large-tracking);
+  color: var(--md-sys-color-on-surface);
+}
+
+.resource-tile:hover .tile-label {
+  color: var(--md-sys-color-primary-interactive);
+}
+
+/* ==========================================================================
+   SWATCHES — color palette cards (doc surfaces)
+   ========================================================================== */
+.swatch-color,
+.color-sample {
+  width: 100%;
+  height: 72px;
+  border: 1px solid var(--md-sys-color-outline-variant);
+  border-radius: var(--radius-sm);
+  margin-block-end: var(--space-12);
+}
+
+.token-name {
+  font-family: var(--md-ref-typeface-mono);
+  font-weight: 400;
+  font-size: var(--md-sys-typescale-mono-small-size);
+  color: var(--md-sys-color-on-surface-variant);
+  margin-block-end: var(--space-4);
+}
+
+.token-name[data-copy-token],
+button.token-name {
+  cursor: pointer;
+}
+
+.token-name[data-copy-token]:hover,
+button.token-name:hover {
+  color: var(--md-sys-color-primary-interactive);
+  text-decoration: underline;
+}
+
+.hex-value {
+  font-family: var(--md-ref-typeface-mono);
+  font-weight: var(--md-sys-typescale-mono-large-weight);
+  font-size: var(--md-sys-typescale-mono-large-size);
+  color: var(--md-sys-color-on-surface);
+  margin-block-end: var(--space-8);
+}
+
+.usage {
+  font-size: var(--md-sys-typescale-body-small-size);
+  color: var(--md-sys-color-on-surface-variant);
+  line-height: 1.45;
+}
+
+.contrast-note {
+  display: inline-block;
+  margin-block-start: var(--space-8);
+  font-family: var(--md-ref-typeface-mono);
+  font-size: var(--md-sys-typescale-mono-small-size);
+  padding: var(--space-4) var(--space-8);
+  border-radius: var(--radius-sm);
+  background-color: var(--md-sys-color-surface-container-low);
+  color: var(--md-sys-color-on-surface);
+}
+
+/* ==========================================================================
+   PATTERN SAMPLES
+   ========================================================================== */
+.pattern-container {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 220px;
+  padding: var(--space-48);
+  border-radius: var(--radius-default);
+  overflow: hidden;
+}
+
+.pattern-circuit {
+  background-color: var(--md-sys-color-surface-technical);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'%3E%3Cg fill='none' stroke='%237BBBD5' stroke-opacity='0.35' stroke-width='1'%3E%3Cpath d='M12 4v20m0 0h24m0-24v24m20-48h40v40h-40z'/%3E%3Cpath d='M84 60v32M60 76h36m-12-16h12v20'/%3E%3Ccircle cx='12' cy='28' r='3'/%3E%3Ccircle cx='36' cy='4' r='3'/%3E%3Ccircle cx='36' cy='28' r='3'/%3E%3Ccircle cx='60' cy='36' r='3'/%3E%3Ccircle cx='84' cy='60' r='3'/%3E%3Ccircle cx='96' cy='96' r='3'/%3E%3Cpath d='M44 60h24v24H44z'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 96px 96px;
+}
+
+.pattern-content {
+  position: relative;
+  max-width: 520px;
+  background-color: rgba(255, 255, 255, 0.92);
+  padding: var(--space-24);
+  border-radius: var(--radius-default);
+}
+
+/* ==========================================================================
+   CAROUSEL DOTS — static decorative pagination (non-functional by design)
+   <div class="carousel-dots" aria-hidden="true">
+     <span class="carousel-dot is-current"></span>…
+   </div>
+   ========================================================================== */
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-8);
+  margin-block-start: var(--space-16);
+}
+
+.carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--md-sys-shape-corner-full);
+  background-color: var(--md-sys-color-surface-container-highest);
+  border: 1px solid var(--md-sys-color-outline-blue);
+}
+
+.carousel-dot.is-current {
+  background-color: var(--md-sys-color-primary);
+  border-color: var(--md-sys-color-primary);
+}
+
+/* Interactive variant for functional carousels:
+   <button class="carousel-dot-button"> wraps a dot label visually hidden. */
+.carousel-dot-button {
+  display: inline-block;
+  padding: var(--space-8);
+  border-radius: var(--md-sys-shape-corner-full);
+}
+
+.carousel-dot-button .carousel-dot {
+  width: 6px;
+  height: 6px;
+}
+
+.carousel-dot-button[aria-current="true"] .carousel-dot {
+  background-color: var(--md-sys-color-primary);
+  border-color: var(--md-sys-color-primary);
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+.site-footer {
+  background-color: var(--md-sys-color-surface);
+}
+
+.site-footer .site-brand p,
+.footer-tagline {
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+.footer-nav-heading {
+  font-family: var(--md-ref-typeface-brand);
+  font-weight: var(--md-sys-typescale-label-large-weight);
+  font-size: var(--md-sys-typescale-label-large-size);
+  text-transform: var(--md-sys-typescale-label-large-transform);
+  letter-spacing: var(--md-sys-typescale-label-large-tracking);
+  color: var(--md-sys-color-on-surface);
+  margin-block-end: var(--space-12);
+}
+
+/* Pale blue illustration band at the bottom of the footer */
+.footer-illustration-band {
+  background-color: var(--md-sys-color-surface-container-low);
+  padding: var(--space-24) 0;
+}
+
+.footer-illustration {
+  width: min(420px, 80%);
+  margin-inline: auto;
+  color: var(--md-sys-color-secondary);
+}
+
+.footer-legal {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-16);
+  flex-wrap: wrap;
+  color: var(--md-sys-color-on-surface-variant);
+  font-size: var(--md-sys-typescale-body-small-size);
+}
+
+.footer-legal-links {
+  display: flex;
+  gap: var(--space-16);
+  flex-wrap: wrap;
+}
+
+.footer-legal-links a {
+  color: var(--md-sys-color-on-surface);
+}
