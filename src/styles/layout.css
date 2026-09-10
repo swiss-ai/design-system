@@ -1,0 +1,247 @@
+/* SPDX-License-Identifier: Apache-2.0 */
+/* Layout styles for the Swiss-ai.org style guide (M3 layout + Apertus grid).
+ *
+ * The Apertus grid is a plain CSS grid-based 12-column system. Column cells
+ * use span utilities (.span-*) — not a framework grid — and collapse with
+ * standard media queries. Layout never depends on JavaScript.
+ */
+
+/* --------------------------------------------------------------------------
+   Container — max-width content band
+   -------------------------------------------------------------------------- */
+.container {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin-inline: auto;
+  padding-inline: var(--container-gutter);
+}
+
+.container-narrow {
+  max-width: 720px;
+}
+
+/* --------------------------------------------------------------------------
+   Grid — 12-column system with responsive collapse
+   -------------------------------------------------------------------------- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-columns-desktop), minmax(0, 1fr));
+  gap: var(--space-24);
+}
+
+/* Column cells. Cells without an explicit span share one column. */
+.grid > .span-1  { grid-column: span 1; }
+.grid > .span-2  { grid-column: span 2; }
+.grid > .span-3  { grid-column: span 3; }
+.grid > .span-4  { grid-column: span 4; }
+.grid > .span-5  { grid-column: span 5; }
+.grid > .span-6  { grid-column: span 6; }
+.grid > .span-7  { grid-column: span 7; }
+.grid > .span-8  { grid-column: span 8; }
+.grid > .span-9  { grid-column: span 9; }
+.grid > .span-10 { grid-column: span 10; }
+.grid > .span-11 { grid-column: span 11; }
+.grid > .span-12 { grid-column: span 12; }
+
+/* Auto-flow card rows that collapse without column classes */
+.grid-auto {
+  display: grid;
+  gap: var(--space-32);
+  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+}
+
+.grid-auto-wide {
+  display: grid;
+  gap: var(--space-48);
+  grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr));
+}
+
+/* --------------------------------------------------------------------------
+   Sections — calm rhythm with white bands between technical sections
+   -------------------------------------------------------------------------- */
+.section {
+  padding-block: var(--section-padding-desktop);
+  position: relative;
+}
+
+/* Pale technical section (M3 surface-container role) */
+.section-technical {
+  background-color: var(--md-sys-color-surface-technical);
+}
+
+/* Pale wash section (M3 surface-container-low role) */
+.section-wash {
+  background-color: var(--md-sys-color-surface-technical-wash);
+}
+
+/* --------------------------------------------------------------------------
+   Split layouts — alternating text / media bands
+   -------------------------------------------------------------------------- */
+.split-layout {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-64);
+  align-items: center;
+}
+
+.split-layout-reverse .split-content {
+  order: 2;
+}
+
+.split-layout-reverse .split-media {
+  order: 1;
+}
+
+.split-content {
+  min-width: 0;
+}
+
+.split-media {
+  min-width: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Feature strip — three equal columns with vertical dividers on desktop
+   -------------------------------------------------------------------------- */
+.feature-strip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  margin-block-start: var(--space-48);
+}
+
+.feature-strip > * {
+  padding: var(--space-32);
+}
+
+/* Desktop-only vertical dividers */
+.feature-strip > *:not(:first-child) {
+  border-inline-start: 1px solid var(--md-sys-color-outline-blue);
+}
+
+/* --------------------------------------------------------------------------
+   Resource cluster layout
+   -------------------------------------------------------------------------- */
+.resource-cluster {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-48);
+  margin-block-start: var(--space-48);
+}
+
+/* --------------------------------------------------------------------------
+   Footer layout
+   -------------------------------------------------------------------------- */
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: var(--space-32);
+  padding-block-end: var(--space-48);
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-16);
+  padding-block-start: var(--space-32);
+  border-block-start: 1px solid var(--md-sys-color-outline-variant);
+}
+
+/* --------------------------------------------------------------------------
+   Responsive behavior
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .section {
+    padding-block: var(--section-padding-tablet);
+  }
+
+  .grid {
+    grid-template-columns: repeat(var(--grid-columns-tablet), minmax(0, 1fr));
+  }
+
+  /* Twelve columns never fit the tablet grid; clamp wide cells to the full
+     width so content stays on one row-worth of space. */
+  .grid > .span-9,
+  .grid > .span-10,
+  .grid > .span-11,
+  .grid > .span-12 {
+    grid-column: span 8;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(var(--grid-columns-mobile), minmax(0, 1fr));
+    gap: var(--space-16);
+  }
+
+  /* Cells collapse to full width on mobile; half-width opt-in for pairs */
+  .grid > .span-5,
+  .grid > .span-7,
+  .grid > .span-8,
+  .grid > .span-9,
+  .grid > .span-10,
+  .grid > .span-11,
+  .grid > .span-12 {
+    grid-column: span 4;
+  }
+
+  .grid > .span-2,
+  .grid > .span-3 {
+    grid-column: span 2;
+  }
+
+  .split-layout {
+    grid-template-columns: 1fr;
+    gap: var(--space-32);
+  }
+
+  /* Text first, then media, regardless of source order */
+  .split-layout .split-content {
+    order: 0;
+  }
+
+  .split-layout .split-media {
+    order: 1;
+  }
+
+  .feature-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-strip > *:not(:first-child) {
+    border-inline-start: none;
+    border-block-start: 1px solid var(--md-sys-color-outline-blue);
+  }
+
+  .feature-strip > * {
+    padding: var(--space-24) 0;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-24);
+    text-align: start;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding-block: var(--section-padding-mobile);
+  }
+
+  .container {
+    padding-inline: var(--space-16);
+  }
+}

@@ -1,20 +1,30 @@
 {
-  "name": "apertus-design",
-  "version": "1.5.0",
-  "description": "Design System for the Apertus initiative",
-  "main": "index.js",
-  "directories": {},
-  "scripts": {},
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/swiss-ai/apertus-designsystem.git"
+  "name": "swiss-ai-design-system",
+  "version": "2.0.0",
+  "description": "Swiss-ai.org Web Style Guide — Material Design 3 based component system",
+  "type": "module",
+  "scripts": {
+    "start": "live-server --port=8080 --host=localhost --open=index.html",
+    "validate:html": "html-validate index.html examples/homepage.html",
+    "lint:css": "stylelint src/styles/*.css",
+    "check:a11y": "lighthouse http://localhost:8080 --only-categories=accessibility --output=html --output-path=.lighthouse/report.html --chrome-flags=\"--headless\" --quiet",
+    "check": "npm run validate:html && npm run lint:css && npm run check:a11y"
   },
-  "author": "O Lavrovsky",
+  "keywords": [
+    "design-system",
+    "style-guide",
+    "material-design-3",
+    "md3",
+    "apertus",
+    "accessibility",
+    "vanilla-css"
+  ],
+  "author": "Swiss-ai.org Team",
   "license": "Apache-2.0",
-  "bugs": {
-    "url": "https://github.com/swiss-ai/apertus-designsystem/issues"
-  },
-  "homepage": "https://github.com/swiss-ai/apertus-designsystem#readme",
-  "dependencies": {},
-  "devDependencies": {}
+  "devDependencies": {
+    "lighthouse": "^12.4.0",
+    "live-server": "^1.2.5",
+    "html-validate": "^8.2.0",
+    "stylelint": "^16.5.0"
+  }
 }

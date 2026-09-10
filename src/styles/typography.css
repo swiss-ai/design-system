@@ -1,0 +1,274 @@
+/* SPDX-License-Identifier: Apache-2.0 */
+/* Typographic styles for the Swiss-ai.org style guide (M3 type scale).
+ *
+ * The MD3 type roles are mapped onto the Apertus scale:
+ *   display-*   — rare, large promotional moments (Inter Black)
+ *   headline-*  — major headings, Apertus H1–H3 (Inter Black)
+ *   title-*     — supporting headings, Apertus H4–H6 (Inter Bold/Black)
+ *   body-*      — body copy (Inter Light)
+ *   label-*     — uppercase technical labels and navigation (Inter Bold)
+ *   mono-*      — Apertus extension for technical content (Geist Mono)
+ */
+
+/* --------------------------------------------------------------------------
+   Semantic headings — composed from M3 typescale tokens
+   -------------------------------------------------------------------------- */
+h1 {
+  font-family: var(--md-ref-typeface-brand);
+  font-weight: var(--md-sys-typescale-headline-large-weight);
+  font-size: var(--md-sys-typescale-headline-large-size);
+  line-height: var(--md-sys-typescale-headline-large-line-height);
+  letter-spacing: var(--md-sys-typescale-headline-large-tracking);
+  color: var(--md-sys-color-on-surface);
+  margin-block-end: var(--space-24);
+}
+
+h2 {
+  font-family: var(--md-ref-typeface-brand);
+  font-weight: var(--md-sys-typescale-headline-medium-weight);
+  font-size: var(--md-sys-typescale-headline-medium-size);
+  line-height: var(--md-sys-typescale-headline-medium-line-height);
+  letter-spacing: var(--md-sys-typescale-headline-medium-tracking);
+  color: var(--md-sys-color-on-surface);
+  margin-block-end: var(--space-24);
+}
+
+h3 {
+  font-family: var(--md-ref-typeface-brand);
+  font-weight: var(--md-sys-typescale-headline-small-weight);
+  font-size: var(--md-sys-typescale-headline-small-size);
+  line-height: var(--md-sys-typescale-headline-small-line-height);
+  letter-spacing: var(--md-sys-typescale-headline-small-tracking);
+  color: var(--md-sys-color-on-surface);
+  margin-block-end: var(--space-16);
+  margin-block-start: var(--space-24);
+}
+
+h4 {
+  font-family: var(--md-ref-typeface-brand);
+  font-weight: var(--md-sys-typescale-title-large-weight);
+  font-size: var(--md-sys-typescale-title-large-size);
+  line-height: var(--md-sys-typescale-title-large-line-height);
+  letter-spacing: var(--md-sys-typescale-title-large-tracking);
+  color: var(--md-sys-color-on-surface);
+  margin-block-end: var(--space-12);
+}
+
+h5 {
+  font-family: var(--md-ref-typeface-brand);
+  font-weight: var(--md-sys-typescale-title-medium-weight);
+  font-size: var(--md-sys-typescale-title-medium-size);
+  line-height: var(--md-sys-typescale-title-medium-line-height);
+  letter-spacing: var(--md-sys-typescale-title-medium-tracking);
+  text-transform: var(--md-sys-typescale-title-medium-transform);
+  color: var(--md-sys-color-on-surface);
+  margin-block-end: var(--space-8);
+}
+
+h6 {
+  font-family: var(--md-ref-typeface-brand);
+  font-weight: var(--md-sys-typescale-title-small-weight);
+  font-size: var(--md-sys-typescale-title-small-size);
+  line-height: var(--md-sys-typescale-title-small-line-height);
+  letter-spacing: var(--md-sys-typescale-title-small-tracking);
+  text-transform: var(--md-sys-typescale-title-small-transform);
+  color: var(--md-sys-color-on-surface);
+  margin-block-end: var(--space-8);
+}
+
+/* --------------------------------------------------------------------------
+   Body text
+   -------------------------------------------------------------------------- */
+p {
+  margin-block-end: var(--space-16);
+  font-weight: var(--md-ref-weight-light);
+  font-size: var(--md-sys-typescale-body-medium-size);
+  line-height: var(--md-sys-typescale-body-medium-line-height);
+  color: var(--md-sys-typescale-body-medium-color);
+}
+
+/* Lead / body-large */
+.lead-text {
+  font-size: var(--md-sys-typescale-body-large-size);
+  line-height: var(--md-sys-typescale-body-large-line-height);
+  font-weight: var(--md-ref-weight-light);
+  color: var(--md-sys-color-on-surface-variant);
+  margin-block-end: var(--space-24);
+}
+
+/* Small text */
+.small-text {
+  font-size: var(--md-sys-typescale-body-small-size);
+  line-height: var(--md-sys-typescale-body-small-line-height);
+  font-weight: var(--md-ref-weight-light);
+  color: var(--md-sys-color-on-surface-variant);
+  margin-block-end: var(--space-12);
+}
+
+/* --------------------------------------------------------------------------
+   Labels
+   -------------------------------------------------------------------------- */
+.label-text {
+  display: block;
+  font-family: var(--md-ref-typeface-brand);
+  font-weight: var(--md-sys-typescale-label-large-weight);
+  font-size: var(--md-sys-typescale-label-medium-size);
+  line-height: var(--md-sys-typescale-label-medium-line-height);
+  text-transform: var(--md-sys-typescale-label-medium-transform);
+  letter-spacing: var(--md-sys-typescale-label-medium-tracking);
+  color: var(--md-sys-color-on-surface);
+  margin-block-end: var(--space-8);
+}
+
+/* --------------------------------------------------------------------------
+   Lists in prose
+   -------------------------------------------------------------------------- */
+.prose ul,
+.prose ol,
+.text-list {
+  margin-block-end: var(--space-16);
+  padding-inline-start: var(--space-24);
+}
+
+.prose ul:not(:where(.site-nav ul, .footer-nav ul, .bare-list, .share-list)),
+.text-list ul {
+  list-style: disc;
+}
+
+.prose ol,
+.text-list ol {
+  list-style: decimal;
+}
+
+.prose li,
+.text-list li {
+  margin-block-end: var(--space-8);
+  font-weight: var(--md-ref-weight-light);
+  line-height: 1.6;
+  color: var(--md-sys-color-on-surface);
+}
+
+/* --------------------------------------------------------------------------
+   Quotes
+   -------------------------------------------------------------------------- */
+blockquote {
+  font-family: var(--md-ref-typeface-brand);
+  font-weight: var(--md-ref-weight-light);
+  font-style: italic;
+  font-size: var(--md-sys-typescale-body-large-size);
+  line-height: var(--md-sys-typescale-body-large-line-height);
+  color: var(--md-sys-color-on-surface-variant);
+  border-inline-start: 3px solid var(--md-sys-color-secondary);
+  padding-inline-start: var(--space-16);
+  margin: var(--space-24) 0;
+}
+
+blockquote p:last-child {
+  margin-block-end: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Code and keyboard
+   -------------------------------------------------------------------------- */
+code,
+kbd,
+samp {
+  font-family: var(--md-ref-typeface-mono);
+  font-weight: var(--md-sys-typescale-mono-small-weight);
+  font-size: var(--md-sys-typescale-mono-small-size);
+  color: var(--md-sys-color-on-surface);
+  background-color: var(--md-sys-color-surface-container-low);
+  padding: 2px var(--space-8);
+  border-radius: var(--radius-sm);
+}
+
+pre {
+  margin: var(--space-16) 0;
+  overflow-x: auto;
+}
+
+pre code {
+  display: block;
+  padding: var(--space-16);
+  background-color: var(--md-sys-color-surface-container-low);
+  border-radius: var(--radius-default);
+  white-space: pre;
+}
+
+kbd {
+  border: 1px solid var(--md-sys-color-outline);
+  border-bottom-width: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* --------------------------------------------------------------------------
+   M3 type role classes — for explicit role assignment
+   -------------------------------------------------------------------------- */
+.md-typescale-display-large {
+  font-family: var(--md-ref-typeface-brand);
+  font-weight: var(--md-sys-typescale-display-large-weight);
+  font-size: var(--md-sys-typescale-display-large-size);
+  line-height: var(--md-sys-typescale-display-large-line-height);
+  letter-spacing: var(--md-sys-typescale-display-large-tracking);
+  color: var(--md-sys-color-on-surface);
+}
+
+.md-typescale-headline-large {
+  font-family: var(--md-ref-typeface-brand);
+  font-weight: var(--md-sys-typescale-headline-large-weight);
+  font-size: var(--md-sys-typescale-headline-large-size);
+  line-height: var(--md-sys-typescale-headline-large-line-height);
+  letter-spacing: var(--md-sys-typescale-headline-large-tracking);
+  color: var(--md-sys-color-on-surface);
+}
+
+.md-typescale-title-medium {
+  font-family: var(--md-ref-typeface-brand);
+  font-weight: var(--md-sys-typescale-title-medium-weight);
+  font-size: var(--md-sys-typescale-title-medium-size);
+  line-height: var(--md-sys-typescale-title-medium-line-height);
+  letter-spacing: var(--md-sys-typescale-title-medium-tracking);
+  text-transform: var(--md-sys-typescale-title-medium-transform);
+  color: var(--md-sys-color-on-surface);
+}
+
+.md-typescale-label-large {
+  font-family: var(--md-ref-typeface-brand);
+  font-weight: var(--md-sys-typescale-label-large-weight);
+  font-size: var(--md-sys-typescale-label-large-size);
+  line-height: var(--md-sys-typescale-label-large-line-height);
+  letter-spacing: var(--md-sys-typescale-label-large-tracking);
+  text-transform: var(--md-sys-typescale-label-large-transform);
+  color: var(--md-sys-color-on-surface);
+}
+
+.md-typescale-body-large {
+  font-family: var(--md-ref-typeface-brand);
+  font-weight: var(--md-sys-typescale-body-large-weight);
+  font-size: var(--md-sys-typescale-body-large-size);
+  line-height: var(--md-sys-typescale-body-large-line-height);
+  color: var(--md-sys-typescale-body-large-color);
+}
+
+/* --------------------------------------------------------------------------
+   Technical / mono type
+   -------------------------------------------------------------------------- */
+.mono-text {
+  font-family: var(--md-ref-typeface-mono);
+  font-weight: var(--md-sys-typescale-mono-large-weight);
+  font-size: var(--md-sys-typescale-mono-large-size);
+  line-height: var(--md-sys-typescale-mono-large-line-height);
+  color: var(--md-sys-color-on-surface);
+  background-color: var(--md-sys-color-surface-container-low);
+  padding: 2px var(--space-8);
+  border-radius: var(--radius-sm);
+}
+
+.mono-caption {
+  font-family: var(--md-ref-typeface-mono);
+  font-weight: var(--md-sys-typescale-mono-small-weight);
+  font-size: var(--md-sys-typescale-mono-small-size);
+  line-height: var(--md-sys-typescale-mono-small-line-height);
+  color: var(--md-sys-color-on-surface-variant);
+  letter-spacing: 0.02em;
+}

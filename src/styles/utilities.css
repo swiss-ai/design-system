@@ -1,0 +1,233 @@
+/* SPDX-License-Identifier: Apache-2.0 */
+/* Utility classes for the Swiss-ai.org style guide.
+ * Lean, token-driven helpers only — no framework utility sprawl.
+ * Primary layout comes from layout.css; these exist for edge cases. */
+
+/* --------------------------------------------------------------------------
+   Visually hidden (screen-reader accessible, focusable variants available
+   via .skip-link's own positioning)
+   -------------------------------------------------------------------------- */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Text alignment
+   -------------------------------------------------------------------------- */
+.text-left {
+  text-align: start;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: end;
+}
+
+/* --------------------------------------------------------------------------
+   Type-case modifiers
+   -------------------------------------------------------------------------- */
+.uppercase {
+  text-transform: uppercase;
+}
+
+.lowercase {
+  text-transform: lowercase;
+}
+
+/* --------------------------------------------------------------------------
+   Font weight modifiers (reference layer)
+   -------------------------------------------------------------------------- */
+.fw-light {
+  font-weight: var(--md-ref-weight-light);
+}
+
+.fw-bold {
+  font-weight: var(--md-ref-weight-bold);
+}
+
+.fw-black {
+  font-weight: var(--md-ref-weight-black);
+}
+
+/* --------------------------------------------------------------------------
+   Spacing helpers — margin scale (token-driven)
+   -------------------------------------------------------------------------- */
+.m-0 { margin: 0; }
+.m-4 { margin: var(--space-4); }
+.m-8 { margin: var(--space-8); }
+.m-12 { margin: var(--space-12); }
+.m-16 { margin: var(--space-16); }
+.m-24 { margin: var(--space-24); }
+.m-32 { margin: var(--space-32); }
+.m-48 { margin: var(--space-48); }
+
+.mt-0 { margin-block-start: 0; }
+.mt-4 { margin-block-start: var(--space-4); }
+.mt-8 { margin-block-start: var(--space-8); }
+.mt-12 { margin-block-start: var(--space-12); }
+.mt-16 { margin-block-start: var(--space-16); }
+.mt-24 { margin-block-start: var(--space-24); }
+.mt-32 { margin-block-start: var(--space-32); }
+.mt-48 { margin-block-start: var(--space-48); }
+.mt-64 { margin-block-start: var(--space-64); }
+.mt-96 { margin-block-start: var(--space-96); }
+
+.mb-0 { margin-block-end: 0; }
+.mb-4 { margin-block-end: var(--space-4); }
+.mb-8 { margin-block-end: var(--space-8); }
+.mb-12 { margin-block-end: var(--space-12); }
+.mb-16 { margin-block-end: var(--space-16); }
+.mb-24 { margin-block-end: var(--space-24); }
+.mb-32 { margin-block-end: var(--space-32); }
+.mb-48 { margin-block-end: var(--space-48); }
+.mb-64 { margin-block-end: var(--space-64); }
+.mb-96 { margin-block-end: var(--space-96); }
+
+.mx-auto {
+  margin-inline: auto;
+}
+
+/* --------------------------------------------------------------------------
+   Padding helpers
+   -------------------------------------------------------------------------- */
+.p-0 { padding: 0; }
+.p-4 { padding: var(--space-4); }
+.p-8 { padding: var(--space-8); }
+.p-12 { padding: var(--space-12); }
+.p-16 { padding: var(--space-16); }
+.p-24 { padding: var(--space-24); }
+.p-32 { padding: var(--space-32); }
+.p-48 { padding: var(--space-48); }
+
+/* --------------------------------------------------------------------------
+   Block utilities
+   -------------------------------------------------------------------------- */
+.block {
+  display: block;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.flex {
+  display: flex;
+}
+
+.inline-flex {
+  display: inline-flex;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+/* --------------------------------------------------------------------------
+   Background helpers — grouped by M3 roles
+   -------------------------------------------------------------------------- */
+.bg-surface {
+  background-color: var(--md-sys-color-surface);
+}
+
+.bg-surface-technical {
+  background-color: var(--md-sys-color-surface-technical);
+}
+
+.bg-surface-wash {
+  background-color: var(--md-sys-color-surface-technical-wash);
+}
+
+.bg-secondary-container {
+  background-color: var(--md-sys-color-secondary-container);
+}
+
+.bg-sky {
+  background-color: var(--md-sys-color-secondary);
+}
+
+.bg-primary-accent {
+  background-color: var(--md-sys-color-primary-interactive);
+  color: var(--md-sys-color-on-primary);
+}
+
+/* --------------------------------------------------------------------------
+   Max-width helpers
+   -------------------------------------------------------------------------- */
+.max-w-720 {
+  max-width: 720px;
+}
+
+.max-w-960 {
+  max-width: 960px;
+}
+
+.max-w-1180 {
+  max-width: 1180px;
+}
+
+.max-w-container {
+  max-width: var(--container-max-width);
+}
+
+.max-w-full {
+  max-width: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   Responsive display helpers
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .tablet-hidden {
+    display: none;
+  }
+
+  .tablet-block {
+    display: block;
+  }
+}
+
+@media (max-width: 768px) {
+  .mobile-hidden {
+    display: none;
+  }
+
+  .mobile-block {
+    display: block;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Overflow guard — keep long tokens and URLs from breaking containers
+   -------------------------------------------------------------------------- */
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.break-word {
+  overflow-wrap: break-word;
+}

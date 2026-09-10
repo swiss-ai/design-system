@@ -1,0 +1,24 @@
+Swiss-ai.org Branding Kit
+Copyright 2026 Swiss-ai.org
+
+This product includes design specifications and naming conventions derived from
+Material Design 3, licensed by Google LLC under the Apache License, Version 2.0.
+https://m3.material.io
+
+This repository is packaged as a Material Design 3 (M3) based component system.
+M3 system tokens (md-sys), state layer values, and elevation levels follow the
+Material Design 3 guidance published by Google:
+
+  Material Design 3 — color role system, state layer opacities
+  (hover 8% / focus 12% / pressed 12% / dragged 16%), and elevation levels.
+
+Typefaces referenced by name only (loaded from Google Fonts at runtime, not
+bundled in this repository):
+
+  - Inter (SIL Open Font License 1.1, by Rasmus Andersson)
+  - Geist Mono (SIL Open Font License 1.1, by Vercel)
+
+Official Swiss-ai.org logo artwork and brand derivatives remain the property of
+Swiss-ai.org and are not redistributed under this license. Place official logo
+files in design-system/src/assets/logos/ as described in that
+directory's README.

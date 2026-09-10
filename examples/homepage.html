@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apertus — Fully Open Foundation Model for Sovereign AI</title>
+    <meta name="description" content="Reference homepage built with the Swiss-ai.org style guide, a Material Design 3 based component system.">
+    <meta name="theme-color" content="#EAF5F8">
+
+    <!-- Google Fonts — referenced by name, not bundled (Apache-2.0 project). -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600;900&amp;family=Geist+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
+
+    <!-- CSS Stylesheets -->
+    <link rel="stylesheet" href="../src/styles/tokens.css">
+    <link rel="stylesheet" href="../src/styles/reset.css">
+    <link rel="stylesheet" href="../src/styles/base.css">
+    <link rel="stylesheet" href="../src/styles/typography.css">
+    <link rel="stylesheet" href="../src/styles/layout.css">
+    <link rel="stylesheet" href="../src/styles/components.css">
+    <link rel="stylesheet" href="../src/styles/utilities.css">
+
+    <!-- Homepage-specific styles (sample copy only; all behavior comes from the component library) -->
+    <style>
+        /* SPDX-License-Identifier: Apache-2.0 */
+        .hero-home {
+            padding-block: 96px var(--space-128);
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: var(--space-24);
+            margin-block-start: var(--space-64);
+        }
+
+        .hero-stat {
+            text-align: center;
+        }
+
+        .hero-stat .value {
+            font-family: var(--md-ref-typeface-brand);
+            font-weight: var(--md-ref-weight-black);
+            font-size: var(--md-sys-typescale-headline-small-size);
+            color: var(--md-sys-color-on-surface);
+        }
+
+        .hero-stat .caption {
+            font-family: var(--md-ref-typeface-mono);
+            font-size: var(--md-sys-typescale-mono-small-size);
+            color: var(--md-sys-color-on-surface-variant);
+            letter-spacing: 0.02em;
+        }
+
+        @media (max-width: 768px) {
+            .hero-stats {
+                grid-template-columns: 1fr;
+                gap: var(--space-32);
+            }
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: var(--space-32);
+            margin-block-start: var(--space-48);
+        }
+
+        @media (max-width: 768px) {
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .doc-list {
+            margin-block-start: var(--space-24);
+        }
+
+        .doc-list li {
+            padding-block: var(--space-12);
+            border-block-end: 1px solid var(--md-sys-color-outline-variant);
+        }
+
+        .doc-list li:last-child {
+            border-block-end: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip Link — first focusable element -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <a class="logo" href="#main-content" aria-label="Swiss-ai.org home">
+                    <span class="logo-text">APERTUS</span>
+                </a>
+                <nav class="site-nav" aria-label="Main">
+                    <ul>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#news">News</a></li>
+                        <li><a href="#docs">Documentation</a></li>
+                        <li><a href="#ethics">Ethics</a></li>
+                        <li><a href="#compute">Compute</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <!-- Hero -->
+        <section class="hero hero-home" aria-labelledby="hero-heading">
+            <div class="container">
+                <div class="hero-content">
+                    <p class="hero-wordmark apertus-logo" aria-hidden="true">APERTUS</p>
+                    <p class="label-text">Apertus is a flagship project of the Swiss AI Initiative</p>
+                    <h1 id="hero-heading">Fully Open Foundation Model for Sovereign AI</h1>
+                    <p class="lead-text">Bilingual model family built and released in the open, together with a coalition of research institutions — trained on one of the world's leading AI supercomputers in collaboration with the Swiss National Supercomputing Centre.</p>
+                    <div class="hero-buttons">
+                        <a class="button button--filled" href="#docs">Get Started</a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="hero-stat">
+                            <p class="value">Open</p>
+                            <p class="caption">Weights, data, and code released publicly</p>
+                        </div>
+                        <div class="hero-stat">
+                            <p class="value">Sovereign</p>
+                            <p class="caption">European, Swiss-designed, independently audited</p>
+                        </div>
+                        <div class="hero-stat">
+                            <p class="value">Reproducible</p>
+                            <p class="caption">Training methods documented end to end</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Feature strip -->
+        <section id="projects" class="section section-wash" aria-labelledby="projects-heading">
+            <div class="container">
+                <p class="label-text">What the platform ships</p>
+                <h2 id="projects-heading">Open by default, compliant at scale</h2>
+                <div class="feature-strip">
+                    <div class="feature-card">
+                        <h3>Fully Open</h3>
+                        <p>Training data, code, weights, methods, and alignment principles are documented and reproducible.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Compliant at Scale</h3>
+                        <p>Built to support transparent, compliant AI infrastructure for institutions, SMEs, and start-ups.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Run for Performance</h3>
+                        <p>Optimized for practical deployment and multilingual performance across European languages.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- News -->
+        <section id="news" class="section" aria-labelledby="news-heading">
+            <div class="container">
+                <p class="label-text">Latest</p>
+                <h2 id="news-heading">News</h2>
+                <div class="news-grid">
+                    <article class="card card--elevated news-card">
+                        <div class="card-emblem">
+                            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                                <g fill="none" stroke="currentColor" stroke-width="1.6">
+                                    <circle cx="24" cy="24" r="20" opacity="0.35"/>
+                                    <circle cx="24" cy="24" r="12"/>
+                                    <path d="M24 4v8M24 36v8M4 24h8M36 24h8M10 10l5.5 5.5M32.5 32.5L38 38M38 10l-5.5 5.5M15.5 32.5L10 38"/>
+                                </g>
+                                <circle cx="24" cy="24" r="2.4" fill="currentColor"/>
+                            </svg>
+                            <span class="card-emblem-label">News</span>
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">New Model Weights Published</h3>
+                            <p class="card-text">The next open release adds evaluation protocols and reproducible training configs to the public repository.</p>
+                            <div class="card-meta"><span class="dot" aria-hidden="true"></span><span>Sample copy — March 15, 2026</span></div>
+                        </div>
+                        <div class="carousel-dots" aria-hidden="true">
+                            <span class="carousel-dot is-current"></span>
+                            <span class="carousel-dot"></span>
+                            <span class="carousel-dot"></span>
+                        </div>
+                    </article>
+
+                    <article class="card card--elevated news-card">
+                        <div class="card-emblem">
+                            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                                <g fill="none" stroke="currentColor" stroke-width="1.6">
+                                    <circle cx="24" cy="24" r="20" opacity="0.3"/>
+                                    <path d="M24 6l4.4 12.2L41 18.6l-9.6 8.6L35 40l-11-6.8L13 40l3.6-12.8L7 18.6l12.6-.4z"/>
+                                </g>
+                            </svg>
+                            <span class="card-emblem-label">News</span>
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">Compute Call Announced</h3>
+                            <p class="card-text">Researchers from different organizations can apply for allocation windows on the national supercomputer.</p>
+                            <div class="card-meta"><span class="dot" aria-hidden="true"></span><span>Sample copy — March 2, 2026</span></div>
+                        </div>
+                        <div class="carousel-dots" aria-hidden="true">
+                            <span class="carousel-dot is-current"></span>
+                            <span class="carousel-dot"></span>
+                            <span class="carousel-dot"></span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Documentation / resource split — text left, resources right -->
+        <section id="docs" class="section section-technical" aria-labelledby="docs-heading">
+            <div class="container">
+                <div class="split-layout">
+                    <div class="split-content">
+                        <p class="label-text">Documentation</p>
+                        <h2 id="docs-heading">Everything is written down</h2>
+                        <p>The documentation set covers the same artifacts that make the model open in the first place — reproduction steps, evaluations, and the reasoning behind each release, from training data curation to serving.</p>
+                        <ul class="doc-list small-text">
+                            <li>Training and evaluation pipeline documentation</li>
+                            <li>Data sourcing, filtering, and licensing notes</li>
+                            <li>Model cards and reproducible configs</li>
+                            <li>Deployment and serving guidance</li>
+                        </ul>
+                        <div class="mt-32">
+                            <a class="button button--filled" href="#contact">Start with the Docs</a>
+                        </div>
+                    </div>
+                    <div class="split-media">
+                        <div class="resource-cluster">
+                            <a class="resource-tile" href="#docs">
+                                <span class="hexagon">
+                                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                                        <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                            <rect x="4" y="4" width="16" height="16" rx="1"/>
+                                            <path d="M7.5 12h9M12 7.5v9"/>
+                                            <path d="M7.5 8.5h4M7.5 15.5h4"/>
+                                        </g>
+                                    </svg>
+                                </span>
+                                <span class="tile-label">Technical Report</span>
+                            </a>
+                            <a class="resource-tile" href="#docs">
+                                <span class="hexagon">
+                                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                                        <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M9 8l-3.5 4L9 16"/>
+                                            <path d="M15 8l3.5 4L15 16"/>
+                                            <path d="M13 6l-2 12"/>
+                                        </g>
+                                    </svg>
+                                </span>
+                                <span class="tile-label">Developer Docs</span>
+                            </a>
+                            <a class="resource-tile" href="#contact">
+                                <span class="hexagon">
+                                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                                        <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                            <circle cx="12" cy="12" r="8.5"/>
+                                            <circle cx="12" cy="12" r="4"/>
+                                            <circle cx="12" cy="12" r="1" fill="currentColor"/>
+                                        </g>
+                                    </svg>
+                                </span>
+                                <span class="tile-label">Ethics Guide</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Alternate resource split — resources left, text right -->
+        <section id="ethics" class="section" aria-labelledby="ethics-heading">
+            <div class="container">
+                <div class="split-layout split-layout-reverse">
+                    <div class="split-media">
+                        <div class="resource-cluster">
+                            <a class="resource-tile" href="#contact">
+                                <span class="hexagon">
+                                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                                        <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                            <circle cx="12" cy="12" r="8.5"/>
+                                            <path d="M12 7.5v4.5l3 2"/>
+                                        </g>
+                                    </svg>
+                                </span>
+                                <span class="tile-label">Release Timeline</span>
+                            </a>
+                            <a class="resource-tile" href="#compute">
+                                <span class="hexagon">
+                                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                                        <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                            <rect x="4" y="4" width="16" height="16" rx="1"/>
+                                            <path d="M8 10h8M8 14h5"/>
+                                        </g>
+                                    </svg>
+                                </span>
+                                <span class="tile-label">Compute Calls</span>
+                            </a>
+                            <a class="resource-tile" href="#contact">
+                                <span class="hexagon">
+                                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                                        <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M12 4l7.5 4v8L12 20l-7.5-4V8z"/>
+                                            <path d="M12 12l7.5-4M12 12L4.5 8M12 12v8"/>
+                                        </g>
+                                    </svg>
+                                </span>
+                                <span class="tile-label">Artifact Registry</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="split-content">
+                        <p class="label-text">Ethics &amp; Governance</p>
+                        <h2 id="ethics-heading">Trustworthy use, by construction</h2>
+                        <p>Transparency work happens before deployment, not after: artifact cards document what was released, how it was trained, and under which licenses. Stakeholders — from public institutions to SMEs and start-ups — can audit and adopt without guesswork.</p>
+                        <div class="mt-32">
+                            <a class="button button--sky" href="#contact">Read the Ethics Guide</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Compute -->
+        <section id="compute" class="section section-wash" aria-labelledby="compute-heading">
+            <div class="container text-center">
+                <p class="label-text">Infrastructure</p>
+                <h2 id="compute-heading">Trained on a leading AI supercomputer</h2>
+                <p class="section-intro mx-auto">Frontier research runs on one of the world's leading AI supercomputers in collaboration with the Swiss National Supercomputing Centre. Regular compute calls bring together researchers from different organizations.</p>
+                <div class="hero-buttons">
+                    <a class="button button--filled-dark" href="#contact">Apply for Compute</a>
+                    <a class="button button--tonal" href="#docs">See the Setup</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section id="contact" class="section" aria-labelledby="contact-heading">
+            <div class="container text-center">
+                <p class="label-text">Get involved</p>
+                <h2 id="contact-heading">Read the artifacts, reuse the parts</h2>
+                <p class="section-intro mx-auto">Every component on this page ships in the Swiss-ai.org style guide — download the tokens, copy the markup, and keep the Swiss institutional tone. This page carries sample copy only.</p>
+                <div class="hero-buttons">
+                    <a class="button button--filled" href="index.html">Open the Style Guide</a>
+                    <a class="button button--elevated" href="#docs">Browse Resources</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+
+        <div class="container">
+            <div class="footer-grid">
+                <div class="site-brand">
+                    <p class="footer-tagline mt-8">Fully Open Design System for the Swiss AI Initiative.</p>
+                    <div class="license-chip-row">
+                        <a class="license-chip" href="../LICENSE">Apache-2.0</a>
+                        <a class="license-chip" href="../NOTICE">NOTICE</a>
+                    </div>
+                </div>
+
+                <nav class="footer-nav" aria-label="Footer projects">
+                    <h4 class="footer-nav-heading">Platform</h4>
+                    <ul class="bare-list">
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#news">News</a></li>
+                        <li><a href="#compute">Compute</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+
+                <nav class="footer-nav" aria-label="Footer documentation">
+                    <h4 class="footer-nav-heading">Resources</h4>
+                    <ul class="bare-list">
+                        <li><a href="#docs">Documentation</a></li>
+                        <li><a href="#ethics">Ethics</a></li>
+                        <li><a href="index.html">Style Guide</a></li>
+                        <li><a href="docs/usage.md">Design System Usage</a></li>
+                    </ul>
+                </nav>
+
+                <div class="footer-contact">
+                    <h4 class="footer-nav-heading">Contact</h4>
+                    <p class="small-text">Swiss-ai.org Team<br>
+                    School of Computer and Communication Sciences<br>
+                    Lausanne, Switzerland</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p class="footer-legal">
+                    <span>&copy; 2026 Swiss-ai.org · Apache-2.0 · sample copy for reference builds only</span>
+                </p>
+                <div class="footer-legal-links">
+                    <a href="../LICENSE">License</a>
+                    <a href="../NOTICE">Notice</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript — progressive enhancement only -->
+    <script src="../src/js/main.js" defer></script>
+</body>
+</html>

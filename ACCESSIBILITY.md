@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Apertus Web Style Guide follows WCAG 2.2 AA standards to ensure digital accessibility for all users, including those with disabilities.
+The Swiss-ai.org Web Style Guide follows WCAG 2.2 AA standards to ensure digital accessibility for all users, including those with disabilities.
 
 ## Key Accessibility Features
 
@@ -109,4 +109,4 @@ This runs axe accessibility tests against the style guide and example homepage.
 
 ## Contact
 
-For accessibility issues or accommodations, please contact the Apertus accessibility team.
+For accessibility issues or accommodations, please contact the Swiss-ai.org accessibility team.
