@@ -9,15 +9,12 @@ Apertus — a flagship project of Swiss-ai.org — supplies the brand palette
 
 **Based on design and illustrations by [Florian Molinari](https://www.molinaridesign.ch/)**
 
+These can be found in the ['design' folder](https://github.com/swiss-ai/design-system/tree/main/design).
+
 ## Purpose
 
 The style guide is the single source of truth for visual and interaction
-patterns across Swiss-ai.org digital products. Components consume the M3 role
-system (color roles, state layers, shape and elevation scales, a typed scale)
-mapped onto the Apertus brand palette: Apertus Sky Blue, Anthracite, EPFL Red,
-white space, circuit-line motifs, and hexagonal documentation tiles.
-
-**Vibe:**
+patterns across Swiss-ai.org digital products. The vibe is:
 
 - Precise, open, sovereign, Swiss, technical, calm, credible, public-interest AI.
 - The interface should feel like a clean institutional research platform rather than a commercial SaaS landing page. 
