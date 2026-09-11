@@ -7,13 +7,7 @@ accessible, responsive, and licensed under the Apache License, Version 2.0.
 Apertus — a flagship project of Swiss-ai.org — supplies the brand palette
 (Apertus Sky Blue, Apertus Anthracite, EPFL Red).
 
-- Works with all frameworks — it is plain HTML, CSS, and vanilla JavaScript.
-- Works with CDNs — no build step, no bundling required.
-- Fully customizable with CSS — every token is a custom property.
-- Material Design 3 token architecture — reference → system → component tiers.
-- Built with accessibility in mind — WCAG 2.2 AA, verified contrast per role.
-- Open source — Apache 2.0 end to end, with only Apache-2.0-compatible
-  dependencies.
+**Based on design and illustrations by [Florian Molinari](https://www.molinaridesign.ch/)**
 
 ## Purpose
 
@@ -23,6 +17,35 @@ system (color roles, state layers, shape and elevation scales, a typed scale)
 mapped onto the Apertus brand palette: Apertus Sky Blue, Anthracite, EPFL Red,
 white space, circuit-line motifs, and hexagonal documentation tiles.
 
+**Vibe:**
+
+- Precise, open, sovereign, Swiss, technical, calm, credible, public-interest AI.
+- The interface should feel like a clean institutional research platform rather than a commercial SaaS landing page. 
+- Communicate open science, European / Swiss trustworthiness, engineering rigor, transparency, and technical clarity.
+- The visual tone should be light, airy, structured, geometric, and scientific. 
+- Use pale sky-blue fields, white space, thin circuit-line motifs, translucent angular overlays, hexagonal technical resource tiles, and strong but restrained typography. The website should feel modern and computational without becoming dark, cyberpunk, or overly corporate.
+
+**Design Principles:**
+
+- Open by default.
+- Technical but readable.
+- Institutional without being cold.
+- Geometric, not decorative.
+- Spacious, not dense.
+- Trustworthy, not flashy.
+- Motion should clarify interaction, never distract.
+- Accessibility is part of the brand quality.
+
+**Technical Principles:**
+
+- Works with all frameworks — it is plain HTML, CSS, and vanilla JavaScript.
+- Works with CDNs — no build step, no bundling required.
+- Fully customizable with CSS — every token is a custom property.
+- Material Design 3 token architecture — reference → system → component tiers.
+- Built with accessibility in mind — WCAG 2.2 AA, verified contrast per role.
+- Open source — Apache 2.0 end to end, with only Apache-2.0-compatible
+  dependencies.
+  
 ## Component library
 
 | Element | M3 component | Class |
@@ -41,13 +64,6 @@ layers; a restrained ripple is provided by `src/js/main.js` and disabled under
 `prefers-reduced-motion`. Heights are ≥44px on every control.
 
 ## Setup
-
-### Prerequisites
-
-- A modern browser — opening `index.html` directly works with no install.
-- Optional: Node.js for the local development scripts.
-
-### View the style guide locally
 
 ```bash
 # Option 1 — no install at all
