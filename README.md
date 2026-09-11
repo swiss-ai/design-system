@@ -1,35 +1,31 @@
-# Apertus Web Style Guide
+# Swiss-ai.org Web Style Guide
+
+A complete, production-quality design system for the Swiss-ai.org website —
+**rebuilt on [Material Design&nbsp;3](https://m3.material.io)** (Apache-2.0,
+Google) as the component library baseline. The kit is static, inspectable,
+accessible, responsive, and licensed under the Apache License, Version 2.0.
+Apertus — a flagship project of Swiss-ai.org — supplies the brand palette
+(Apertus Sky Blue, Apertus Anthracite, EPFL Red).
+
+**Based on design and illustrations by [Florian Molinari](https://www.molinaridesign.ch/)**
 
 ## Purpose
 
-Delivering HTML structures, CSS assets and design elements to build frontends for the Apertus AI Initiative website.
+The style guide is the single source of truth for visual and interaction
+patterns across Swiss-ai.org digital products. Components consume the M3 role
+system (color roles, state layers, shape and elevation scales, a typed scale)
+mapped onto the Apertus brand palette: Apertus Sky Blue, Anthracite, EPFL Red,
+white space, circuit-line motifs, and hexagonal documentation tiles.
 
-Content:
+**Vibe:**
 
-- Design assets.
-- Accessibility guidelines.
-- A Storybook application.
+- Precise, open, sovereign, Swiss, technical, calm, credible, public-interest AI.
+- The interface should feel like a clean institutional research platform rather than a commercial SaaS landing page. 
+- Communicate open science, European / Swiss trustworthiness, engineering rigor, transparency, and technical clarity.
+- The visual tone should be light, airy, structured, geometric, and scientific. 
+- Use pale sky-blue fields, white space, thin circuit-line motifs, translucent angular overlays, hexagonal technical resource tiles, and strong but restrained typography. The website should feel modern and computational without becoming dark, cyberpunk, or overly corporate.
 
-The application is a way of presenting assets, components and layouts in isolated mode.
-
-## Project Overview
-
-**PROJECT NAME:**
-Apertus Web Style Guide
-
-**STYLE:**
-"Confoederatio Apertus"
-
-**VIBE:**
-Precise, open, sovereign, Swiss, technical, calm, credible, public-interest AI.
-The interface should feel like a clean institutional research platform rather than a commercial SaaS landing page. It should communicate open science, European / Swiss trustworthiness, engineering rigor, transparency, and technical clarity.
-
-The visual tone should be light, airy, structured, geometric, and scientific. Use pale sky-blue fields, white space, thin circuit-line motifs, translucent angular overlays, hexagonal technical resource tiles, and strong but restrained typography. The website should feel modern and computational without becoming dark, cyberpunk, or overly corporate.
-
-**DESIGNER:**
-Initial design by Florian Molinari
-
-## Design Principles
+**Design Principles:**
 
 - Open by default.
 - Technical but readable.
@@ -40,52 +36,142 @@ Initial design by Florian Molinari
 - Motion should clarify interaction, never distract.
 - Accessibility is part of the brand quality.
 
-## Installation
+**Technical Principles:**
+
+- Works with all frameworks — it is plain HTML, CSS, and vanilla JavaScript.
+- Works with CDNs — no build step, no bundling required.
+- Fully customizable with CSS — every token is a custom property.
+- Material Design 3 token architecture — reference → system → component tiers.
+- Built with accessibility in mind — WCAG 2.2 AA, verified contrast per role.
+- Open source — Apache 2.0 end to end, with only Apache-2.0-compatible
+  dependencies.
+  
+## Component library
+
+| Element | M3 component | Class |
+| --- | --- | --- |
+| Primary CTA | Filled button | `.button .button--filled` |
+| Light CTA | Elevated button | `.button .button--elevated` |
+| Supporting action | Filled tonal button | `.button .button--tonal` |
+| Border action | Outlined button | `.button .button--outlined` |
+| Low emphasis | Text button | `.button .button--text` |
+| Apertus variants | brand extensions | `.button--filled-dark`, `.button--sky` |
+| Cards | Elevated / filled / outlined card | `.card .card--elevated` etc. |
+| Resource tiles | Apertus signature | `.resource-tile` |
+
+State layers (hover 8% / focus 12% / pressed 12%) are drawn with M3 state
+layers; a restrained ripple is provided by `src/js/main.js` and disabled under
+`prefers-reduced-motion`. Heights are ≥44px on every control.
+
+## Setup
 
 ```bash
-# install dependencies
-$ npm install
+# Option 1 — no install at all
+open index.html            # macOS
+# or double-click index.html in your file manager
+
+# Option 2 — local dev server
+npm install
+npm start                  # http://localhost:8080
 ```
 
-## Run Storybook
+## Validation
 
 ```bash
-# serve Storybook with hot reload
-$ npm run dev
+npm run validate:html   # html-validate over index.html and examples
+npm run lint:css        # stylelint checks
+npm run check:a11y      # Lighthouse accessibility audit (Apache-2.0)
+npm run check           # all of the above
 ```
 
-## Build Storybook
+`npm run check:a11y` targets `http://localhost:8080`, so run `npm start` in a
+second terminal first. The report lands in `.lighthouse/report.html`.
 
-```bash
-# build Storybook
-$ npm run build
+## Guidance for designers
+
+- Speak in **M3 roles** (`primary`, `secondary`, `surface`, `outline`), not
+  hex values. Every pairing ships with a verified WCAG 2.2 ratio.
+- All color tokens are defined in `src/data/tokens.json` and exported as CSS
+  custom properties in `src/styles/tokens.css`.
+- Typography: Inter (Black/Bold/Light) with Geist Mono for technical content;
+  sizes are `clamp()`-based per the M3 typed scale.
+- Red is deliberate and editorial: filled CTAs and small red text use the
+  derived accessible red `#D40000`; pure `#FF0000` is reserved for focus
+  rings, indicators, and large display moments.
+- The signature elements (circuit motifs, triangular overlays, hexagonal
+  tiles, pale sky-blue bands) are documented in the Patterns section.
+
+## Guidance for developers
+
+- Include the stylesheets in the order shown in `docs/usage.md`
+  (`tokens.css` → `reset.css` → `base.css` → `typography.css` →
+  `layout.css` → `components.css` → `utilities.css`; `styleguide.css` is
+  documentation-only and usually skipped in production pages).
+- Consume `--md-sys-color-*`, `--md-sys-typescale-*`,
+  `--md-sys-shape-corner-*`, `--md-sys-state-layer-*`, and
+  `--md-sys-elevation-*` tokens — never raw hex values in components.
+- `src/js/main.js` is progressive enhancement only (copy-token buttons and a
+  restrained MD3 ripple). Core content renders fully without JavaScript.
+- A dark theme can be added later by re-mapping the `--md-sys-color-*` tier
+  without touching components.
+
+`docs/usage.md` covers both audiences in depth, including how to add a page.
+
+## Brand assets
+
+Official logo files should be placed in `src/assets/logos/` — see that
+directory's [README](src/assets/logos/README.md). Until then, pages use a
+text-based `SWISS-AI.ORG` placeholder with deliberate tracking. Line icons in
+`src/assets/icons/` are thin-stroke SVGs matching the M3 outlined style.
+
+## Documentation
+
+- [`docs/design-principles.md`](docs/design-principles.md) — why M3, the
+  Apertus adaptations, and component vocabulary.
+- [`docs/usage.md`](docs/usage.md) — usage for designers and developers.
+- [`docs/accessibility.md`](docs/accessibility.md) — WCAG 2.2 AA details and
+  the verified contrast table.
+- [`docs/governance.md`](docs/governance.md) — governance, the Apache-2.0
+  dependency policy, and the change process.
+
+## Repository structure
+
+```
+design-system/
+├── README.md
+├── package.json
+├── .editorconfig
+├── .gitignore
+├── index.html                 # Main style guide page
+├── examples/
+│   └── homepage.html          # Reference homepage implementation
+├── docs/
+│   ├── accessibility.md
+│   ├── design-principles.md
+│   ├── governance.md
+│   └── usage.md
+└── src/
+    ├── assets/
+    │   ├── icons/             # SVG line icons (technical-report, developer-docs, …)
+    │   └── logos/             # Official brand logos (see README inside)
+    ├── data/
+    │   └── tokens.json        # Machine-readable M3 + Apertus tokens
+    ├── js/
+    │   └── main.js            # Copy-token buttons and the MD3 ripple
+    └── styles/
+        ├── tokens.css         # Reference → system → layout tokens
+        ├── reset.css
+        ├── base.css
+        ├── typography.css
+        ├── layout.css
+        ├── components.css     # The MD3-based component library
+        ├── utilities.css
+        └── styleguide.css     # Documentation-page-only styles
 ```
 
-## Build CSS only
+## License
 
-```bash
-# build Storybook
-$ npm run build-css
-```
-
-## How to release
-
-- Edit the `package.json` file and increment the `version` of the package, for example `1.0.0`
-- Create and publish a new tag with the same version number as the one in the `package.json` file, with a `v` prefix, for example `v1.0.0`
-- Create a new release on Github, document your changes, and name it for example `Release 1.0.0`
-
-## CSS files
-
-When a new `version` is pushed on the `main` branch, there is no automatic release of the CSS files at the moment. You need to release them manually on the github repository.
-
-# Run visual regression testing
-
-```bash
-# run Chromatic
-$ git checkout main
-$ npm run test
-```
-
-This will run the test and provide an URL pointing to the Chromatic app. You can learn more about the Chromatic tool at [Chromatic's website.](https://www.chromatic.com/)
-
-If you want to run the test before merging your branches into the `main` branch, you can first check out `stage`, merge your modifications onto this branch, and then run the regression visual test.
+Licensed under the [Apache License, Version 2.0](../LICENSE). Component
+library baseline: Material Design 3 (Apache-2.0, Google LLC) — see
+[NOTICE](../NOTICE). Official logo artwork is not redistributed under this
+license.

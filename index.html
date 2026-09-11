@@ -3,1301 +3,719 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apertus Web Style Guide</title>
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Google Fonts -->
+    <title>Swiss-ai.org Style Guide</title>
+    <meta name="description" content="Design system for the Swiss-ai.org website and Initiative projects.">
+    <meta name="theme-color" content="#EAF5F8">
+
+    <!-- Google Fonts — referenced by name, not bundled (Apache-2.0 project). -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Geist+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <!-- Custom CSS -->
-    <style>
-        /* Apertus Design Tokens */
-        :root {
-            /* Core Colors */
-            --apertus-sky-blue-15: #7BBBD5;
-            --apertus-sky-blue-15-1: #AACFDC;
-            --apertus-sky-blue-15-2: #BFD8E1;
-            --apertus-anthracite: #2E2F31;
-            --epfl-red: #FF0000;
-            --white: #FFFFFF;
-
-            /* Derived Colors */
-            --page-background: #FFFFFF;
-            --pale-technical-panel: #EAF5F8;
-            --pale-blue-wash: #F3FAFC;
-            --border-subtle: rgba(46, 47, 49, 0.16);
-            --border-blue: rgba(123, 187, 213, 0.42);
-            --text-muted: rgba(46, 47, 49, 0.72);
-            --text-faint: rgba(46, 47, 49, 0.56);
-            --focus-ring: #FF0000;
-            --disabled-surface: #DDECEF;
-
-            /* Typography */
-            --h1-size: clamp(2.5rem, 5vw, 3rem);
-            --h2-size: clamp(2rem, 4vw, 2.25rem);
-            --h3-size: clamp(1.5rem, 3vw, 1.75rem);
-            --h4-size: clamp(1.25rem, 2.5vw, 1.5rem);
-            --body-size: clamp(1rem, 1.5vw, 1.125rem);
-
-            /* Spacing */
-            --section-padding-desktop: 6rem;
-            --section-padding-tablet: 4.5rem;
-            --section-padding-mobile: 3rem;
-            --radius-sm: 0.25rem;
-            --radius-md: 0.5rem;
-            --gap-md: 1.5rem;
-            --gap-lg: 2rem;
-
-            /* Transitions */
-            --transition-fast: 150ms;
-            --transition-normal: 220ms;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            color: var(--apertus-anthracite);
-            font-size: var(--body-size);
-            line-height: 1.6;
-        }
-
-        /* Skip link */
-        .skip-to-content {
-            position: absolute;
-            top: -40px;
-            left: 6px;
-            background: var(--epfl-red);
-            color: white;
-            padding: 0.5rem 1rem;
-            text-decoration: none;
-            z-index: 1000;
-            border-radius: var(--radius-sm);
-            font-size: 0.875rem;
-            transition: top var(--transition-normal) ease;
-        }
-
-        .skip-to-content:focus {
-            top: 0;
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                transition-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-            }
-        }
-
-        :focus-visible {
-            outline: 2px solid var(--focus-ring);
-            outline-offset: 2px;
-        }
-
-        /* Layout */
-        .style-guide-container {
-            display: grid;
-            grid-template-columns: 280px 1fr;
-            min-height: 100vh;
-        }
-
-        @media (max-width: 992px) {
-            .style-guide-container {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Sidebar */
-        .sidebar {
-            background: var(--white);
-            border-right: 1px solid var(--border-subtle);
-            padding: 2rem;
-            position: sticky;
-            top: 0;
-            height: 100vh;
-            overflow-y: auto;
-        }
-
-        .sidebar-title {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--apertus-anthracite);
-            margin-bottom: 2rem;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-        }
-
-        .nav-section {
-            margin-bottom: 2rem;
-        }
-
-        .nav-section-title {
-            font-size: 0.75rem;
-            font-weight: 700;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 0.75rem;
-        }
-
-        .nav-link {
-            display: block;
-            color: var(--apertus-anthracite);
-            text-decoration: none;
-            padding: 0.5rem 0;
-            font-size: 0.9375rem;
-            border-bottom: 1px solid transparent;
-            transition: all var(--transition-fast) ease;
-        }
-
-        .nav-link:hover {
-            color: var(--epfl-red);
-            border-bottom-color: var(--epfl-red);
-        }
-
-        .nav-link:focus {
-            outline: 2px solid var(--focus-ring);
-            outline-offset: -2px;
-            border-radius: var(--radius-sm);
-        }
-
-        /* Navigation simplified - clean outline */
-        .sidebar-nav {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .nav-item {
-            margin-bottom: 0.25rem;
-        }
-
-        .nav-link {
-            padding: 0.5rem 0.75rem;
-            border-radius: var(--radius-sm);
-            font-size: 0.9375rem;
-        }
-
-        /* Main content */
-        .main-content {
-            padding: 2rem;
-        }
-
-        @media (min-width: 992px) {
-            .main-content {
-                padding: 4rem;
-            }
-        }
-
-        /* Section styling */
-        section {
-            margin-bottom: 0rem;
-        }
-
-        section > h2 {
-            font-size: var(--h2-size);
-            font-weight: 700;
-            color: var(--apertus-anthracite);
-            margin-bottom: 1.5rem;
-            padding-bottom: 0.75rem;
-            border-bottom: 2px solid var(--pale-technical-panel);
-        }
-
-        /* Hero section */
-        .hero-section {
-            background: linear-gradient(320deg, var(--pale-technical-panel) 0%, var(--pale-blue-wash) 100%);
-            background-image: url("design/Apertus 2606 - Background 05.jpg");
-            background-repeat: no-repeat;
-            background-size: cover;
-            padding: 5rem 0;
-            position: relative;
-            overflow: hidden;
-            border-bottom: 1px solid var(--border-blue);
-        }
-
-        .hero-section::before {
-            content: '';
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            top: -50%;
-            left: -50%;
-            background: repeating-linear-gradient(
-                60deg,
-                rgba(123, 187, 213, 0.1) 0px,
-                rgba(123, 187, 213, 0.1) 10px,
-                transparent 10px,
-                transparent 20px
-            );
-            animation: gridMove 40s linear infinite;
-        }
-
-        @keyframes gridMove {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(-100%, -100%); }
-        }
-
-        .triangle-overlay {
-            position: absolute;
-            width: 0;
-            height: 0;
-            border-style: solid;
-            opacity: 0.12;
-            pointer-events: none;
-        }
-
-        .triangle-tl {
-            top: 0;
-            left: 0;
-            border-width: 120px 0 0 120px;
-            border-color: transparent transparent transparent var(--apertus-sky-blue-15);
-        }
-
-        .triangle-br {
-            bottom: 0;
-            right: 0;
-            border-width: 0 120px 120px 0;
-            border-color: transparent var(--apertus-sky-blue-15) transparent transparent;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-        }
-
-        @media (min-width: 768px) {
-            .hero-content {
-                padding: 0em 10em;
-            }
-        }
-
-        .section-subtitle {
-            font-weight: 600;
-            margin-bottom: 0.75rem;
-            color: var(--white);
-            text-shadow: 1px 1px black;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            font-size: 1.2rem;
-        }
-
-        .section-description {
-            font-size: 1.25rem;
-            font-weight: 300;
-            color: var(--apertus-anthracite);
-            margin-bottom: 2rem;
-            max-width: 600px;
-        }
-
-        /* Buttons */
-        .section-title-row {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .section-title-row h3 {
-            font-size: var(--h3-size);
-            font-weight: 700;
-            color: var(--apertus-anthracite);
-            margin: 0;
-        }
-
-        .section-icon {
-            width: 24px;
-            height: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--apertus-sky-blue-15);
-            color: white;
-            border-radius: 4px;
-            font-size: 0.75rem;
-        }
-
-        .btn-button {
-            min-height: 44px;
-            padding: 0.625rem 1.5rem;
-            font-weight: 600;
-            font-size: 0.9375rem;
-            transition: all var(--transition-normal) ease;
-            position: relative;
-            overflow: hidden;
-            border-radius: var(--radius-sm);
-        }
-
-        .btn-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left var(--transition-normal) ease;
-        }
-
-        .btn-button:hover::before {
-            left: 100%;
-        }
-
-        .btn-primary, .btn-primary:hover {
-            background-color: var(--epfl-red);
-            border-color: var(--epfl-red);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            opacity: 0.85;
-        }
-
-        .btn-secondary, .btn-secondary:hover {
-            background-color: var(--apertus-anthracite);
-            border-color: var(--apertus-anthracite);
-            color: white;
-        }
-
-        .btn-secondary:hover {
-            opacity: 0.85;
-        }
-
-        .btn-tertiary, .btn-tertiary:hover {
-            background-color: white;
-            border-color: var(--apertus-anthracite);
-            color: var(--apertus-anthracite);
-        }
-
-        .btn-tertiary:hover {
-            background-color: var(--pale-technical-panel);
-        }
-
-        .btn-sky-blue, .btn-sky-blue:hover {
-            background-color: var(--apertus-sky-blue-15);
-            border-color: var(--apertus-sky-blue-15);
-            color: white;
-        }
-
-        .btn-sky-blue:hover {
-            opacity: 0.9;
-        }
-
-        .btn:disabled, .btn:disabled:hover {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        /* Cards */
-        .card-display {
-            background: white;
-            border: 1px solid var(--border-subtle);
-            border-radius: var(--radius-md);
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            transition: transform var(--transition-normal) ease, box-shadow var(--transition-normal) ease;
-        }
-
-        .card-display:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            border-color: var(--apertus-sky-blue-15);
-        }
-
-        .color-row {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 0.75rem 0;
-            border-bottom: 1px solid var(--border-subtle);
-        }
-
-        .color-row:last-child {
-            border-bottom: none;
-        }
-
-        .color-swatch {
-            width: 48px;
-            height: 48px;
-            border-radius: var(--radius-md);
-            flex-shrink: 0;
-            transition: transform var(--transition-fast) ease;
-        }
-
-        .color-swatch:hover {
-            transform: scale(1.05);
-        }
-
-        .color-info {
-            flex-grow: 1;
-        }
-
-        .color-name {
-            font-weight: 600;
-            color: var(--apertus-anthracite);
-            font-size: 0.9375rem;
-        }
-
-        .color-code {
-            font-family: 'Geist Mono', monospace;
-            font-size: 0.8125rem;
-            color: var(--text-muted);
-        }
-
-        .color-usage {
-            font-size: 0.8125rem;
-            color: var(--text-muted);
-            margin-top: 0.25rem;
-        }
-
-        /* Typography */
-        .type-item {
-            padding: 1.5rem;
-            background: white;
-            border: 1px solid var(--border-subtle);
-            border-radius: var(--radius-md);
-            margin-bottom: 1rem;
-            transition: all var(--transition-normal) ease;
-        }
-
-        .type-item:hover {
-            background: var(--pale-technical-panel);
-            border-color: var(--apertus-sky-blue-15);
-        }
-
-        .font-weights {
-            display: inline-block;
-            background: var(--apertus-anthracite);
-            color: white;
-            padding: 0.25rem 0.75rem;
-            border-radius: var(--radius-sm);
-            font-size: 0.75rem;
-            margin-left: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-
-        /* Hexagon Tiles */
-        .hexagon-row {
-            display: flex;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .hexagon-tile {
-            width: 180px;
-            height: 160px;
-            background: var(--apertus-sky-blue-15);
-            color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
-            clip-path: polygon(23% 0%, 76% 0%, 100% 50%, 76% 100%, 23% 100%, 0% 50%);
-            transition: transform var(--transition-normal) ease, box-shadow var(--transition-normal) ease;
-            text-align: center;
-        }
-
-        .hexagon-tile:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 24px rgba(123, 187, 213, 0.4);
-        }
-
-        .hexagon-tile-secondary {
-            background: var(--apertus-sky-blue-15-1);
-            color: var(--apertus-anthracite);
-        }
-
-        .hexagon-tile-tertiary {
-            background: var(--apertus-sky-blue-15-2);
-            color: var(--apertus-anthracite);
-        }
-
-        /* Grid System */
-        .grid-demo {
-            background: var(--pale-technical-panel);
-            padding: 1.5rem;
-            border-radius: var(--radius-md);
-            margin-bottom: 1rem;
-        }
-
-        .grid-col-12 { flex: 0 0 auto; width: 100%; }
-        .grid-col-6 { flex: 0 0 auto; width: 50%; }
-        .grid-col-4 { flex: 0 0 auto; width: 33.3333%; }
-        .grid-col-3 { flex: 0 0 auto; width: 25%; }
-
-        /* Logo */
-        .logo-text {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--apertus-anthracite);
-            letter-spacing: 0.25em;
-            line-height: 1;
-        }
-
-        /* Footer */
-        footer {
-            background: white;
-            border-top: 1px solid var(--border-subtle);
-            padding: 3rem 0;
-            margin-top: 6rem;
-        }
-
-        .footer-logo {
-            font-family: 'Inter', sans-serif;
-            font-weight: 800;
-            font-size: 1.25rem;
-            color: var(--apertus-anthracite);
-            letter-spacing: 0.2em;
-            margin-bottom: 1rem;
-        }
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hexagon-tile {
-                width: calc(50% - 0.75rem);
-                height: 180px;
-                padding: 1.5rem;
-            }
-
-            .hero-section {
-                padding: 3rem 0;
-            }
-
-            section > h2 {
-                font-size: 1.75rem;
-            }
-
-            .sidebar {
-                position: fixed;
-                left: -280px;
-                top: 0;
-                width: 280px;
-                z-index: 1001;
-                transition: left var(--transition-normal) ease;
-                box-shadow: 4px 0 12px rgba(0, 0, 0, 0.1);
-            }
-
-            .sidebar.open {
-                left: 0;
-            }
-
-            .main-content {
-                padding: 1.5rem;
-            }
-        }
-
-        /* Selection */
-        ::selection {
-            background: rgba(123, 187, 213, 0.3);
-            color: var(--apertus-anthracite);
-        }
-
-        /* Links */
-        a {
-            color: var(--epfl-red);
-            text-decoration: underline;
-            transition: color var(--transition-fast) ease;
-        }
-
-        a:hover {
-            color: var(--apertus-anthracite);
-        }
-
-        /* Section responsive padding */
-        section:not(.hero-section) {
-            padding: 4rem 0;
-        }
-
-        @media (max-width: 768px) {
-            section:not(.hero-section) {
-                padding: 3rem 0;
-            }
-        }
-
-        /* Process/Feature strip background */
-        .features-strip {
-            background: var(--pale-technical-panel);
-            border-top: 1px solid var(--border-blue);
-            border-bottom: 1px solid var(--border-blue);
-            padding: 3rem 0;
-        }
-
-        .feature-card {
-            background: white;
-            border: 1px solid var(--border-subtle);
-            border-radius: var(--radius-md);
-            padding: 2rem;
-            height: 100%;
-        }
-
-        .feature-card h4 {
-            font-weight: 700;
-            margin-bottom: 1rem;
-            font-size: 1.25rem;
-            color: var(--apertus-anthracite);
-        }
-
-        .feature-card p {
-            font-size: 0.9375rem;
-            color: var(--text-muted);
-            line-height: 1.6;
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600;900&amp;family=Geist+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
+
+    <!-- CSS Stylesheets -->
+    <link rel="stylesheet" href="src/styles/tokens.css">
+    <link rel="stylesheet" href="src/styles/reset.css">
+    <link rel="stylesheet" href="src/styles/base.css">
+    <link rel="stylesheet" href="src/styles/typography.css">
+    <link rel="stylesheet" href="src/styles/layout.css">
+    <link rel="stylesheet" href="src/styles/components.css">
+    <link rel="stylesheet" href="src/styles/utilities.css">
+    <link rel="stylesheet" href="src/styles/styleguide.css">
 </head>
 <body>
-    <a href="#main-content" class="skip-to-content">Skip to main content</a>
+    <!-- Skip Link — first focusable element -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
 
-    <div class="style-guide-container">
-        <!-- Sidebar -->
-        <aside class="sidebar" id="sidebar">
-            <div class="sidebar-title">APERTUS STYLE GUIDE</div>
-
-            <nav class="sidebar-nav">
-                <div class="nav-section">
-                    <div class="nav-section-title">Overview</div>
-                    <ul class="nav">
-                        <li class="nav-item">
-                            <a href="#overview" class="nav-link">Overview</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#colors" class="nav-link">Colors</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#typography" class="nav-link">Typography</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#layout" class="nav-link">Layout</a>
-                        </li>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <nav class="site-nav" aria-label="Sections">
+                    <ul>
+                        <li><a href="#foundation">Foundation</a></li>
+                        <li><a href="#colors">Colors</a></li>
+                        <li><a href="#typography">Typography</a></li>
+                        <li><a href="#layout">Layout</a></li>
+                        <li><a href="#buttons">Buttons</a></li>
+                        <li><a href="#cards">Cards</a></li>
+                        <li><a href="#resources">Resources</a></li>
+                        <li><a href="#patterns">Patterns</a></li>
+                        <li><a href="#accessibility">Accessibility</a></li>
                     </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero" aria-labelledby="hero-heading">
+        <div class="container">
+            <p class="hero-wordmark" aria-hidden="true">SWISS-AI.ORG</p>
+            <div class="hero-content">
+                <h1 id="hero-heading">Fully Open Design System for Sovereign AI</h1>
+                <p class="lead-text">The Swiss-ai.org style guide is a Material Design&nbsp;3 based component system: open, technical, and calm. Training data, code, weights, methods, and alignment principles are documented and reproducible.</p>
+                <div class="hero-buttons">
+                    <a class="button button--filled" href="#foundation">Use the System</a>
                 </div>
+                <p class="mono-caption mt-24">Component tokens, state layers, and role mapping on an Apertus brand base. Licensed Apache&nbsp;2.0.</p>
+            </div>
+        </div>
+    </section>
 
-                <div class="nav-section">
-                    <div class="nav-section-title">Components</div>
-                    <ul class="nav">
-                        <li class="nav-item">
-                            <a href="#buttons" class="nav-link">Buttons</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#cards" class="nav-link">Cards</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#resources" class="nav-link">Resource Tiles</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#patterns" class="nav-link">Patterns</a>
-                        </li>
-                    </ul>
+    <main id="main-content">
+        <!-- System Foundation -->
+        <section id="foundation" class="section section-technical" aria-labelledby="foundation-heading">
+            <div class="container">
+                <p class="label-text">System Foundation</p>
+                <h2 id="foundation-heading">Based on Material + Molinari Design</h2>
+                <p class="section-intro">The component library is built with assistants running on <a href="https://www.cscs.ch/science/computer-science-hpc/2026/cscs-launches-an-inference-api-service-for-the-swiss-research-community" rel="nofollow" target="_blank">sovereign compute</a> infrastructure (CSCS / GLM-5.2).
+                    It is based on the <a href="https://m3.material.io/" target="_blank" rel="nofollow">Material Design&nbsp;3</a> (M3) role system — color roles, shape scale, elevation levels, state layers, and a typed scale — mapped onto branding elements created
+                    by <a href="https://www.molinaridesign.ch/" target="_blank" rel="nofollow">Molinari Design</a>.
+                </p>
+
+                <div class="license-chip-row">
+                    <a class="license-chip" href="LICENSE">Apache-2.0</a>
+                    <a class="license-chip" href="NOTICE">Notice on content reuse</a>
+                    <a class="license-chip" href="docs/governance.md">Dependency policy</a>
                 </div>
+            </div>
+        </section>
 
-                <div class="nav-section">
-                    <div class="nav-section-title">Reference</div>
-                    <ul class="nav">
-                        <li class="nav-item">
-                            <a href="#accessibility" class="nav-link">Accessibility</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#homepage" class="nav-link">Homepage Example</a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </aside>
+        <!-- Color Palette -->
+        <section id="colors" class="section" aria-labelledby="colors-heading">
+            <div class="container">
+                <p class="label-text">01 · Brand</p>
+                <h2 id="colors-heading">Color Palette</h2>
+                <p class="section-intro">Swiss-ai.org uses a precise color system based on Swiss technical design principles. Ratios below are measured WCAG&nbsp;2.2 pairs — every text/background pairing is verified.</p>
 
-        <!-- Main Content -->
-        <main id="main-content" class="main-content">
-            <!-- Hero Section -->
-            <section class="hero-section">
-                <div class="triangle-overlay triangle-tl"></div>
-                <div class="triangle-overlay triangle-br"></div>
-
-                <div class="hero-content container text-center">
-                    <img src="design/Apertus 2606 - Logo - AI.png" width="100%"
-                        style="margin-bottom:2em; margin-top: 2em" />
-                    <p class="section-subtitle">Fully Open Foundation Model for Sovereign AI</p>
-                    <p class="text-muted">Training data, code, weights, methods, and alignment principles are documented and reproducible.
-                        Built to support transparent, compliant AI infrastructure.</p>
-
-                    <div class="d-flex gap-3 justify-content-center mt-4">
-                        <button class="btn-button btn-primary">Primary CTA</button>
-                        <button class="btn-button btn-tertiary">Secondary Action</button>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Overview Section -->
-            <section id="overview">
-                <h2>Overview</h2>
-                <div class="row">
-                    <div class="col-md-8">
-                        <p>The Apertus Web Style Guide is a comprehensive design system repository for the Apertus AI project. It provides a clear, consistent foundation for all web pages and components.</p>
-                        <p class="mt-3">This style guide follows the "Confoederatio Apertus" design philosophy: precise, open, sovereign, technical, calm, credible, and public-interest oriented.</p>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card-display">
-                            <h4 class="mb-3">Design System Principles</h4>
-                            <ul class="small text-muted" style="line-height: 2;">
-                                <li>✓ Semantic HTML5</li>
-                                <li>✓ CSS Custom Properties (Design Tokens)</li>
-                                <li>✓ Accessibility First (WCAG 2.2 AA)</li>
-                                <li>✓ Full Responsive Support</li>
-                                <li>✓ No External Dependencies</li>
-                            </ul>
+                <div class="color-grid">
+                    <article class="color-swatch">
+                        <div class="swatch-color swatch-fill-sky-1-5"></div>
+                        <div class="swatch-info">
+                            <h3>Apertus Sky Blue 1.5</h3>
+                            <button type="button" class="token-name" data-copy-token="--color-sky-blue-1-5">--color-sky-blue-1-5</button>
+                            <p class="hex-value">#7BBBD5</p>
+                            <p class="usage">Main brand surface color and icon-tile color</p>
+                            <div class="contrast-note">Anthracite text 6.3:1 · white text 2.1:1</div>
                         </div>
-                    </div>
+                    </article>
+
+                    <article class="color-swatch">
+                        <div class="swatch-color swatch-fill-sky-1-5-1"></div>
+                        <div class="swatch-info">
+                            <h3>Apertus Sky Blue 1.5.1</h3>
+                            <button type="button" class="token-name" data-copy-token="--color-sky-blue-1-5-1">--color-sky-blue-1-5-1</button>
+                            <p class="hex-value">#AACFDC</p>
+                            <p class="usage">Supporting panel and pattern colors</p>
+                            <div class="contrast-note">Anthracite text 8.0:1</div>
+                        </div>
+                    </article>
+
+                    <article class="color-swatch">
+                        <div class="swatch-color swatch-fill-sky-1-5-2"></div>
+                        <div class="swatch-info">
+                            <h3>Apertus Sky Blue 1.5.2</h3>
+                            <button type="button" class="token-name" data-copy-token="--color-sky-blue-1-5-2">--color-sky-blue-1-5-2</button>
+                            <p class="hex-value">#BFD8E1</p>
+                            <p class="usage">Supporting panel, tonal container color</p>
+                            <div class="contrast-note">Anthracite text 9.0:1</div>
+                        </div>
+                    </article>
+
+                    <article class="color-swatch">
+                        <div class="swatch-color swatch-fill-anthracite"></div>
+                        <div class="swatch-info">
+                            <h3>Apertus Anthracite</h3>
+                            <button type="button" class="token-name" data-copy-token="--color-anthracite">--color-anthracite</button>
+                            <p class="hex-value">#2E2F31</p>
+                            <p class="usage">Primary text color (RGB 46/47/49)</p>
+                            <div class="contrast-note">White text 13.4:1 on this surface</div>
+                        </div>
+                    </article>
+
+                    <article class="color-swatch">
+                        <div class="swatch-color swatch-fill-epfl-red"></div>
+                        <div class="swatch-info">
+                            <h3>EPFL Red</h3>
+                            <button type="button" class="token-name" data-copy-token="--color-epfl-red">--color-epfl-red</button>
+                            <p class="hex-value">#FF0000</p>
+                            <p class="usage">Accent for high-emphasis CTA actions, focus rings, active states</p>
+                            <div class="contrast-note">White text 4.0:1 — large text / UI only</div>
+                        </div>
+                    </article>
+
+                    <article class="color-swatch">
+                        <div class="swatch-color swatch-fill-white"></div>
+                        <div class="swatch-info">
+                            <h3>White</h3>
+                            <button type="button" class="token-name" data-copy-token="--color-white">--color-white</button>
+                            <p class="hex-value">#FFFFFF</p>
+                            <p class="usage">Dominant page background</p>
+                            <div class="contrast-note">Baseline surface (RGB 255/255/255)</div>
+                        </div>
+                    </article>
                 </div>
-            </section>
 
-            <!-- Colors Section -->
-            <section id="colors">
-                <h2>Colors</h2>
-
-                <h3 class="text-muted text-uppercase small fw-bold mb-4" style="letter-spacing: 0.1em;">Core Colors</h3>
-
-                <div class="card-display">
-                    <div class="color-row">
-                        <div class="color-swatch" style="background: var(--apertus-sky-blue-15);"></div>
+                <!-- Derived Colors -->
+                <h3>Derived Colors</h3>
+                <div class="derived-colors">
+                    <article class="derived-color">
+                        <div class="color-sample swatch-fill-epfl-red-accessible"></div>
                         <div class="color-info">
-                            <div class="color-name">Apertus Sky Blue 1.5</div>
-                            <div class="color-code">#7BBBD5</div>
-                            <div class="color-usage">Brand surface, icon tiles, primary blue</div>
+                            <h4>EPFL Red Accessible (derived)</h4>
+                            <button type="button" class="token-name" data-copy-token="--color-epfl-red-accessible">--color-epfl-red-accessible</button>
+                            <p class="hex-value">#D40000</p>
+                            <p class="usage">Interactive primary: button fills and small red text</p>
+                            <div class="contrast-note">White text 5.5:1 — AA body text</div>
                         </div>
-                    </div>
+                    </article>
 
-                    <div class="color-row">
-                        <div class="color-swatch" style="background: var(--apertus-sky-blue-15-1);"></div>
+                    <article class="derived-color">
+                        <div class="color-sample swatch-fill-panel"></div>
                         <div class="color-info">
-                            <div class="color-name">Apertus Sky Blue 1.5.1</div>
-                            <div class="color-code">#AACFDC</div>
-                            <div class="color-usage">Supporting panels, alternating backgrounds</div>
+                            <h4>Pale Technical Panel</h4>
+                            <button type="button" class="token-name" data-copy-token="--color-pale-technical-panel">--color-pale-technical-panel</button>
+                            <p class="hex-value">#EAF5F8</p>
+                            <p class="usage">Hero field and technical section background</p>
+                            <div class="contrast-note">Anthracite text 12.9:1</div>
                         </div>
-                    </div>
+                    </article>
 
-                    <div class="color-row">
-                        <div class="color-swatch" style="background: var(--apertus-sky-blue-15-2);"></div>
+                    <article class="derived-color">
+                        <div class="color-sample swatch-fill-wash"></div>
                         <div class="color-info">
-                            <div class="color-name">Apertus Sky Blue 1.5.2</div>
-                            <div class="color-code">#BFD8E1</div>
-                            <div class="color-usage">Additional panel wash, gradients</div>
+                            <h4>Pale Blue Wash</h4>
+                            <button type="button" class="token-name" data-copy-token="--color-pale-blue-wash">--color-pale-blue-wash</button>
+                            <p class="hex-value">#F3FAFC</p>
+                            <p class="usage">Subtle backgrounds and card washes</p>
+                            <div class="contrast-note">Anthracite text 13.2:1</div>
                         </div>
-                    </div>
+                    </article>
 
-                    <div class="color-row">
-                        <div class="color-swatch" style="background: var(--apertus-anthracite);"></div>
+                    <article class="derived-color">
+                        <div class="color-sample swatch-fill-text-muted"></div>
                         <div class="color-info">
-                            <div class="color-name">Apertus Anthracite</div>
-                            <div class="color-code">#2E2F31</div>
-                            <div class="color-usage">Primary text, darkest neutral</div>
+                            <h4>Text Muted</h4>
+                            <button type="button" class="token-name" data-copy-token="--color-text-muted">--color-text-muted</button>
+                            <p class="hex-value">rgba(46, 47, 49, 0.72)</p>
+                            <p class="usage">Secondary text on white or pale panels</p>
+                            <div class="contrast-note">5.5:1 on white — AA body text</div>
                         </div>
-                    </div>
+                    </article>
 
-                    <div class="color-row">
-                        <div class="color-swatch" style="background: var(--epfl-red);"></div>
+                    <article class="derived-color">
+                        <div class="color-sample swatch-fill-text-faint"></div>
                         <div class="color-info">
-                            <div class="color-name">EPFL Red</div>
-                            <div class="color-code">#FF0000</div>
-                            <div class="color-usage">Primary accent, high-emphasis CTAs</div>
+                            <h4>Text Faint</h4>
+                            <button type="button" class="token-name" data-copy-token="--color-text-faint">--color-text-faint</button>
+                            <p class="hex-value">rgba(46, 47, 49, 0.56)</p>
+                            <p class="usage">Tertiary text and timestamps</p>
+                            <div class="contrast-note">3.4:1 on white — large text only</div>
                         </div>
-                    </div>
+                    </article>
 
-                    <div class="color-row">
-                        <div class="color-swatch" style="background: var(--white); border: 1px solid var(--border-subtle);"></div>
+                    <article class="derived-color">
+                        <div class="color-sample swatch-fill-focus"></div>
                         <div class="color-info">
-                            <div class="color-name">White</div>
-                            <div class="color-code">#FFFFFF</div>
-                            <div class="color-usage">Page backgrounds, card surfaces</div>
+                            <h4>Focus Ring</h4>
+                            <button type="button" class="token-name" data-copy-token="--color-focus-ring">--color-focus-ring</button>
+                            <p class="hex-value">#FF0000</p>
+                            <p class="usage">Focus indicators and active states</p>
+                            <div class="contrast-note">4.0:1 on white — passes UI contrast</div>
                         </div>
-                    </div>
+                    </article>
                 </div>
 
-                <h3 class="text-muted text-uppercase small fw-bold mb-4 mt-5" style="letter-spacing: 0.1em;">Usage Guidelines</h3>
-
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="card-display">
-                            <h4 class="mb-3">Primary Usage</h4>
-                            <ul class="small text-muted" style="line-height: 2;">
-                                <li><strong>Anthracite (#2E2F31)</strong> — Primary text color</li>
-                                <li><strong>Sky Blue 1.5 (#7BBBD5)</strong> — Brand surfaces</li>
-                                <li><strong>EPFL Red (#FF0000)</strong> — High-emphasis actions</li>
-                                <li><strong>White (#FFFFFF)</strong> — Dominant backgrounds</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card-display">
-                            <h4 class="mb-3">Contrast Specifications</h4>
-                            <ul class="small text-muted" style="line-height: 2;">
-                                <li>Anthracite on White: 19.2:1 ✓</li>
-                                <li>White on Sky Blue: 4.5:1 ✓</li>
-                                <li>White on EPFL Red: 7.6:1 ✓</li>
-                            </ul>
-                            <p class="small text-muted mt-3">All text/background pairings fail WCAG 2.2 AA validation.</p>
-                        </div>
-                    </div>
+                <!-- M3 System roles -->
+                <h3>M3 System Roles</h3>
+                <p class="small-text">The component library consumes these roles; on-palette values and verified pairings are shown. Roles with a "derived" value are brand-derived.</p>
+                <div class="md3-roles mb-32">
+                    <article class="md-role-card">
+                        <h4>primary / on-primary</h4>
+                        <button type="button" class="token-name" data-copy-token="--md-sys-color-primary-interactive">--md-sys-color-primary-interactive</button>
+                        <p class="hex-value">#D40000 / #FFFFFF</p>
+                        <p class="usage">Filled button fill + label — the AA-safe interactive red derived from EPFL Red.</p>
+                        <div class="contrast-note">5.5:1 pair</div>
+                    </article>
+                    <article class="md-role-card">
+                        <h4>secondary / on-secondary</h4>
+                        <button type="button" class="token-name" data-copy-token="--md-sys-color-secondary">--md-sys-color-secondary</button>
+                        <p class="hex-value">#7BBBD5 / #2E2F31</p>
+                        <p class="usage">Sky buttons, hexagon tiles, selection color.</p>
+                        <div class="contrast-note">6.3:1 pair</div>
+                    </article>
+                    <article class="md-role-card">
+                        <h4>secondary-container</h4>
+                        <button type="button" class="token-name" data-copy-token="--md-sys-color-secondary-container">--md-sys-color-secondary-container</button>
+                        <p class="hex-value">#BFD8E1 / #2E2F31</p>
+                        <p class="usage">Tonal buttons and soft panels.</p>
+                        <div class="contrast-note">9.0:1 pair</div>
+                    </article>
+                    <article class="md-role-card">
+                        <h4>surface / on-surface</h4>
+                        <button type="button" class="token-name" data-copy-token="--md-sys-color-surface">--md-sys-color-surface</button>
+                        <p class="hex-value">#FFFFFF / #2E2F31</p>
+                        <p class="usage">Page background and primary text.</p>
+                        <div class="contrast-note">13.4:1 pair</div>
+                    </article>
+                    <article class="md-role-card">
+                        <h4>on-surface-variant</h4>
+                        <button type="button" class="token-name" data-copy-token="--md-sys-color-on-surface-variant">--md-sys-color-on-surface-variant</button>
+                        <p class="hex-value">rgba(46, 47, 49, 0.72)</p>
+                        <p class="usage">Supporting copy, captions, meta rows.</p>
+                        <div class="contrast-note">5.5:1 on white</div>
+                    </article>
+                    <article class="md-role-card">
+                        <h4>outline / outline-variant</h4>
+                        <button type="button" class="token-name" data-copy-token="--md-sys-color-outline">--md-sys-color-outline</button>
+                        <p class="hex-value">rgba(46,47,49,.55) / rgba(46,47,49,.16)</p>
+                        <p class="usage">Essential boundaries vs. decorative hairlines; blue hairline: rgba(123,187,213,.42).</p>
+                        <div class="contrast-note">3.3:1 essential / decorative</div>
+                    </article>
                 </div>
+            </div>
+        </section>
 
-                <div class="card-display mt-4">
-                    <h4 class="mb-3">Palette Harmony</h4>
-                    <p class="small text-muted">The color palette maintains contrast and accessibility while supporting the precise, technical aesthetic of Confoederatio Apertus. Accent red usage is deliberate and editorial to emphasize important actions without overwhelming the visual hierarchy.</p>
-                </div>
-            </section>
+        <!-- Typography -->
+        <section id="typography" class="section section-wash" aria-labelledby="typography-heading">
+            <div class="container">
+                <p class="label-text">02 · Type</p>
+                <h2 id="typography-heading">Typography</h2>
+                <p class="section-intro">Inter carries the brand voice: Black for headlines, Bold for supporting headings and labels, Light for body. Geist Mono is reserved for technical labels, metadata, and code-like callouts. Sizes use <code>clamp()</code> so the desktop targets hold at large viewports.</p>
 
-            <!-- Typography Section -->
-            <section id="typography">
-                <h2>Typography</h2>
-
-                <h3 class="text-muted text-uppercase small fw-bold mb-4" style="letter-spacing: 0.1em;">Primary Font: Inter</h3>
-
-                <div class="mb-4">
-                    <div class="type-item">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <h1 class="h1 m-0">H1: 50px</h1>
-                            <span class="font-weights">800</span>
+                <div class="typography-showcase">
+                    <div class="type-scale">
+                        <h3>Type Scale</h3>
+                        <div class="type-item">
+                            <p class="md-typescale-headline-large">H1 — headline-large, Inter Black, 50px</p>
+                            <p class="sample-text">Fully Open Design System</p>
                         </div>
-                        <p class="text-muted small mt-2">Use for main sections and key headlines</p>
-                    </div>
-
-                    <div class="type-item">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <h2 class="h2 m-0">H2: 38px</h2>
-                            <span class="font-weights">800</span>
+                        <div class="type-item">
+                            <p class="md-typescale-title-medium">H2 · headline-medium — Inter Black, 38px</p>
+                            <p class="sample-text">Built to support transparent, compliant AI infrastructure.</p>
                         </div>
-                        <p class="text-muted small mt-2">Use for major content sections</p>
-                    </div>
-
-                    <div class="type-item">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <h3 class="h3 m-0">H3: 32px</h3>
-                            <span class="font-weights">800</span>
-                        </div>
-                        <p class="text-muted small mt-2">Use for article and subsection headings</p>
-                    </div>
-
-                    <div class="type-item">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <h4 class="h4 m-0">H4: 28px</h4>
-                            <span class="font-weights">700</span>
-                        </div>
-                        <p class="text-muted small mt-2">Use for subheadings and component titles</p>
-                    </div>
-
-                    <div class="type-item">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <h5 class="h5 m-0">H5: 22px</h5>
-                            <span class="font-weights">800</span>
-                        </div>
-                        <p class="text-muted small mt-2">Use for smaller section headings</p>
-                    </div>
-                </div>
-
-                <h3 class="text-muted text-uppercase small fw-bold mb-4 mt-5" style="letter-spacing: 0.1em;">Secondary Font: Geist Mono</h3>
-
-                <div class="type-item">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <h4 class="h4 m-0">Technical / Code</h4>
-                        <span class="font-weights" style="background: var(--apertus-sky-blue-15); color: white;">700</span>
-                    </div>
-                    <p class="text-muted small mt-2">Use for technical labels, metadata, version badges, and code snippets</p>
-                </div>
-
-                <div class="type-item">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="font-weights mx-auto" style="background: var(--apertus-anthracite); color: white;">Geist Mono Bold</div>
-                        <span class="small text-muted">700</span>
-                    </div>
-                    <p class="text-muted small mt-2">Monospace font for technical information</p>
-                </div>
-
-                <h3 class="text-muted text-uppercase small fw-bold mb-4 mt-5" style="letter-spacing: 0.1em;">Body Text</h3>
-
-                <div class="type-item">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="font-weights mx-auto" style="background: var(--apertus-sky-blue-15-1); color: var(--apertus-anthracite);">Inter Light</div>
-                        <span class="small text-muted">300 - 400</span>
-                    </div>
-                    <p class="text-muted small mt-2">Primary body copy: 16-18px with line-height 1.5-1.65</p>
-                </div>
-
-                <div class="type-item">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="font-weights mx-auto" style="background: var(--apertus-sky-blue-15-2); color: var(--apertus-anthracite);">Small Text</div>
-                        <span class="small text-muted">0.75rem - 0.875rem</span>
-                    </div>
-                    <p class="text-muted small mt-2">Use for labels, captions, and secondary information</p>
-                </div>
-            </section>
-
-            <!-- Layout Section -->
-            <section id="layout">
-                <h2>Layout</h2>
-
-                <div class="row mb-4">
-                    <div class="col-md-6">
-                        <h3 class="text-muted text-uppercase small fw-bold mb-3" style="letter-spacing: 0.1em;">Grid System</h3>
-                    </div>
-                </div>
-
-                <div class="grid-demo">
-                    <div style="display: flex; gap: 0.5rem; margin-bottom: 0.5rem;">
-                        <div class="grid-col-12" style="background: var(--apertus-sky-blue-15); opacity: 0.7; height: 48px; border-radius: 4px;"></div>
-                    </div>
-                    <div style="display: flex; gap: 0.5rem;">
-                        <div class="grid-col-3" style="background: var(--apertus-sky-blue-15-1); opacity: 0.6; height: 48px; border-radius: 4px;"></div>
-                        <div class="grid-col-9" style="background: var(--apertus-sky-blue-15-1); opacity: 0.6; height: 48px; border-radius: 4px;"></div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <h3 class="text-muted text-uppercase small fw-bold mb-3 mt-5" style="letter-spacing: 0.1em;">Spacing</h3>
-                        <div class="d-flex" style="gap: 1rem; flex-wrap: wrap; height: 120px; background: var(--pale-technical-panel); border-radius: var(--radius-md); padding: 1rem; align-items: flex-end;">
-                            <div style="width: 24px; height: 16px; background: var(--apertus-anthracite); border-radius: 2px;"></div>
-                            <div style="width: 24px; height: 32px; background: var(--apertus-anthracite); border-radius: 2px;"></div>
-                            <div style="width: 24px; height: 48px; background: var(--apertus-anthracite); border-radius: 2px;"></div>
-                            <div style="width: 24px; height: 64px; background: var(--apertus-anthracite); border-radius: 2px;"></div>
-                            <div style="width: 24px; height: 80px; background: var(--apertus-anthracite); border-radius: 2px;"></div>
-                        </div>
-                        <div class="card-display mt-4">
-                            <h4 class="mb-3">Section Padding</h4>
-                            <ul class="small text-muted">
-                                <li>Desktop: 96-140px vertical</li>
-                                <li>Tablet: 72-96px vertical</li>
-                                <li>Mobile: 48-64px vertical</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Buttons Section -->
-            <section id="buttons">
-                <h2>Buttons</h2>
-
-                <div class="row">
-                    <div class="col-lg-3">
-                        <div class="section-title-row mb-3">
-                            <span class="section-icon">1</span>
-                            <h3>Primary</h3>
-                        </div>
-                        <div class="card-display">
-                            <button class="btn-button btn-primary w-100 mb-2">Primary Action</button>
-                            <button class="btn-button btn-primary w-100" disabled>Disabled</button>
+                        <div class="type-item">
+                            <p class="md-typescale-title-medium">H3 · headline-small — Inter Black, 32px</p>
+                            <p class="sample-text">Optimized for practical deployment and multilingual performance.</p>
                         </div>
                     </div>
 
-                    <div class="col-lg-3">
-                        <div class="section-title-row mb-3">
-                            <span class="section-icon">2</span>
-                            <h3>Secondary</h3>
+                    <div class="demo-grid">
+                        <div class="body-typography">
+                            <h3>Body Copy</h3>
+                            <p class="lead-text">Lead text uses body-large — Inter Light, 18px, line-height 1.6.</p>
+                            <p>Body text is calm and readable: Inter Light, 16px–18px, line-height between 1.5 and 1.65.</p>
+                            <p class="small-text">Small text — Inter Light, 14px — supports captions and helper rows.</p>
+                            <span class="label-text">Label — Inter Bold, uppercase, tracked +0.08em</span>
                         </div>
-                        <div class="card-display">
-                            <button class="btn-button btn-secondary w-100 mb-2">Technical Action</button>
-                            <button class="btn-button btn-secondary w-100" disabled>Disabled</button>
-                        </div>
-                    </div>
 
-                    <div class="col-lg-3">
-                        <div class="section-title-row mb-3">
-                            <span class="section-icon">3</span>
-                            <h3>Tertiary</h3>
-                        </div>
-                        <div class="card-display">
-                            <button class="btn-button btn-tertiary w-100 mb-2">Supporting Action</button>
-                            <button class="btn-button btn-tertiary w-100" disabled>Disabled</button>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3">
-                        <div class="section-title-row mb-3">
-                            <span class="section-icon">4</span>
-                            <h3>Sky Blue</h3>
-                        </div>
-                        <div class="card-display">
-                            <button class="btn-button btn-sky-blue w-100 mb-2">Technical CTA</button>
-                            <button class="btn-button btn-sky-blue w-100" disabled>Disabled</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card-display mt-5">
-                    <h4 class="mb-3">Button Specifications</h4>
-                    <ul class="small text-muted">
-                        <li>Minimum height: 44px</li>
-                        <li>Padding: Round to fit 1.5rem</li>
-                        <li>Font weight: 600 (Semibold)</li>
-                        <li>All states included: >default, >hover, >active, >focus, >disabled</li>
-                        <li>All text colors white unless specified</li>
-                    </ul>
-                </div>
-            </section>
-
-            <!-- Cards Section -->
-            <section id="cards">
-                <h2>Cards</h2>
-
-                <h3 class="text-muted text-uppercase small fw-bold mb-4" style="letter-spacing: 0.1em;">News Cards</h3>
-
-                <div class="row mb-4">
-                    <div class="col-md-6">
-                        <div class="card-display">
-                            <div class="mt-4">
-                                <div class="mb-2" style="color: var(--epfl-red); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em;">2.9.2025</div>
-                                <h4 class="mb-3" style="font-size: 1.25rem; font-weight: 700;">Sample Article Title</h4>
-                                <p class="text-muted mb-3" style="font-size: 0.9375rem;">Sample article excerpt with concise summary of the news content and key points for demonstration purposes.</p>
-                                <a href="#" class="text-epfl-red text-decoration-none" style="font-size: 0.875rem;">Read more →</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card-display">
-                            <div class="mt-4">
-                                <div class="mb-2" style="color: var(--epfl-red); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em;">14.7.2026</div>
-                                <h4 class="mb-3" style="font-size: 1.25rem; font-weight: 700;">Another News Article</h4>
-                                <p class="text-muted mb-3" style="font-size: 0.9375rem;">Another sample article with different content and details for demonstration purposes in this layout.</p>
-                                <a href="#" class="text-epfl-red text-decoration-none" style="font-size: 0.875rem;">Read more →</a>
+                        <div class="mono-typography">
+                            <h3>Technical Font (Geist Mono)</h3>
+                            <div class="mono-sample">
+                                <p class="mono-text">apertus --version v2.0.0 --license apache-2.0</p>
+                                <p class="mono-caption">TECHNICAL REPORT · VERSION V2.0.0 · RELEASED 2026-01-08</p>
+                                <blockquote>
+                                    <p>&ldquo;Open science reads like a style guide: precise, accounted for, and reproducible.&rdquo;</p>
+                                </blockquote>
+                                <p><code>md-sys-color-primary-interactive</code> names a verified pair, and <kbd>Tab</kbd> keeps focus visible.</p>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <h3 class="text-muted text-uppercase small fw-bold mb-4 mt-5" style="letter-spacing: 0.1em;">Feature Strip</h3>
+        <!-- Layout -->
+        <section id="layout" class="section" aria-labelledby="layout-heading">
+            <div class="container">
+                <p class="label-text">03 · Structure</p>
+                <h2 id="layout-heading">Layout</h2>
+                <p class="section-intro">A token-driven grid on a 4px baseline: 12 columns on desktop, 8 on tablet, flowing to a single column on mobile (4-column reference). Large white bands separate pale technical sections — calm rhythm, never dense.</p>
 
-                <div class="features-strip">
-                    <div class="container">
-                        <div class="row g-4">
-                            <div class="col-md-4">
-                                <div class="feature-card text-center">
-                                    <h4>Fully Open</h4>
-                                    <p>Complete transparency in training data, code, and methods with documented, reproducible processes.</p>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="feature-card text-center">
-                                    <h4>Compliant at Scale</h4>
-                                    <p>Built to support transparent, compliant AI infrastructure for enterprise deployment scenarios.</p>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="feature-card text-center">
-                                    <h4>Run for Performance</h4>
-                                    <p>Optimized for practical deployment and multilingual performance across global infrastructure.</p>
-                                </div>
-                            </div>
+                <div class="layout-showcase">
+                    <div class="grid-demo">
+                        <h3>Grid — 12 columns</h3>
+                        <div class="grid-visual" aria-hidden="true">
+                            <div class="grid-cell">1</div>
+                            <div class="grid-cell">2</div>
+                            <div class="grid-cell">3</div>
+                            <div class="grid-cell">4</div>
+                            <div class="grid-cell">5</div>
+                            <div class="grid-cell">6</div>
+                            <div class="grid-cell">7</div>
+                            <div class="grid-cell">8</div>
+                            <div class="grid-cell">9</div>
+                            <div class="grid-cell">10</div>
+                            <div class="grid-cell">11</div>
+                            <div class="grid-cell">12</div>
                         </div>
+                    </div>
+
+                    <div class="spacing-demo">
+                        <h3>Spacing Scale</h3>
+                        <div class="spacing-scale" aria-hidden="true">
+                            <div class="spacing-item"><div class="spacing-box spacing-box--4"></div><span class="mono-caption">4</span></div>
+                            <div class="spacing-item"><div class="spacing-box spacing-box--8"></div><span class="mono-caption">8</span></div>
+                            <div class="spacing-item"><div class="spacing-box spacing-box--12"></div><span class="mono-caption">12</span></div>
+                            <div class="spacing-item"><div class="spacing-box spacing-box--16"></div><span class="mono-caption">16</span></div>
+                            <div class="spacing-item"><div class="spacing-box spacing-box--24"></div><span class="mono-caption">24</span></div>
+                            <div class="spacing-item"><div class="spacing-box spacing-box--32"></div><span class="mono-caption">32</span></div>
+                            <div class="spacing-item"><div class="spacing-box spacing-box--48"></div><span class="mono-caption">48</span></div>
+                            <div class="spacing-item"><div class="spacing-box spacing-box--64"></div><span class="mono-caption">64</span></div>
+                            <div class="spacing-item"><div class="spacing-box spacing-box--96"></div><span class="mono-caption">96</span></div>
+                            <div class="spacing-item"><div class="spacing-box spacing-box--128"></div><span class="mono-caption">128</span></div>
+                        </div>
+                        <p class="small-text mt-16">Step values in px — margins and paddings consume the same scale: <code>--space-4</code> … <code>--space-128</code>.</p>
+                    </div>
+
+                    <div class="container-demo">
+                        <h3>Container &amp; Section Rhythm</h3>
+                        <p class="small-text">Content band: <code>--container-max-width: 1240px</code>, gutters 24px (16px ≤ 480px). Sections: 96px vertical on desktop, 72px tablet, 48px mobile. Pale technical bands sit between white bands, matching the reference site.</p>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <!-- Resource Tiles Section -->
-            <section id="resources">
-                <h2>Resource Tiles</h2>
+        <!-- Buttons -->
+        <section id="buttons" class="section section-technical" aria-labelledby="buttons-heading">
+            <div class="container">
+                <p class="label-text">04 · Actions</p>
+                <h2 id="buttons-heading">Buttons</h2>
+                <p class="section-intro">Component library built on the five Material Design&nbsp;3 button families plus two Apertus variants. Hover, focus, and active states paint M3 state layers; a restrained ripple is provided by <code>main.js</code> and disabled under reduced motion. Height is at least 44px on every control.</p>
 
-                <div class="card-display">
-                    <h3 class="mb-3">Hexagonal Documentation Tiles</h3>
-                    <p class="text-muted mb-4">Three hexagonal tiles representing key documentation resources with distinctive Apertus styling.</p>
+                <div class="grid-auto-wide buttons-showcase">
+                    <div class="button-group">
+                        <h3>Filled — primary</h3>
+                        <p class="small-text">EPFL Red family (#D40000 interactive fill, white label — 5.5:1).</p>
+                        <p><button type="button" class="button button--filled">Primary Action</button></p>
+                        <p><button type="button" class="button button--filled" disabled>Disabled Primary</button></p>
+                    </div>
 
-                    <div class="hexagon-row">
-                        <div class="hexagon-tile">
-                            <div class="text-uppercase" style="font-size: 0.75rem; letter-spacing: 0.1em; margin-bottom: 0.75rem;">Technical</div>
-                            <div style="font-size: 1.5rem; font-weight: 800; letter-spacing: 0.1em;">Report</div>
-                        </div>
+                    <div class="button-group">
+                        <h3>Elevated</h3>
+                        <p class="small-text">Light surface action with subtle elevation.</p>
+                        <p><a class="button button--elevated" href="#example-homepage">Elevated Action</a></p>
+                        <p><button type="button" class="button button--elevated" disabled>Disabled Elevated</button></p>
+                    </div>
 
-                        <div class="hexagon-tile hexagon-tile-secondary">
-                            <div class="text-uppercase" style="font-size: 0.75rem; letter-spacing: 0.1em; margin-bottom: 0.75rem;">Developer</div>
-                            <div style="font-size: 1.5rem; font-weight: 800; letter-spacing: 0.1em;">Docs</div>
-                        </div>
+                    <div class="button-group">
+                        <h3>Tonal</h3>
+                        <p class="small-text">Secondary-container surface (Sky Blue 1.5.2, anthracite label — 9.0:1).</p>
+                        <p><button type="button" class="button button--tonal">Tonal Action</button></p>
+                        <p><button type="button" class="button button--tonal" disabled>Disabled Tonal</button></p>
+                    </div>
 
-                        <div class="hexagon-tile hexagon-tile-tertiary">
-                            <div class="text-uppercase" style="font-size: 0.75rem; letter-spacing: 0.1em; margin-bottom: 0.75rem;">Ethics</div>
-                            <div style="font-size: 1.5rem; font-weight: 800; letter-spacing: 0.1em;">Guide</div>
-                        </div>
+                    <div class="button-group">
+                        <h3>Filled-dark — Apertus variant</h3>
+                        <p class="small-text">Anthracite technical action (white label — 13.4:1).</p>
+                        <p><button type="button" class="button button--filled-dark">Dark Action</button></p>
+                        <p><button type="button" class="button button--filled-dark" disabled>Disabled Dark</button></p>
+                    </div>
+
+                    <div class="button-group">
+                        <h3>Sky — Apertus variant</h3>
+                        <p class="small-text">Sky Blue 1.5 with anthracite label (6.3:1 — AA).</p>
+                        <p><button type="button" class="button button--sky">Sky Action</button></p>
+                        <p><button type="button" class="button button--sky" disabled>Disabled Sky</button></p>
+                    </div>
+
+                    <div class="button-group">
+                        <h3>Outlined &amp; Text</h3>
+                        <p class="small-text">Supporting and lowest-emphasis actions. Text buttons stay semantic <code>&lt;a&gt;</code> when they navigate.</p>
+                        <p><a class="button button--outlined" href="#accessibility">Outlined Action</a></p>
+                        <p><button type="button" class="button button--text">Text Action</button></p>
+                        <p><a class="button button--text" href="#accessibility">Link Text Action</a></p>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <div class="row mt-5">
-                    <div class="col-md-6">
-                        <h4 class="mb-3">Tile Specifications</h4>
-                        <ul class="small text-muted">
-                            <li>Clip-path: August-style hexagon</li>
-                            <li>Hover: 2px vertical translation</li>
-                            <li>Main tile: Sky Blue 1.5</li>
-                            <li>Alternating: Sky Blue 1.5.1 & 1.5.2</li>
-                        </ul>
+        <!-- Cards -->
+        <section id="cards" class="section" aria-labelledby="cards-heading">
+            <div class="container">
+                <p class="label-text">05 · Surfaces</p>
+                <h2 id="cards-heading">Cards</h2>
+                <p class="section-intro">M3 card shapes — elevated, filled, outlined — with Apertus content compositions: centered news cards with a pale line-art emblem, and the feature strip with stacked headings. Cards are 0–6px corner-capped, the whole card is one focusable link, never a div.</p>
+
+                <h3>News Cards</h3>
+                <div class="news-cards">
+                    <a class="card card--elevated news-card" href="#resources">
+                        <div class="card-emblem">
+                            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                                <g fill="none" stroke="currentColor" stroke-width="1.6">
+                                    <circle cx="24" cy="24" r="20" opacity="0.35"/>
+                                    <circle cx="24" cy="24" r="12"/>
+                                    <path d="M24 4v8M24 36v8M4 24h8M36 24h8M10 10l5.5 5.5M32.5 32.5L38 38M38 10l-5.5 5.5M15.5 32.5L10 38"/>
+                                </g>
+                                <circle cx="24" cy="24" r="2.4" fill="currentColor"/>
+                            </svg>
+                            <span class="card-emblem-label">News</span>
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title">Research Breakthrough Announced</h4>
+                            <p class="card-text">New developments in sovereign AI methodology published today, marking a significant step forward for open science principles.</p>
+                            <div class="card-meta"><span class="dot" aria-hidden="true"></span><span>March 15, 2026</span></div>
+                        </div>
+                    </a>
+
+                    <a class="card card--elevated news-card" href="#resources">
+                        <div class="card-emblem">
+                            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                                <g fill="none" stroke="currentColor" stroke-width="1.6">
+                                    <circle cx="24" cy="24" r="20" opacity="0.3"/>
+                                    <path d="M24 6l4.4 12.2L41 18.6l-9.6 8.6L35 40l-11-6.8L13 40l3.6-12.8L7 18.6l12.6-.4z"/>
+                                </g>
+                            </svg>
+                            <span class="card-emblem-label">News</span>
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title">Developer Documentation Updated</h4>
+                            <p class="card-text">Enhanced API documentation and new examples now support broader adoption of the platform.</p>
+                            <div class="card-meta"><span class="dot" aria-hidden="true"></span><span>March 12, 2026</span></div>
+                        </div>
+                    </a>
+                </div>
+
+                <h3>Feature Strip</h3>
+                <div class="feature-strip">
+                    <div class="feature-card">
+                        <h4>Fully Open</h4>
+                        <p>Training data, code, weights, methods, and alignment principles are documented and reproducible.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>Compliant at Scale</h4>
+                        <p>Built to support transparent, compliant AI infrastructure for institutional deployment.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>Run for Performance</h4>
+                        <p>Optimized for practical deployment and multilingual performance across diverse environments.</p>
                     </div>
                 </div>
-            </section>
+                <p class="small-text mt-16">In the example homepage, the feature strip uses pale-blue panels with divided columns; on mobile the strip stacks and the dividers switch to horizontal rules.</p>
+            </div>
+        </section>
 
-            <!-- Patterns Section -->
-            <section id="patterns">
-                <h2>Patterns</h2>
+        <!-- Resource Tiles -->
+        <section id="resources" class="section section-wash" aria-labelledby="resources-heading">
+            <div class="container">
+                <p class="label-text">06 · Resources</p>
+                <h2 id="resources-heading">Resource Tiles</h2>
+                <p class="section-intro">The Apertus signature: hexagonal documentation tiles carrying white technical line icons on Sky Blue 1.5. Labels use uppercase mono-adjacent tracking. Tiles lift 3px on hover, and the icon area is a real link so keyboard focus never depends on JavaScript.</p>
 
-                <div class="row">
-                    <div class="col-md-6 mb-4">
-                        <div class="card-display">
-                            <h3 class="mb-4">Circuit Background</h3>
-                            <div style="height: 120px; background: var(--pale-technical-panel); border-radius: var(--radius-md); background-image: linear-gradient(rgba(123, 187, 213, 0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(123, 187, 213, 0.15) 1px, transparent 1px); background-size: 20px 20px; position: relative; overflow: hidden;">
-                                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); display: flex; gap: 1rem; align-items: center; justify-content: center; color: var(--apertus-sky-blue-15); font-weight: 700; letter-spacing: 0.1em;">
-                                    <span>CIRCUIT</span>
-                                    <span style="color: var(--apertus-anthracite);">/</span>
-                                    <span>PATTERN</span>
-                                </div>
+                <div class="resource-cluster">
+                    <a class="resource-tile" href="examples/homepage.html">
+                        <span class="hexagon">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                                <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="4" y="4" width="16" height="16" rx="1"/>
+                                    <path d="M7.5 12h9M12 7.5v9"/>
+                                    <path d="M7.5 8.5h4M7.5 15.5h4"/>
+                                </g>
+                            </svg>
+                        </span>
+                        <span class="tile-label">Technical Report</span>
+                    </a>
+
+                    <a class="resource-tile" href="examples/homepage.html">
+                        <span class="hexagon">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                                <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M9 8l-3.5 4L9 16"/>
+                                    <path d="M15 8l3.5 4L15 16"/>
+                                    <path d="M13 6l-2 12"/>
+                                </g>
+                            </svg>
+                        </span>
+                        <span class="tile-label">Developer Docs</span>
+                    </a>
+
+                    <a class="resource-tile" href="examples/homepage.html">
+                        <span class="hexagon">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                                <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="8.5"/>
+                                    <circle cx="12" cy="12" r="4"/>
+                                    <circle cx="12" cy="12" r="1" fill="currentColor"/>
+                                </g>
+                            </svg>
+                        </span>
+                        <span class="tile-label">Ethics Guide</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Patterns -->
+        <section id="patterns" class="section" aria-labelledby="patterns-heading">
+            <div class="container">
+                <p class="label-text">07 · Geometry</p>
+                <h2 id="patterns-heading">Patterns</h2>
+                <p class="section-intro">Background geometry is decorative by contract: CSS/inline-SVG based, lightweight, never animated, and hidden from assistive tech. The circuit motif, triangular overlays, and rosette emblems are the system's signature.</p>
+
+                <div class="demo-grid-wide">
+                    <section class="pattern-sample">
+                        <h3>Circuit Pattern</h3>
+                        <div class="pattern-container pattern-circuit">
+                            <div class="pattern-content">
+                                <p>Pale technical fields carry a subtle circuit-line motif at 96px tiling. It is a CSS background image — no raster assets, no runtime cost.</p>
                             </div>
                         </div>
-                    </div>
+                    </section>
 
-                    <div class="col-md-6 mb-4">
-                        <div class="card-display">
-                            <h3 class="mb-4">Geometric Overlays</h3>
-                            <div style="height: 120px; background: var(--pale-blue-wash); border-radius: var(--radius-md); position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center;">
-                                <div style="position: absolute; top: 0; left: 0; border-width: 80px 0 0 80px; border-style: solid; border-color: transparent transparent transparent var(--apertus-sky-blue-15); opacity: 0.15;"></div>
-                                <div style="position: absolute; bottom: 0; right: 0; border-width: 0 80px 80px 0; border-style: solid; border-color: transparent var(--apertus-sky-blue-15) transparent transparent; opacity: 0.15;"></div>
-                                <span class="small text-muted text-uppercase" style="letter-spacing: 0.1em;">Triangles</span>
+                    <section class="pattern-sample">
+                        <h3>Triangular Overlays</h3>
+                        <div class="pattern-container pattern-sample-triangles">
+                            <div class="triangle-overlay triangle-1" aria-hidden="true"></div>
+                            <div class="triangle-overlay triangle-2" aria-hidden="true"></div>
+                            <div class="triangle-overlay triangle-3" aria-hidden="true"></div>
+                            <div class="pattern-content">
+                                <p>The hero places translucent triangles over the pale field. They sit behind content and never intercept pointer input.</p>
                             </div>
                         </div>
-                    </div>
+                    </section>
 
-                    <div class="col-md-6 mb-4">
-                        <div class="card-display">
-                            <h3 class="mb-4">Star Emblem</h3>
-                            <div style="display: flex; margin-bottom: 1rem;">
-                                <svg width="80" height="80" viewBox="0 0 100 100" style="color: var(--apertus-sky-blue-15);">
-                                    <path d="M50 0 L61 39 L100 50 L61 61 L50 100 L39 61 L0 50 L39 39 Z" fill="currentColor" opacity="0.2"/>
+                    <section class="pattern-sample">
+                        <h3>Geometric Emblems</h3>
+                        <div class="pattern-container pattern-sample-emblems">
+                            <div class="pattern-content text-center">
+                                <svg width="56" height="56" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                                    <g fill="none" stroke="currentColor" stroke-width="1.6">
+                                        <circle cx="24" cy="24" r="20" opacity="0.4"/>
+                                        <circle cx="24" cy="24" r="12"/>
+                                        <path d="M24 4v8M24 36v8M4 24h8M36 24h8M10 10l5.5 5.5M32.5 32.5L38 38M38 10l-5.5 5.5M15.5 32.5L10 38"/>
+                                    </g>
+                                    <circle cx="24" cy="24" r="2.4" fill="currentColor"/>
                                 </svg>
+                                <svg width="56" height="56" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                                    <g fill="none" stroke="currentColor" stroke-width="1.6">
+                                        <circle cx="24" cy="24" r="20" opacity="0.3"/>
+                                        <path d="M24 6l4.4 12.2L41 18.6l-9.6 8.6L35 40l-11-6.8L13 40l3.6-12.8L7 18.6l12.6-.4z"/>
+                                    </g>
+                                </svg>
+                                <p>News cards carry rosette and star line-art emblems in Sky Blue 1.5 — static decorative pagination dots accompany non-functional carousels.</p>
                             </div>
-                            <p class="small text-muted">Decorative star/mandala emblem for news sections</p>
                         </div>
-                    </div>
+                    </section>
+                </div>
+            </div>
+        </section>
 
-                    <div class="col-md-6 mb-4">
-                        <div class="card-display">
-                            <h3 class="mb-4">Architectural Footer</h3>
-                            <div style="height: 60px; background: var(--pale-technical-panel); border-radius: var(--radius-md); clip-path: polygon(0% 100%, 100% 100%, 100% 60%, 80% 40%, 60% 60%, 40% 40%, 20% 60%, 0% 100%); display: flex; align-items: center; padding-left: 2rem; color: var(--apertus-anthracite); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;">
-                            </div>
+        <!-- Accessibility -->
+        <section id="accessibility" class="section section-technical" aria-labelledby="accessibility-heading">
+            <div class="container">
+                <p class="label-text">08 · Inclusion</p>
+                <h2 id="accessibility-heading">Accessibility</h2>
+                <p class="section-intro">Built to WCAG&nbsp;2.2&nbsp;AA: one heading per page in order, a skip link as the first focusable element, visible focus on everything, no hover-only content, and reduced-motion support. Contrast is verified as a color-role pair, not a hex picker.</p>
+
+                <div class="grid-auto-wide accessibility-showcase">
+                    <section class="a11y-feature">
+                        <h3>Focus States</h3>
+                        <p>Every focusable element shows a 3px red ring with 2px offset — <code>:focus-visible</code> for pointer users, always visible for keyboard users. Hover changes are never the only signal.</p>
+                        <div class="focus-demo">
+                            <button type="button" class="button button--filled">Focus Example</button>
+                            <a class="button button--outlined" href="#accessibility">Link Focus Example</a>
                         </div>
+                    </section>
+
+                    <section class="a11y-feature">
+                        <h3>Skip Link</h3>
+                        <p>The skip link is the first focusable element in every page and jumps straight to <code>#main-content</code>. Tab once from the top to reveal it.</p>
+                        <div class="skip-link-demo">
+                            <a href="#main-content" class="skip-link">Skip to main content</a>
+                        </div>
+                    </section>
+
+                    <section class="a11y-feature">
+                        <h3>Reduced Motion</h3>
+                        <p>Non-essential transitions and the MD3 ripple are disabled under <code>prefers-reduced-motion: reduce</code>. Background patterns never animate.</p>
+                        <div class="reduced-motion-demo"><span class="motion-example">Hover lift: 3px → 0px · ripple: skipped · scroll: instant</span></div>
+                    </section>
+
+                    <section class="a11y-feature">
+                        <h3>Contrast Rules</h3>
+                        <p>Verified pairs enforced by the token layer:</p>
+                        <div class="contrast-demo">
+                            <p class="contrast-chip contrast-chip--on-white">Anthracite on white · 13.4:1</p>
+                            <p class="contrast-chip contrast-chip--on-sky">Anthracite on Sky 1.5 · 6.3:1</p>
+                            <p class="contrast-chip contrast-chip--on-red">White on #D40000 · 5.5:1</p>
+                            <p class="contrast-chip contrast-chip--on-panel">Anthracite on #EAF5F8 · 12.9:1</p>
+                        </div>
+                        <p class="small-text">White on #FF0000 (4.0:1) is reserved for large text and non-text UI; white on Sky Blue (2.1:1) fails and is decorative only. See <a href="docs/accessibility.md">the accessibility documentation</a>.</p>
+                    </section>
+                </div>
+            </div>
+        </section>
+
+        <!-- Example Homepage -->
+        <section id="example-homepage" class="section" aria-labelledby="example-homepage-heading">
+            <div class="container">
+                <p class="label-text">09 · Reference Build</p>
+                <h2 id="example-homepage-heading">Example Homepage</h2>
+                <p class="section-intro">A complete reference homepage assembled from this component library. It is also viewable directly: <a href="examples/homepage.html">open examples/homepage.html</a>.</p>
+
+                <div class="homepage-example">
+                    <iframe src="examples/homepage.html" title="Swiss-ai.org example homepage built with the style guide components" class="homepage-frame" loading="lazy"></iframe>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="site-brand">
+                    <div class="license-chip-row">
+                        <a class="license-chip" href="../LICENSE">Apache-2.0</a>
+                        <a class="license-chip" href="../NOTICE">NOTICE</a>
+                        <a class="license-chip" href="docs/governance.md">Governance</a>
                     </div>
                 </div>
-            </section>
 
-            <!-- Accessibility Section -->
-            <section id="accessibility">
-                <h2>Accessibility</h2>
-
-                <div class="row mb-4">
-                    <div class="col-md-4">
-                        <div class="card-display">
-                            <h4 class="mb-3">Focus States</h4>
-                            <p class="small text-muted mb-3">Visible focus indicators on all interactive elements.</p>
-
-                            <div class="d-flex flex-column gap-2">
-                                <button class="btn-button btn-primary px-4">Button Focus</button>
-                                <a href="#" class="text-epfl-red text-decoration-none">Link Focus</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="card-display">
-                            <h4 class="mb-3">Skip Link</h4>
-                            <p class="small text-muted mb-3">Accessible skip navigation to main content for keyboard users.</p>
-
-                            <div class="p-3 bg-light rounded text-center" style="font-size: 0.8125rem;">
-                                <a href="#main-content" class="skip-to-content position-static">Skip to main content</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="card-display">
-                            <h4 class="mb-3">Motion Preferences</h4>
-                            <p class="small text-muted mb-3">Respects user motion preferences via <code class="text-epfl-red">prefers-reduced-motion</code>.</p>
-
-                            <div class="alert alert-light border small">
-                                Animations disabled in reduced-motion mode
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card-display">
-                    <h4 class="mb-3">WCAG 2.2 AA Compliance</h4>
-                    <ul class="small text-muted">
-                        <li>✓ Proper semantic HTML5 (header, nav, main, section, article, footer)</li>
-                        <li>✓ One H1 per page with correct heading hierarchy</li>
-                        <li>✓ Keyboard-accessible navigation and components</li>
-                        <li>✓ Visible focus rings on all interactive elements</li>
-                        <li>✓ Minimum color contrast ratio 4.5:1 for text backgrounds</li>
-                        <li>✓ No hover-only content or hidden interactions</li>
-                        <li>✓ SVG icons include appropriate Alt text where meaningful</li>
-                        <li>✓ Reduced motion support built into core patterns</li>
+                <nav class="footer-nav" aria-label="Style guide sections">
+                    <h4 class="footer-nav-heading">Guide</h4>
+                    <ul class="bare-list">
+                        <li><a href="#foundation">Foundation</a></li>
+                        <li><a href="#colors">Colors</a></li>
+                        <li><a href="#typography">Typography</a></li>
+                        <li><a href="#layout">Layout</a></li>
+                        <li><a href="#buttons">Buttons</a></li>
+                        <li><a href="#example-homepage">Example Homepage</a></li>
                     </ul>
+                </nav>
+
+                <nav class="footer-nav" aria-label="Documentation">
+                    <h4 class="footer-nav-heading">Documentation</h4>
+                    <ul class="bare-list">
+                        <li><a href="docs/usage.md">Usage</a></li>
+                        <li><a href="docs/design-principles.md">Design Principles</a></li>
+                        <li><a href="docs/accessibility.md">Accessibility</a></li>
+                        <li><a href="docs/governance.md">Governance &amp; License</a></li>
+                    </ul>
+                </nav>
+
+                <div class="footer-contact">
+                    <h4 class="footer-nav-heading">Contact</h4>
+                    <p class="small-text">Swiss-ai.org Accessibility &amp; Design Team<br>
+                    School of Computer and Communication Sciences<br>
+                    Lausanne, Switzerland</p>
                 </div>
+            </div>
 
-                <div class="card-display mt-4">
-                    <h4 class="mb-3">Color Contrast Check</h4>
-                    <div class="d-flex gap-4 align-items-center">
-                        <div style="width: 60px; height: 60px; background: var(--apertus-anthracite); display: flex; align-items: center; justify-content: center; color: white; font-size: 0.8125rem; font-weight: 700; border-radius: var(--radius-md);">AAA</div>
-                        <div>
-                            <p class="mb-1 small"><strong>Anthracite on White:</strong> 19.2:1 ratio</p>
-                            <p class="mb-0 small text-muted">Passes AAA WCAG level</p>
-                        </div>
-                    </div>
+            <div class="footer-bottom">
+                <p class="footer-legal">
+                    <span>&copy; 2026 Swiss-ai.org · Apache-2.0 · based on Material Design&nbsp;3 (Apache-2.0)</span>
+                </p>
+                <div class="footer-legal-links">
+                    <a href="docs/governance.md">Dependency Policy</a>
+                    <a href="docs/usage.md">Usage</a>
+                    <a href="../LICENSE">License</a>
                 </div>
-            </section>
+            </div>
+        </div>
+    </footer>
 
-            <!-- Homepage Example Section -->
-            <section id="homepage">
-                <h2>Homepage Example</h2>
-
-                <div class="card-display" style="border: none; background: transparent; padding: 0;">
-                    <div style="background: linear-gradient(135deg, var(--pale-technical-panel) 0%, var(--pale-blue-wash) 100%); padding: 4rem 0; position: relative; overflow: hidden; border-radius: var(--radius-md); margin-bottom: 1.5rem; border: 1px solid var(--border-blue);">
-                        <div style="position: absolute; top: 0; left: 0; border-width: 100px 0 0 100px; border-style: solid; border-color: transparent transparent transparent var(--apertus-sky-blue-15); opacity: 0.12;"></div>
-                        <div style="position: absolute; bottom: 0; right: 0; border-width: 0 100px 100px 0; border-style: solid; border-color: transparent var(--apertus-sky-blue-15) transparent transparent; opacity: 0.12;"></div>
-                        <div class="container text-center position-relative" style="z-index: 1;">
-                            <h1 style="font-weight: 800; color: var(--apertus-anthracite); letter-spacing: 0.1em; margin-bottom: 0.5rem;">APERTVS</h1>
-                            <p style="font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--apertus-sky-blue-15); margin-bottom: 1rem;">Confoederatio Apertus</p>
-                            <p style="font-size: 1.25rem; font-weight: 300; color: var(--apertus-anthracite); max-width: 480px; margin: 0 auto 2rem;">Fully Open Foundation Model for Sovereign AI</p>
-                            <div class="d-flex gap-3 justify-content-center">
-                                <button class="btn-button btn-primary px-5 py-3">Get Started</button>
-                                <button class="btn-button btn-tertiary px-5 py-3">Learn More</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <h4 class="mb-3">Homepage Structure Reference</h4>
-                    <p class="small text-muted">This example demonstrates the reference website structure: hero section with circuit pattern, CTA group, and proportional spacing.</p>
-                </div>
-            </section>
-
-            <!-- Footer -->
-            <footer>
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-md-6 mb-4 mb-md-0">
-                            <div class="footer-logo">APERTVS.AI</div>
-                            <p class="text-muted small">Confoederatio Apertus — Fully Open Foundation Model for Sovereign AI</p>
-                        </div>
-                        <div class="col-md-6 text-md-end">
-                            <div style="display: inline-block; width: 60px; height: 30px; background: var(--pale-technical-panel); clip-path: polygon(0% 100%, 100% 100%, 100% 60%, 80% 40%, 60% 60%, 40% 40%, 20% 60%, 0% 100%);"></div>
-                        </div>
-                    </div>
-                    <hr class="my-4" style="border-color: var(--border-subtle);">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <p class="text-muted small mb-0">© 2026 Apertus Web Style Guide</p>
-                        </div>
-                        <div class="col-md-6 text-md-end">
-                            <ul class="list-unstyled d-inline-flex gap-3 mb-0 small">
-                                <li><a href="#colors" class="text-decoration-none text-muted">Colors</a></li>
-                                <li><a href="#typography" class="text-decoration-none text-muted">Typography</a></li>
-                                <li><a href="#accessibility" class="text-decoration-none text-muted">Accessibility</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </footer>
-        </main>
-    </div>
-
-    <!-- Bootstrap 5 JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- JavaScript — progressive enhancement only -->
+    <script src="src/js/main.js" defer></script>
 </body>
 </html>
