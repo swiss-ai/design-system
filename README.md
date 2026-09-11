@@ -9,7 +9,17 @@ Apertus — a flagship project of Swiss-ai.org — supplies the brand palette
 
 **Based on design and illustrations by [Florian Molinari](https://www.molinaridesign.ch/)**
 
-These can be found in the ['design' folder](https://github.com/swiss-ai/design-system/tree/main/design).
+## Documentation
+
+- [`design/*`](https://github.com/swiss-ai/design-system/tree/main/design) - original design assets and logos.
+- [`docs/design-principles.md`](docs/design-principles.md) — why M3, the
+  Apertus adaptations, and component vocabulary.
+- [`docs/usage.md`](docs/usage.md) — usage for designers and developers.
+- [`docs/accessibility.md`](docs/accessibility.md) — WCAG 2.2 AA details and
+  the verified contrast table.
+- [`docs/governance.md`](docs/governance.md) — governance, the Apache-2.0
+  dependency policy, and the change process.
+
 
 ## Purpose
 
@@ -121,16 +131,6 @@ directory's [README](src/assets/logos/README.md). Until then, pages use a
 text-based `SWISS-AI.ORG` placeholder with deliberate tracking. Line icons in
 `src/assets/icons/` are thin-stroke SVGs matching the M3 outlined style.
 
-## Documentation
-
-- [`docs/design-principles.md`](docs/design-principles.md) — why M3, the
-  Apertus adaptations, and component vocabulary.
-- [`docs/usage.md`](docs/usage.md) — usage for designers and developers.
-- [`docs/accessibility.md`](docs/accessibility.md) — WCAG 2.2 AA details and
-  the verified contrast table.
-- [`docs/governance.md`](docs/governance.md) — governance, the Apache-2.0
-  dependency policy, and the change process.
-
 ## Repository structure
 
 ```
@@ -168,7 +168,7 @@ design-system/
 
 ## License
 
-Licensed under the [Apache License, Version 2.0](../LICENSE). Component
+Licensed under the [Apache License, Version 2.0](LICENSE). Component
 library baseline: Material Design 3 (Apache-2.0, Google LLC) — see
-[NOTICE](../NOTICE). Official logo artwork is not redistributed under this
+[NOTICE](NOTICE). Official logo artwork is not redistributed under this
 license.

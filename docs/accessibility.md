@@ -116,3 +116,7 @@ The report lands in `.lighthouse/report.html`.
 - [WCAG 2.2](https://www.w3.org/TR/WCAG22/)
 - [ARIA Authoring Practices Guide (APG)](https://www.w3.org/WAI/ARIA/apg/)
 - [Material Design 3 — Accessibility](https://m3.material.io/foundations/accessible-design/overview)
+
+## Contact
+
+For accessibility issues or accommodations, please [contact us](mailto:team@apertus-ai.org).
