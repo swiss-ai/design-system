@@ -706,6 +706,7 @@ button.token-name:hover {
    FOOTER
    ========================================================================== */
 .site-footer {
+  padding-top: 4em;
   background-color: var(--md-sys-color-surface);
 }
 

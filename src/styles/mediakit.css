@@ -1,0 +1,114 @@
+/* SPDX-License-Identifier: Apache-2.0 */
+/* Styles specific to the media kit page (mediakit/index.html).
+   Reusable component styles live in components.css; this file only adds
+   the asset-card presentation used by the media kit. */
+
+/* --------------------------------------------------------------------------
+   Asset card grid
+   -------------------------------------------------------------------------- */
+.media-kit-grid {
+  display: grid;
+  gap: var(--space-32);
+  grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr));
+  margin-block-start: var(--space-48);
+}
+
+.media-card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--md-sys-color-surface-container-lowest);
+  border: 1px solid var(--md-sys-color-outline-variant);
+  border-radius: var(--md-sys-shape-corner-card);
+  overflow: hidden;
+}
+
+/* --------------------------------------------------------------------------
+   Preview well — pale surface so transparent logo art stays visible.
+   Images fill the well and letterbox via object-fit: percentage sizes resolve
+   against the flex container's definite content box, so art always scales to
+   the fixed-height preview instead of overflowing it.
+   -------------------------------------------------------------------------- */
+.media-preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-24);
+  background-color: var(--color-pale-blue-wash);
+  border-block-end: 1px solid var(--md-sys-color-outline-variant);
+}
+
+.media-preview img {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.media-preview--wide {
+  height: 140px;
+}
+
+.media-preview--square {
+  height: 220px;
+}
+
+/* Full-bleed 16:9 slide and background previews */
+.media-preview--slide {
+  aspect-ratio: 16 / 9;
+  padding: 0;
+}
+
+.media-preview--slide img {
+  object-fit: cover;
+}
+
+/* --------------------------------------------------------------------------
+   Card content
+   -------------------------------------------------------------------------- */
+.media-card-body {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: var(--space-8);
+  padding: var(--space-24);
+}
+
+.media-card-title {
+  font-family: var(--md-ref-typeface-brand);
+  font-size: var(--md-sys-typescale-title-small-size);
+  font-weight: var(--md-sys-typescale-title-small-weight);
+  line-height: var(--md-sys-typescale-title-small-line-height);
+  letter-spacing: var(--md-sys-typescale-title-small-tracking);
+  text-transform: var(--md-sys-typescale-title-small-transform);
+  color: var(--md-sys-color-on-surface);
+}
+
+.media-card-desc {
+  color: var(--md-sys-color-on-surface-variant);
+  line-height: 1.55;
+}
+
+.media-file-meta {
+  font-family: var(--md-ref-typeface-mono);
+  font-size: var(--md-sys-typescale-mono-small-size);
+  line-height: var(--md-sys-typescale-mono-small-line-height);
+  letter-spacing: 0.02em;
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+/* --------------------------------------------------------------------------
+   Format buttons — pinned to the card foot so rows align
+   -------------------------------------------------------------------------- */
+.media-format-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-8);
+  margin-block-start: auto;
+  padding-block-start: var(--space-16);
+}
+
+.media-format {
+  justify-content: center;
+  min-inline-size: 64px;
+}
