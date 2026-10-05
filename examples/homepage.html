@@ -28,6 +28,12 @@
             padding-block: 96px var(--space-128);
         }
 
+        /* Page-specific hero artwork; the compiled core bundle carries no
+           raster references (build-css refuses .png/.jpg in core sheets). */
+        .hero-home::before {
+            background-image: url("../src/assets/backgrounds/Apertus 2606 - Background 05.jpg");
+        }
+
         .hero-stats {
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));

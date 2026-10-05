@@ -406,3 +406,11 @@
 .license-chip:hover {
   border-color: var(--md-sys-color-outline-blue);
 }
+
+/* --------------------------------------------------------------------------
+   Hero artwork — page-specific; kept out of the compiled core bundle
+   (build-css refuses .png/.jpg references in the core manifest)
+   -------------------------------------------------------------------------- */
+.hero::before {
+  background-image: url("../assets/backgrounds/Apertus 2606 - Background 05.jpg");
+}
