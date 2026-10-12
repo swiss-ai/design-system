@@ -122,11 +122,13 @@
   text-align: center;
 }
 
+/* The hero artwork layer is supplied per page (styleguide.css, mediakit.css
+   and the examples) so the compiled core bundle stays free of raster image
+   references — build-css refuses to compile .png/.jpg references. */
 .hero::before {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url("../assets/backgrounds/Apertus 2606 - Background 05.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   pointer-events: none;
@@ -155,6 +157,17 @@
     width: 400px;
     height: 100px;
     display: inline-block;
+}
+.logo {
+  background: url("../assets/logos/Apertus 2606 - Logo - Text only.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 200px;
+  height: 24px;
+}
+.logo .logo-text {
+  font-size: 0px;
+  color: transparent;
 }
 
 .hero-content {
